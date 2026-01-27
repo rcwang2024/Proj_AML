@@ -1,8 +1,0 @@
-"Variable","HR","X95..CI","P.value","Significant","Notes"
-"Cluster 2 (vs Cluster 1)","1.06","0.83-1.36","0.649","No","NOT independent of mutations"
-"Age (per year)","1.03","1.02-1.04","7.3×10⁻¹²","Yes","Strong age effect"
-"Sex (Male vs Female)","1.12","0.91-1.38","0.278","No","No sex difference"
-"TP53 mutation","2.96","2.10-4.17","5.6×10⁻¹⁰","Yes","Dominant prognostic factor"
-"TET2 mutation","1.42","1.03-1.94","0.031","Yes","Independent adverse factor"
-"RUNX1 mutation","1.13","0.78-1.64","0.518","No","Not significant in multivariate"
-"ASXL1 mutation","1.21","0.82-1.79","0.331","No","Not significant in multivariate"

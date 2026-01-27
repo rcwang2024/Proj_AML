@@ -1,11 +1,43 @@
-# --- Data Directories ---
+# --- Exclude Everything by Default (Optional approach, but let's be explicit) ---
+
+# --- Exclude Large Data and Results ---
 01_Data/
 GDCdata/
 data/
-
-# --- Results and Large Binary Files ---
 03_Results/
 Archive_Previous_Analysis_20251002/
+results.rds
+
+# --- Exclude Manuscripts, Figures, and Internal Logs ---
+04_Figures/
+05_Manuscript/
+05_Reports/
+05_Supplementary/
+07_Revision/
+06_Documentation/
+
+# --- Exclude Specific Internal/Legacy Scripts ---
+02_Scripts/AML_Literature/
+02_Scripts/04_Documentation/
+02_Scripts/12_Generate_Presentation/
+02_Scripts/13_Integrity_Check/
+02_Scripts/Phase2_Validation/
+02_Scripts/Phase3_CriticalValidation/
+02_Scripts/Phase4_ManuscriptPrep/
+02_Scripts/Phase6_Robustness/
+
+# --- Artifacts and Workspace ---
+.claude/
+.gemini/
+.agent/
+.DS_Store
+Thumbs.db
+nul
+.antigravityignore
+CLAUDE.md
+README_OLD.md
+
+# --- Standard Ignore ---
 *.rds
 *.rds_files/
 *.RData
@@ -14,20 +46,6 @@ Archive_Previous_Analysis_20251002/
 *.bak
 *.tmp
 *.log
-
-# --- Figures (Optional: keep if you want to show results, but exclude if too large) ---
-# 04_Figures/
-
-# --- Artifacts and Local Workspace ---
-.claude/
-.gemini/
-.agent/
-.DS_Store
-Thumbs.db
-nul
-.antigravityignore
-
-# --- Environment and Misc ---
 .venv/
 env/
 venv/
