@@ -1,0 +1,11 @@
+metric,value
+cohens_d,-1.25165175595697
+ci_lower,-1.47541509106857
+ci_upper,-1.02788842084538
+magnitude,very large
+cluster1_mean,107.345188535091
+cluster1_sd,71.203553498675
+cluster1_n,184
+cluster2_mean,192.000106716841
+cluster2_sd,63.8451196702825
+cluster2_n,183

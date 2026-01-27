@@ -1,0 +1,111 @@
+==============================================================================
+TARGET-AML VALIDATION - FINAL
+==============================================================================
+
+Loading expression data...
+Expression: 19938 genes x 3227 samples
+
+Loading clinical data...
+Clinical: 1901 samples
+
+Loading UUID-barcode mapping...
+Mapping: 3227 files
+
+Matched samples: 1713
+
+Final matched dataset: 1713 samples
+Events: 610 (35.6%)
+Age range: 0.0 - 29.2 years
+Median follow-up: 40.9 months
+
+APPLYING BEATAML CLASSIFIER
+==============================================================================
+
+Available genes: 42 / 50 (84.0%)
+
+Imputing 8 missing genes with BeatAML means...
+Predicting cluster assignments...
+
+Cluster distribution:
+  Cluster 1: 1368 (79.9%)
+  Cluster 2: 345 (20.1%)
+  Mean confidence: 0.575
+  Low confidence (<0.6): 1174 (68.5%)
+
+✓ Saved cluster assignments
+
+SURVIVAL ANALYSIS
+==============================================================================
+
+** SURVIVAL RESULTS **
+
+Sample size: 1713 (Cluster 1: 1368, Cluster 2: 345)
+Events: 610 (35.6%)
+
+Log-rank test: p = 0.0520 
+Cox HR: 0.813 (95% CI: 0.660 - 1.002)
+Cox p-value: 0.0524
+
+Median survival by cluster:
+  Cluster 1: NA months
+  Cluster 2: NA months
+  Difference: NA months NA✓ Saved survival summary
+
+CROSS-COHORT COMPARISON
+==============================================================================
+
+All cohorts:
+              cohort         age_group n_samples n_events        hr  hr_lower
+1            BeatAML             Adult       671      398 1.3774747 1.1283164
+2               TCGA             Adult       151       97 1.2406347 0.7954018
+cluster=1 TARGET-AML Pediatric (0-30y)      1713      610 0.8133313 0.6600819
+          hr_upper
+1         1.681653
+2         1.935090
+cluster=1 1.002160
+
+
+Heterogeneity test:
+  Pooled HR: 1.086
+  Cochran's Q: 13.166 (df=2), p = 0.0014
+  I² statistic: 84.8%
+  ⚠ Significant heterogeneity detected
+
+CREATING FIGURES
+==============================================================================
+
+null device 
+          1 
+✓ Saved: target_kaplan_meier.pdf
+null device 
+          1 
+✓ Saved: forest_plot_all_cohorts.pdf
+
+==============================================================================
+TARGET-AML VALIDATION COMPLETE
+==============================================================================
+
+COHORT:
+  Dataset: TARGET-AML (pediatric, age 0-30)
+  Samples: 1713
+  Events: 610 (35.6%)
+  Median age: 10.1 years
+  Median follow-up: 40.9 months
+
+VALIDATION RESULTS:
+  Log-rank p: 0.0520 
+  Cox HR: 0.81 (95% CI: 0.66 - 1.00)
+  Cox p: 0.0524
+
+INTERPRETATION:
+✗ NO VALIDATION
+  - No significant survival difference in pediatric cohort
+  Possible reasons:
+    1. Age-specific biology (pediatric vs adult AML)
+    2. Treatment differences (intensive pediatric protocols)
+    3. Different mutation landscape in children
+    4. Insufficient statistical power
+
+==============================================================================
+Analysis completed: 2025-10-12 17:58:33.126934
+==============================================================================

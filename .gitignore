@@ -1,0 +1,38 @@
+# --- Data Directories ---
+01_Data/
+GDCdata/
+data/
+
+# --- Results and Large Binary Files ---
+03_Results/
+Archive_Previous_Analysis_20251002/
+*.rds
+*.rds_files/
+*.RData
+*.Rhistory
+*.Ruserdata
+*.bak
+*.tmp
+*.log
+
+# --- Figures (Optional: keep if you want to show results, but exclude if too large) ---
+# 04_Figures/
+
+# --- Artifacts and Local Workspace ---
+.claude/
+.gemini/
+.agent/
+.DS_Store
+Thumbs.db
+nul
+.antigravityignore
+
+# --- Environment and Misc ---
+.venv/
+env/
+venv/
+node_modules/
+.ipynb_checkpoints/
+__pycache__/
+*.py[cod]
+*$py.class

@@ -1,0 +1,43 @@
+==============================================================================
+TARGET-AML VALIDATION - FINAL
+==============================================================================
+
+Loading expression data...
+Expression: 19938 genes x 3227 samples
+
+Loading clinical data...
+Clinical: 1901 samples
+
+Loading UUID-barcode mapping...
+Mapping: 3227 files
+
+Matched samples: 1713
+
+Final matched dataset: 1713 samples
+Events: 610 (35.6%)
+Age range: 0.0 - 29.2 years
+Median follow-up: 40.9 months
+
+APPLYING BEATAML CLASSIFIER
+==============================================================================
+
+Available genes: 0 / 50 (0.0%)
+
+Imputing 50 missing genes with BeatAML means...
+Predicting cluster assignments...
+
+Cluster distribution:
+  Cluster 1: 0 (0.0%)
+  Cluster 2: 1713 (100.0%)
+  Mean confidence: 0.918
+  Low confidence (<0.6): 0 (0.0%)
+
+✓ Saved cluster assignments
+
+SURVIVAL ANALYSIS
+==============================================================================
+
+Error in survdiff.fit(y, groups, strata.keep, rho) : 
+  There is only 1 group
+Calls: survdiff -> survdiff.fit
+Execution halted

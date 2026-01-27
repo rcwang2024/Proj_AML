@@ -1,0 +1,270 @@
+═══════════════════════════════════════════════════════════════════════════
+AUTHOR STATEMENTS FOR MANUSCRIPT SUBMISSION
+═══════════════════════════════════════════════════════════════════════════
+
+Title: Molecular Subtypes in Adult Acute Myeloid Leukemia Predict Venetoclax
+       Response Independent of Genomic Alterations
+
+Date: 2025-12-09
+
+═══════════════════════════════════════════════════════════════════════════
+1. AUTHOR CONTRIBUTIONS (CRediT Taxonomy)
+═══════════════════════════════════════════════════════════════════════════
+
+[Author 1 Name]:
+  ☐ Conceptualization
+  ☐ Data curation
+  ☐ Formal analysis
+  ☐ Investigation
+  ☐ Methodology
+  ☐ Software
+  ☐ Validation
+  ☐ Visualization
+  ☐ Writing - original draft
+  ☐ Writing - review & editing
+
+[Author 2 Name]:
+  ☐ Conceptualization
+  ☐ Funding acquisition
+  ☐ Investigation
+  ☐ Methodology
+  ☐ Project administration
+  ☐ Resources
+  ☐ Supervision
+  ☐ Writing - review & editing
+
+[Author 3 Name]:
+  ☐ Data curation
+  ☐ Formal analysis
+  ☐ Software
+  ☐ Validation
+  ☐ Visualization
+
+[Continue for all authors...]
+
+NARRATIVE SUMMARY:
+[Author 1] and [Author 2] conceived and designed the study. [Author 1]
+performed all computational analyses, developed the gene classifier and VRS
+tool, and created all figures. [Author 3] provided bioinformatics support
+and validated analytical methods. [Author 4] provided clinical expertise
+and interpreted results. [Author 2] supervised the project and obtained
+funding. [Author 1] wrote the initial draft. All authors critically reviewed
+and approved the final manuscript.
+
+═══════════════════════════════════════════════════════════════════════════
+2. COMPETING INTERESTS STATEMENT
+═══════════════════════════════════════════════════════════════════════════
+
+The authors declare no competing interests.
+
+[OR, if conflicts exist:]
+
+[Author Name] has received consulting fees from [Company] and research
+funding from [Company], unrelated to this work. [Author Name] is a
+co-inventor on a patent application related to [Topic], filed by
+[Institution]. All other authors declare no competing interests.
+
+═══════════════════════════════════════════════════════════════════════════
+3. DATA AVAILABILITY STATEMENT
+═══════════════════════════════════════════════════════════════════════════
+
+PUBLICLY AVAILABLE DATA:
+
+BeatAML cohort data:
+- RNA-seq, mutation, drug response, and clinical data are available through
+  the Database of Genotypes and Phenotypes (dbGaP) under accession number
+  phs001657.v1.p1.
+- Access requires approval through dbGaP's controlled-access mechanism.
+- Study information: https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=phs001657.v1.p1
+
+TCGA-LAML cohort data:
+- RNA-seq and clinical data are available through the Genomic Data Commons
+  (GDC) Data Portal.
+- URL: https://portal.gdc.cancer.gov/
+- Project ID: TCGA-LAML
+- Data are publicly accessible without restrictions.
+
+TARGET-AML cohort data:
+- Pediatric AML data are available through the TARGET Data Matrix.
+- URL: https://target-data.nci.nih.gov/
+- Project: Acute Myeloid Leukemia (AML)
+- Data are publicly accessible.
+
+PROCESSED DATA AND ANALYSIS CODE:
+
+All processed data generated in this study are available at:
+- GitHub repository: [INSERT URL]
+- Zenodo archive: [INSERT DOI] (persistent identifier)
+
+The GitHub repository includes:
+  • Processed gene expression matrices (batch-corrected)
+  • Sample cluster assignments for all cohorts
+  • 50-gene classifier model (R object)
+  • VRS calculation tool
+  • All analysis scripts (R and Python)
+  • Figure generation code
+  • Supplementary data tables
+
+COMPUTATIONAL ENVIRONMENT:
+
+A Docker container with the complete computational environment is available at:
+- Docker Hub: [INSERT URL]
+- Includes all R and Python packages with exact versions
+- Enables full reproducibility of all analyses
+
+DATA RESTRICTIONS:
+
+Raw sequencing data for the BeatAML cohort are subject to controlled access
+through dbGaP due to patient privacy protections. Researchers must obtain
+dbGaP approval to access individual-level data. All other data are publicly
+available without restrictions.
+
+═══════════════════════════════════════════════════════════════════════════
+4. CODE AVAILABILITY STATEMENT
+═══════════════════════════════════════════════════════════════════════════
+
+All analysis code is publicly available at:
+- GitHub: [INSERT REPOSITORY URL]
+- Archive: Zenodo [INSERT DOI]
+
+The repository contains:
+  • Data processing scripts (R and Python)
+  • Consensus clustering analysis
+  • Gene signature development (random forest)
+  • Survival analysis (PH-free methods)
+  • Drug response analysis
+  • R² improvement calculations
+  • BCL-2 pathway analysis
+  • Figure generation scripts
+  • Statistical analysis code
+
+Software versions:
+  • R version 4.3.0
+  • Python version 3.9.7
+  • Key R packages: survival (3.5-5), survminer (0.4.9), meta (6.2-1),
+    ConsensusClusterPlus (1.64.0), randomForest (4.7-1.1)
+  • Key Python packages: pandas (1.5.3), numpy (1.24.2), scipy (1.10.1)
+
+The Docker container provides a fully reproducible computational environment.
+
+═══════════════════════════════════════════════════════════════════════════
+5. ETHICS STATEMENT
+═══════════════════════════════════════════════════════════════════════════
+
+PATIENT CONSENT AND INSTITUTIONAL APPROVAL:
+
+This study used de-identified data from three previously published cohorts
+(BeatAML, TCGA-LAML, TARGET-AML). All original studies obtained informed
+consent from patients and institutional review board (IRB) approval at
+participating centers.
+
+The current secondary analysis was approved by [Institution Name]
+Institutional Review Board ([IRB Protocol Number]) as exempt research using
+publicly available de-identified data. No additional patient consent was
+required.
+
+All research was conducted in accordance with the Declaration of Helsinki
+and followed the ethical guidelines of [Institution Name].
+
+═══════════════════════════════════════════════════════════════════════════
+6. FUNDING STATEMENT
+═══════════════════════════════════════════════════════════════════════════
+
+This work was supported by:
+  • [Grant Name] from [Funding Agency] (Grant Number: [XXX])
+  • [Fellowship Name] from [Organization] (to [Author Name])
+  • [Institutional Support] from [Institution]
+
+The funders had no role in study design, data collection and analysis,
+decision to publish, or preparation of the manuscript.
+
+═══════════════════════════════════════════════════════════════════════════
+7. ACKNOWLEDGMENTS
+═══════════════════════════════════════════════════════════════════════════
+
+We thank the patients and families who participated in the BeatAML,
+TCGA-LAML, and TARGET-AML studies. We thank the BeatAML consortium, The
+Cancer Genome Atlas Research Network, and the Therapeutically Applicable
+Research to Generate Effective Treatments (TARGET) initiative for generating
+and sharing data.
+
+We thank [Name] for assistance with [specific contribution]. We thank [Name]
+for critical review of the manuscript. We thank [Institution] Computational
+Core for computational resources.
+
+[Author Name] is supported by [Fellowship/Training Grant].
+
+═══════════════════════════════════════════════════════════════════════════
+8. AUTHOR INFORMATION
+═══════════════════════════════════════════════════════════════════════════
+
+CORRESPONDING AUTHOR:
+  Name: [Full Name]
+  Email: [email@institution.edu]
+  Phone: [XXX-XXX-XXXX]
+  Address: [Full institutional address]
+  ORCID: [0000-0000-0000-0000]
+
+ALL AUTHORS (in order):
+  1. [Author 1 Name], [Degrees], ORCID: [XXXX-XXXX-XXXX-XXXX]
+  2. [Author 2 Name], [Degrees], ORCID: [XXXX-XXXX-XXXX-XXXX]
+  3. [Author 3 Name], [Degrees], ORCID: [XXXX-XXXX-XXXX-XXXX]
+  [Continue for all authors...]
+
+AFFILIATIONS:
+  1. Department of [Name], [Institution], [City, State, Country]
+  2. Division of [Name], [Institution], [City, State, Country]
+  3. Center for [Name], [Institution], [City, State, Country]
+  [Continue for all affiliations...]
+
+═══════════════════════════════════════════════════════════════════════════
+9. MANUSCRIPT STATISTICS
+═══════════════════════════════════════════════════════════════════════════
+
+Word count (main text): ~8,000 words
+Abstract word count: 250 words
+Number of figures: 5 (main) + 8 (supplementary)
+Number of tables: 4 (main) + 9 (supplementary)
+Number of references: 18
+Supplementary materials: Methods document + 17 supplementary items
+
+═══════════════════════════════════════════════════════════════════════════
+10. PRIOR PRESENTATION / PREPRINT
+═══════════════════════════════════════════════════════════════════════════
+
+This work has not been previously published or submitted elsewhere.
+
+[OR, if applicable:]
+
+Preliminary results were presented as:
+  • [Conference Name], [Location], [Date] (Abstract/Poster/Talk)
+  • Title: [Presentation Title]
+
+A preprint is available at:
+  • [Preprint Server]: [DOI or URL]
+  • Posted: [Date]
+  • Note: This manuscript represents substantial additional analysis and
+    validation beyond the preprint version.
+
+═══════════════════════════════════════════════════════════════════════════
+11. CLINICAL TRIAL REGISTRATION
+═══════════════════════════════════════════════════════════════════════════
+
+Not applicable (this is a retrospective analysis).
+
+The prospective validation trial (CLUSTER-AML, described in Supplementary
+Protocol) will be registered at ClinicalTrials.gov prior to patient enrollment.
+
+═══════════════════════════════════════════════════════════════════════════
+12. PATIENT AND PUBLIC INVOLVEMENT
+═══════════════════════════════════════════════════════════════════════════
+
+Patients and the public were not involved in the design, conduct, or
+reporting of this research. Study findings will be disseminated to patient
+advocacy organizations ([Leukemia & Lymphoma Society], [AML Patient
+Community]) through lay language summaries.
+
+═══════════════════════════════════════════════════════════════════════════
+
+END OF AUTHOR STATEMENTS
+Created: 2025-12-09

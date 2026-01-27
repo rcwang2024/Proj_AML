@@ -1,0 +1,4 @@
+"VRS_Range","VRS_Category","Venetoclax_Recommendation","Expected_Response","Alternative_Options","Monitoring_Strategy"
+"< 41.8","Low","NOT recommended","Poor response (AUC ~200)","Panobinostat, Selumetinib, MEK inhibitors","Early assessment after 1 cycle"
+"41.8 - 71.0","Medium","Consider with caution","Intermediate response (AUC ~150)","Standard chemotherapy or combination","Standard assessment after 2 cycles"
+"> 71.0","High","STRONGLY recommended","Excellent response (AUC ~100)","Venetoclax + HMA (standard regimen)","Standard assessment, expect good response"

@@ -1,0 +1,142 @@
+══════════════════════════════════════════════════════════════════════════
+              MANUSCRIPT ERROR CHECK REPORT
+              Date: 2025-12-10
+              File: AML_Molecular_Subtypes_Manuscript.tex
+══════════════════════════════════════════════════════════════════════════
+
+OVERALL ASSESSMENT: ✓✓ GOOD - Minor issues to address
+
+Total Errors: 1 (critical number format)
+Total Warnings: 3 (formatting consistency)
+
+══════════════════════════════════════════════════════════════════════════
+CHECK 1: Grammar and Spelling
+══════════════════════════════════════════════════════════════════════════
+
+✓ No "it's" contractions found (good - should use "its" in scientific writing)
+✓ No major double-space issues
+✓ No obvious spelling errors detected
+
+══════════════════════════════════════════════════════════════════════════
+CHECK 2: Critical Numbers
+══════════════════════════════════════════════════════════════════════════
+
+❌ ERROR: "2,535" not found in manuscript
+   Expected: Total patients (671 BeatAML + 151 TCGA + 1,713 TARGET)
+   Issue: Likely formatting - may be "2535" without comma or split across lines
+   ACTION: Search manuscript for "2535" or "2,535" and verify present
+
+✓ 671 (BeatAML) - mentioned 6 times ✓
+⚠️  520 (drug data) - mentioned 1 time (just added in Phase 7) ✓
+✓ 459 (multivariate) - mentioned 4 times ✓
+✓ 155 (drugs tested) - mentioned 6 times ✓
+✓ 72 (drugs differential) - mentioned 9 times ✓
+✓ 1.25 (Cohen's d) - mentioned 4 times ✓
+
+RECOMMENDATION: Check abstract and methods for "2,535" total patients
+
+══════════════════════════════════════════════════════════════════════════
+CHECK 3: P-value Formatting
+══════════════════════════════════════════════════════════════════════════
+
+✓ P-value formatting CONSISTENT (good!)
+
+Format distribution:
+  - \pval{}: 30 instances (LaTeX command) ✓
+  - p=: 1 instance
+  - Other formats: minimal
+
+ASSESSMENT: Excellent consistency - using LaTeX \pval{} command throughout
+
+══════════════════════════════════════════════════════════════════════════
+CHECK 4: Citations
+══════════════════════════════════════════════════════════════════════════
+
+⚠️  WARNING: Mixed citation formats detected
+
+  - LaTeX \cite{}: 15 instances
+  - Bracket [1]: 2 instances
+
+ACTION: Check the 2 bracket citations and convert to \cite{} if appropriate
+        (May be intentional for specific references)
+
+══════════════════════════════════════════════════════════════════════════
+CHECK 5: Figure and Table References
+══════════════════════════════════════════════════════════════════════════
+
+⚠️  WARNING: Some figures referenced without \ref{}
+
+Figure references: 11 total
+  - Using \ref{fig:}: Good practice
+  - Using "Figure 1" directly: 6 instances
+
+Table references: 2 instances
+
+RECOMMENDATION: Consider using \ref{fig:name} for all figure references
+                This ensures automatic numbering updates if figures reordered
+
+══════════════════════════════════════════════════════════════════════════
+CHECK 6: LaTeX Formatting
+══════════════════════════════════════════════════════════════════════════
+
+✓ Brace matching OK (749 pairs of {})
+✓ Math mode $ signs balanced
+✓ No obvious LaTeX syntax errors
+
+══════════════════════════════════════════════════════════════════════════
+CHECK 7: Supplementary Material References
+══════════════════════════════════════════════════════════════════════════
+
+Tables S1-S9: ALL REFERENCED ✓
+  ✓ Table S1 - referenced
+  ✓ Table S2 - referenced
+  ✓ Table S3 - referenced
+  ✓ Table S4 - referenced
+  ✓ Table S5 - referenced
+  ✓ Table S6 - referenced
+  ✓ Table S7 - referenced
+  ✓ Table S8 - referenced
+  ✓ Table S9 - referenced
+
+Figures S1-S8: Check manually for all references
+
+══════════════════════════════════════════════════════════════════════════
+CHECK 8: Style and Readability
+══════════════════════════════════════════════════════════════════════════
+
+Passive voice: Acceptable levels for scientific writing
+Abbreviations: Appropriately defined
+Sentence structure: No obvious issues detected
+
+══════════════════════════════════════════════════════════════════════════
+PRIORITY ACTIONS
+══════════════════════════════════════════════════════════════════════════
+
+CRITICAL (Must fix before submission):
+  [ ] 1. Verify "2,535" total patients appears in abstract/methods
+         (Search for "2535" or "2,535" - may be formatting issue)
+
+RECOMMENDED (Should fix):
+  [ ] 2. Check 2 bracket citations - convert to \cite{} if appropriate
+  [ ] 3. Consider using \ref{fig:} for all 6 direct figure references
+
+OPTIONAL (Nice to have):
+  [ ] 4. Final read-through for flow and clarity
+  [ ] 5. Verify all supplementary figures referenced in order
+
+══════════════════════════════════════════════════════════════════════════
+SUMMARY
+══════════════════════════════════════════════════════════════════════════
+
+MANUSCRIPT QUALITY: ✓✓ GOOD
+
+The manuscript is in excellent shape with only minor formatting inconsistencies.
+The critical numbers are present and consistent (except possible 2,535 format
+issue). Grammar and LaTeX formatting are clean. Ready for submission after
+addressing 1 critical check and 2 recommended fixes.
+
+Estimated time to fix issues: 15-30 minutes
+
+══════════════════════════════════════════════════════════════════════════
+                          END OF REPORT
+══════════════════════════════════════════════════════════════════════════

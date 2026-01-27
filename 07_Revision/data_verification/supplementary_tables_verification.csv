@@ -1,0 +1,10 @@
+table,description,status,location
+S1,Sample characteristics (3 cohorts),Found,03_Results/22_Supplementary_Tables/TableS1_sample_characteristics.csv
+S2,50-gene classifier,Found,03_Results/15_Gene_Signature/50_gene_signature.csv
+S3,All 72 differential drugs (FDR<0.05),Found,03_Results/23_Drug_Validation/Supplementary_Table_S5_All_Drugs.csv
+S4,BCL-2 family gene expression,Found,03_Results/23_Drug_Validation/Supplementary_Table_S7_BCL2_Pathway.csv
+S5,Independence R² analysis (20 drugs),Found,03_Results/23_Drug_Validation/Supplementary_Table_S6_Cluster_Independence.csv
+S6,Full multivariate Cox results,Needs Creation,N/A - Should compile from Phase3 results
+S7,Robustness validation,Needs Review,03_Results/24_Robustness_Validation (check for appropriate file)
+S8,Cluster 2 salvage drugs (26 drugs),Found,03_Results/27_Cluster2_Salvage/fda_approved_cluster2_drugs.csv
+S9,VRS tertile classification,Found,03_Results/28_VRS_Clinical_Utility/VRS_Clinical_Decision_Tool.csv
