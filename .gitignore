@@ -46,6 +46,10 @@ README_OLD.md
 *.bak
 *.tmp
 *.log
+phase4_*.log
+paper_*.log
+target_*.txt
+INTEGRITY_CHECK_REPORT.txt
 .venv/
 env/
 venv/
