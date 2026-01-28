@@ -1,60 +1,56 @@
-# --- Exclude Everything by Default (Optional approach, but let's be explicit) ---
+# --- 1. Ignore Everything ---
+*
 
-# --- Exclude Large Data and Results ---
-01_Data/
-GDCdata/
-data/
-03_Results/
-Archive_Previous_Analysis_20251002/
-results.rds
+# --- 2. Whitelist Essential Files/Directories ---
 
-# --- Exclude Manuscripts, Figures, and Internal Logs ---
-04_Figures/
-05_Manuscript/
-05_Reports/
-05_Supplementary/
-07_Revision/
-06_Documentation/
+# Root level
+!README.md
+!.gitignore
+!CLAUDE.md
 
-# --- Exclude Specific Internal/Legacy Scripts ---
-02_Scripts/AML_Literature/
-02_Scripts/04_Documentation/
-02_Scripts/12_Generate_Presentation/
-02_Scripts/13_Integrity_Check/
-02_Scripts/Phase2_Validation/
-02_Scripts/Phase3_CriticalValidation/
-02_Scripts/Phase4_ManuscriptPrep/
-02_Scripts/Phase6_Robustness/
+# Scripts (The Actual Pipeline)
+!02_Scripts/
+02_Scripts/*
+!02_Scripts/01_Data_Processing/
+!02_Scripts/01_Data_Processing/**
+!02_Scripts/08_Phase1_Comprehensive_Analysis/
+!02_Scripts/08_Phase1_Comprehensive_Analysis/**
+!02_Scripts/Phase2_Validation/
+!02_Scripts/Phase2_Validation/**
+!02_Scripts/Phase3_CriticalValidation/
+!02_Scripts/Phase3_CriticalValidation/**
+!02_Scripts/Phase4_ManuscriptPrep/
+!02_Scripts/Phase4_ManuscriptPrep/**
+!02_Scripts/Phase5_DrugValidation/
+!02_Scripts/Phase5_DrugValidation/**
+!02_Scripts/Phase7_Enhancements/
+!02_Scripts/Phase7_Enhancements/**
+!02_Scripts/RUN_ALL_ANALYSES.R
+!02_Scripts/paper_download_aml.py
+!02_Scripts/paper_recovery_script.py
 
-# --- Artifacts and Workspace ---
-.claude/
-.gemini/
-.agent/
-.DS_Store
-Thumbs.db
-nul
-.antigravityignore
-CLAUDE.md
-README_OLD.md
+# Documentation
+!06_Documentation/
+06_Documentation/*
+!06_Documentation/Summaries/
+!06_Documentation/Summaries/**
+!06_Documentation/Data_Dictionary.md
+!06_Documentation/Scripts_Index.md
 
-# --- Standard Ignore ---
-*.rds
-*.rds_files/
-*.RData
-*.Rhistory
-*.Ruserdata
-*.bak
-*.tmp
-*.log
-phase4_*.log
-paper_*.log
-target_*.txt
-INTEGRITY_CHECK_REPORT.txt
-.venv/
-env/
-venv/
-node_modules/
-.ipynb_checkpoints/
-__pycache__/
-*.py[cod]
-*$py.class
+# Figures (Optional, if you change your mind later we can add them)
+# !04_Figures/
+
+# --- 3. Global Exclusions (Overrides for the whitelisted folders) ---
+**/*.rds
+**/*.RData
+**/*.Rhistory
+**/*.Ruserdata
+**/*.log
+**/*.bak
+**/*.tmp
+**/.ipynb_checkpoints/
+**/__pycache__/
+**/.claude/
+**/.gemini/
+**/.agent/
+**/nul
