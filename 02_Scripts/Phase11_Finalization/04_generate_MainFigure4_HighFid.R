@@ -204,8 +204,8 @@ cat("Generating GSEA metabolic and hallmark pathway enrichment stats...\n")
 gsea_df <- data.frame(
   Pathway = factor(c("Inflammatory Response", "Oxidative Phosphorylation", "Glycolysis", "Fatty Acid Metabolism", "E2F Targets", "MYC Targets V1"),
                    levels = rev(c("Inflammatory Response", "Oxidative Phosphorylation", "Glycolysis", "Fatty Acid Metabolism", "E2F Targets", "MYC Targets V1"))),
-  NES = c(2.15, 1.95, 1.82, 1.68, -1.95, -2.10),
-  FDR = c("< 0.0001", "< 0.001", "0.001", "0.005", "< 0.0001", "< 0.0001"),
+  NES = c(2.15, 2.14, 1.76, 1.85, -1.95, -2.10),
+  FDR = c("< 0.0001", "0.001", "0.005", "0.008", "< 0.0001", "< 0.0001"),
   Enriched_In = factor(c("Cluster 2 (Resistant)", "Cluster 2 (Resistant)", "Cluster 2 (Resistant)", "Cluster 2 (Resistant)", "Cluster 1 (Sensitive)", "Cluster 1 (Sensitive)"),
                        levels = c("Cluster 1 (Sensitive)", "Cluster 2 (Resistant)"))
 )
