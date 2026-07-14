@@ -5,7 +5,7 @@
 # Status: Comprehensive analysis for manuscript submission
 ################################################################################
 
-setwd("D:/Projects/Project_AML")
+setwd("d:/Proj_AML")
 
 # Load libraries
 library(dplyr)
@@ -30,7 +30,7 @@ cat("PART 1: Loading data...\n")
 drug_results <- read.csv("03_Results/23_Drug_Validation/all_drugs_differential_response.csv")
 
 # Load cluster independence data
-independence <- read.csv("03_Results/23_Drug_Validation/drug_cluster_independence_SIMPLIFIED.csv")
+# independence <- read.csv("03_Results/23_Drug_Validation/drug_cluster_independence_SIMPLIFIED.csv")
 
 # Filter for significant drugs (FDR < 0.05)
 sig_drugs <- drug_results %>%
@@ -90,17 +90,21 @@ drug_classes <- data.frame(
            "MK-2206", "Rapamycin", "INK-128", "Idelalisib", "GDC-0941",
            "Nilotinib", "Cediranib (AZD2171)", "Motesanib (AMG-706)",
            "Flavopiridol", "Elesclomol", "AT7519", "Tofacitinib (CP-690550)",
-           "Bortezomib (Velcade)", "CI-1040 (PD184352)"),
+           "Bortezomib (Velcade)", "CI-1040 (PD184352)",
+           "Quizartinib (AC220)", "Ruxolitinib (INCB018424)"),
   class = c("HDAC inhibitor", "MEK inhibitor", "MEK inhibitor",
             "AKT inhibitor", "mTOR inhibitor", "mTOR inhibitor",
             "PI3K inhibitor", "PI3K inhibitor",
             "Multi-kinase TKI", "VEGFR TKI", "VEGFR TKI",
             "CDK inhibitor", "Other", "CDK inhibitor", "JAK inhibitor",
-            "Proteasome inhibitor", "MEK inhibitor"),
+            "Proteasome inhibitor", "MEK inhibitor",
+            "FLT3 inhibitor", "JAK inhibitor"),
   fda_approved = c("Yes", "Yes", "Yes", "No", "Yes", "No",
                    "Yes", "No", "Yes", "No", "No",
-                   "No", "No", "No", "Yes", "Yes", "No")
+                   "No", "No", "No", "Yes", "Yes", "No",
+                   "Yes", "Yes")
 )
+
 
 cluster2_annotated <- cluster2_drugs %>%
   left_join(drug_classes, by = "drug") %>%
@@ -259,49 +263,103 @@ write.csv(decision_tree,
 
 cat("\n\nPART 7: Creating visualizations...\n")
 
+theme_hf <- theme_minimal(base_size = 14) + 
+  theme(
+    plot.title = element_text(face = "bold", size = 18.2, color = "darkblue", margin = margin(b=8)),
+    plot.subtitle = element_text(face = "plain", size = 15.9, color = "darkblue", margin = margin(b=10)),
+    axis.title = element_text(size = 14, face = "bold", color = "black"),
+    axis.text = element_text(size = 12, face = "plain", color = "black"),
+    legend.title = element_text(size = 14, face = "bold", color = "black"),
+    legend.text = element_text(size = 12, face = "plain", color = "black"),
+    strip.text = element_text(size = 14, face = "bold", color = "black"),
+    strip.background = element_blank(),
+    panel.grid.minor = element_blank(),
+    panel.grid.major.x = element_blank(),
+    panel.border = element_rect(color = "gray80", fill = NA, linewidth = 0.5),
+    plot.margin = margin(15, 15, 15, 15)
+  )
+
 # FIGURE 1: Top 10 Cluster 2 drugs - Effect sizes
-top10_drugs <- cluster2_drugs %>% head(10)
+top10_drugs <- cluster2_annotated %>% head(10)
 
 p1 <- ggplot(top10_drugs, aes(x = reorder(drug, cohens_d), y = cohens_d)) +
-  geom_col(aes(fill = clinical_priority), width = 0.7) +
-  geom_hline(yintercept = c(0.5, 0.8), linetype = "dashed", alpha = 0.5) +
+  geom_col(aes(fill = class), width = 0.7, color = "black", size = 0.2, show.legend = FALSE) +
+  geom_hline(yintercept = c(0.5, 0.8), linetype = "dashed", color = "gray60", alpha = 0.5) +
+  # Add exact value labels inside/next to the bars
+  geom_text(aes(label = sprintf(" %.2f (class: %s, %s)", cohens_d, class, ifelse(fda_approved == "Yes", "FDA Approved", "Preclinical"))), 
+            hjust = 0, color = "#2c3e50", fontface = "bold", size = 3.2) +
   coord_flip() +
-  scale_fill_manual(values = c("High" = "#d62728", "Medium" = "#ff7f0e", "Low" = "#1f77b4")) +
-  labs(title = "Top 10 Salvage Drugs for Cluster 2 (Venetoclax-Resistant)",
-       subtitle = "Ranked by effect size (Cohen's d)",
+  # Use a beautiful, curated color palette for the classes
+  scale_fill_brewer(palette = "Set3") +
+  # Expand limits on the x-axis (which represents Cohen's d after flip) to leave space for the text labels
+  scale_y_continuous(limits = c(0, 1.45), breaks = seq(0, 1.0, 0.2)) +
+  labs(title = "C. Top 10 Salvage Candidates (Cluster 2)",
+       subtitle = "Ranked by effect size (Cohen's d) with availability",
        x = NULL,
-       y = "Cohen's d (positive = Cluster 2 more sensitive)",
-       fill = "Clinical Priority") +
-  theme_minimal(base_size = 12) +
-  theme(legend.position = "bottom",
-        plot.title = element_text(face = "bold", size = 14))
+       y = "Effect Size (Cohen's d)\n(positive = Cluster 2/Ven-resistant more sensitive)") +
+  theme_hf +
+  theme(legend.position = "none",
+        panel.grid.major.y = element_blank(),
+        panel.grid.major.x = element_line(color = "gray95"))
 
 ggsave("04_Figures/27_Cluster2_Salvage/Figure_Cluster2_Top10_Drugs.pdf",
-       p1, width = 10, height = 7)
+       p1, width = 10, height = 8)
 ggsave("04_Figures/27_Cluster2_Salvage/Figure_Cluster2_Top10_Drugs.png",
-       p1, width = 10, height = 7, dpi = 300)
+       p1, width = 10, height = 8, dpi = 300)
 
-# FIGURE 2: Drug class heatmap
-class_heatmap_data <- cluster2_annotated %>%
+# FIGURE 2: Drug class grouped dot plot (High-Fidelity)
+class_dot_data <- cluster2_annotated %>%
   filter(!is.na(class) & class != "Other/Unknown") %>%
-  select(drug, class, cohens_d, fdr) %>%
-  mutate(neg_log_fdr = -log10(fdr)) %>%
-  head(20)
+  mutate(neg_log_fdr = -log10(fdr))
 
-p2 <- ggplot(class_heatmap_data,
-             aes(x = class, y = reorder(drug, cohens_d))) +
-  geom_tile(aes(fill = cohens_d), color = "white", size = 0.5) +
-  geom_text(aes(label = sprintf("%.2f", cohens_d)), size = 3, color = "white") +
-  scale_fill_gradient2(low = "#2166ac", mid = "#f7f7f7", high = "#b2182b",
-                      midpoint = 0.5,
-                      name = "Cohen's d") +
-  labs(title = "Cluster 2 Drug Sensitivity by Class",
-       subtitle = "Effect sizes for top 20 drugs",
-       x = "Drug Class",
-       y = NULL) +
-  theme_minimal(base_size = 11) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1),
-        plot.title = element_text(face = "bold"))
+# Sort classes by max Cohen's d in each class
+class_order <- class_dot_data %>%
+  group_by(class) %>%
+  summarise(max_d = max(cohens_d)) %>%
+  arrange(max_d) %>%
+  pull(class)
+
+class_dot_data$class <- factor(class_dot_data$class, levels = class_order)
+
+library(ggrepel)
+
+p2 <- ggplot(class_dot_data, aes(x = cohens_d, y = class)) +
+  # Add faint horizontal guide lines for each class
+  geom_hline(aes(yintercept = class), linetype = "dotted", color = "gray75", linewidth = 0.5) +
+  # Add vertical grid lines at standard Cohen's d levels
+  geom_vline(xintercept = c(0.2, 0.5, 0.8), linetype = "dashed", color = "gray85", alpha = 0.6) +
+  # Add the points (vibrant red/orange for FDA approved, cool steel blue for preclinical)
+  geom_point(aes(size = neg_log_fdr, fill = fda_approved), shape = 21, color = "black", stroke = 0.5, alpha = 0.85) +
+  # Add text labels for the drugs using ggrepel
+  geom_text_repel(aes(label = drug), 
+                  size = 3.2, 
+                  fontface = "bold",
+                  box.padding = 0.25, 
+                  point.padding = 0.3,
+                  force = 1.2,
+                  max.overlaps = Inf,
+                  segment.color = "gray50",
+                  segment.size = 0.3) +
+  # Color scales
+  scale_fill_manual(values = c("Yes" = "#e63946", "No" = "#457b9d"),
+                    labels = c("Yes" = "FDA Approved (Immediate Off-Label)", "No" = "Preclinical / Research Stage"),
+                    name = "FDA Approval Status") +
+  # Size scales
+  scale_size_continuous(name = "-log10(FDR)", range = c(4, 9)) +
+  # Scales/Labels
+  scale_x_continuous(limits = c(0.1, 1.05), breaks = seq(0.2, 1.0, 0.2)) +
+  labs(title = "A. Therapeutic Class Opportunities (Cluster 2)",
+       subtitle = "Effect size (Cohen's d) and FDR significance for preferentially sensitive agents",
+       x = "Effect Size (Cohen's d)\n(positive = Cluster 2/Ven-resistant more sensitive)",
+       y = "Therapeutic Mechanism Class") +
+  theme_hf +
+  theme(
+    legend.position = "right",
+    legend.box = "vertical",
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor = element_blank(),
+    panel.grid.major.x = element_line(color = "gray96")
+  )
 
 ggsave("04_Figures/27_Cluster2_Salvage/Figure_Cluster2_Drug_Classes.pdf",
        p2, width = 10, height = 8)
@@ -327,22 +385,21 @@ p3 <- ggplot(comparison_data,
   geom_col(width = 0.7) +
   coord_flip() +
   geom_hline(yintercept = 0, linewidth = 1) +
-  scale_fill_manual(values = c("Cluster_1" = "#E41A1C", "Cluster_2" = "#377EB8"),
+  scale_fill_manual(values = c("Cluster_1" = "#3498DB", "Cluster_2" = "#E67E22"),
                     labels = c("Cluster 1 (NPM1+/Ven-sensitive)",
                               "Cluster 2 (TP53+/Ven-resistant)")) +
-  labs(title = "Cluster-Specific Drug Sensitivity Profile",
-       subtitle = "Top 15 drugs for each cluster",
+  labs(title = "B. Cluster-Specific Sensitivity Profile",
+       subtitle = "Top 15 drugs differentially sensitive per cluster",
        x = NULL,
        y = "← Cluster 1 sensitive     Effect Size (Cohen's d)     Cluster 2 sensitive →",
        fill = "More Sensitive in:") +
-  theme_minimal(base_size = 12) +
-  theme(legend.position = "bottom",
-        plot.title = element_text(face = "bold", size = 14))
+  theme_hf +
+  theme(legend.position = "bottom")
 
 ggsave("04_Figures/27_Cluster2_Salvage/Figure_Cluster_Comparison.pdf",
-       p3, width = 12, height = 10)
+       p3, width = 10, height = 8)
 ggsave("04_Figures/27_Cluster2_Salvage/Figure_Cluster_Comparison.png",
-       p3, width = 12, height = 10, dpi = 300)
+       p3, width = 10, height = 8, dpi = 300)
 
 # FIGURE 4: Combination therapy summary
 p4 <- ggplot(combo_annotated,
@@ -356,19 +413,18 @@ p4 <- ggplot(combo_annotated,
                                "High Priority" = "#ff7f0e",
                                "Consider" = "#1f77b4")) +
   expand_limits(y = max(combo_annotated$combined_effect_estimate) * 1.15) +
-  labs(title = "Rational Combination Therapy Candidates for Cluster 2",
+  labs(title = "D. Combination Therapy Candidates (Cluster 2)",
        subtitle = "Combined effect estimates (sum of individual Cohen's d)",
        x = NULL,
        y = "Combined Effect Estimate",
        fill = "Priority") +
-  theme_minimal(base_size = 12) +
-  theme(legend.position = "bottom",
-        plot.title = element_text(face = "bold", size = 14))
+  theme_hf +
+  theme(legend.position = "bottom")
 
 ggsave("04_Figures/27_Cluster2_Salvage/Figure_Combination_Therapy.pdf",
-       p4, width = 10, height = 7)
+       p4, width = 10, height = 8)
 ggsave("04_Figures/27_Cluster2_Salvage/Figure_Combination_Therapy.png",
-       p4, width = 10, height = 7, dpi = 300)
+       p4, width = 10, height = 8, dpi = 300)
 
 ################################################################################
 # PART 8: SUMMARY STATISTICS FOR MANUSCRIPT

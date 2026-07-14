@@ -1,0 +1,8 @@
+"phase","status","pass"
+"Batch Correction","FAIL",FALSE
+"Consensus Clustering","PASS",TRUE
+"Pathway Enrichment","FAIL",FALSE
+"Subtype Characterization","FAIL",FALSE
+"Survival Analysis","FAIL",FALSE
+"Drug Response","PASS",TRUE
+"Data Consistency","PASS",TRUE

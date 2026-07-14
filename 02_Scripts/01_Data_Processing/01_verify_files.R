@@ -234,7 +234,7 @@ if (!interactive()) {
   # For interactive use
   cat("Script loaded. Run verify_files(data_dir, output_log) to execute.\n")
   cat("Example:\n")
-  cat("  data_dir <- 'D:/Projects/Project_AML/01_Data/BeatAML_Downloaded_Data'\n")
-  cat("  output_log <- 'D:/Projects/Project_AML/06_Documentation/Data_Analysis_Log.txt'\n")
+  cat("  data_dir <- 'd:/Proj_AML/01_Data/BeatAML_Downloaded_Data'\n")
+  cat("  output_log <- 'd:/Proj_AML/06_Documentation/Data_Analysis_Log.txt'\n")
   cat("  verify_files(data_dir, output_log)\n")
 }

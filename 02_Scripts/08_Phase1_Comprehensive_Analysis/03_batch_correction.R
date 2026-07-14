@@ -17,7 +17,7 @@ suppressPackageStartupMessages({
 })
 
 set.seed(42)
-setwd("D:/Projects/Project_AML")
+setwd("d:/Proj_AML")
 
 # Create output directories
 dir.create("03_Results/04_Batch_Corrected", recursive = TRUE, showWarnings = FALSE)

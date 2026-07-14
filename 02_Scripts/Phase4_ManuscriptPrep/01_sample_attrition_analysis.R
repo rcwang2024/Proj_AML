@@ -6,7 +6,7 @@ suppressPackageStartupMessages({
   library(dplyr)
 })
 
-setwd("D:/Projects/Project_AML")
+setwd("d:/Proj_AML")
 
 cat("==============================================================================\n")
 cat("SAMPLE ATTRITION ANALYSIS\n")

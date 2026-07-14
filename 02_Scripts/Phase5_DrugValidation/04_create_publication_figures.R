@@ -18,7 +18,7 @@ suppressPackageStartupMessages({
 })
 
 set.seed(42)
-setwd("D:/Projects/Project_AML")
+setwd("d:/Proj_AML")
 
 cat("==============================================================================\n")
 cat("PART 7: CREATING PUBLICATION FIGURES\n")

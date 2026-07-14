@@ -7,7 +7,7 @@ suppressPackageStartupMessages({
   library(survival)
 })
 
-setwd("D:/Projects/Project_AML")
+setwd("d:/Proj_AML")
 
 cat("==============================================================================\n")
 cat("TARGET SENSITIVITY ANALYSIS\n")

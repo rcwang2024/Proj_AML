@@ -11,7 +11,7 @@ suppressPackageStartupMessages({
     library(data.table)
 })
 
-BASE_DIR <- "d:/Projects/Project_AML"
+BASE_DIR <- "d:/Proj_AML"
 setwd(BASE_DIR)
 
 # Output Paths

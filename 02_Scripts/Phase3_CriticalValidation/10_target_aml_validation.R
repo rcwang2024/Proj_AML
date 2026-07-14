@@ -20,7 +20,7 @@ suppressPackageStartupMessages({
 })
 
 set.seed(42)
-setwd("D:/Projects/Project_AML")
+setwd("d:/Proj_AML")
 
 # Create output directories
 dir.create("03_Results/18_TARGET_Validation", recursive = TRUE, showWarnings = FALSE)

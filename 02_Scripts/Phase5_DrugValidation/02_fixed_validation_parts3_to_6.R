@@ -13,7 +13,7 @@ suppressPackageStartupMessages({
 })
 
 set.seed(42)
-setwd("D:/Projects/Project_AML")
+setwd("d:/Proj_AML")
 
 cat("==============================================================================\n")
 cat("PHASE 5: FIXED ANALYSIS - PARTS 3-6\n")

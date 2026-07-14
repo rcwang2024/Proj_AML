@@ -17,7 +17,7 @@ suppressPackageStartupMessages({
 })
 
 # Set working directory
-setwd("D:/Projects/Project_AML")
+setwd("d:/Proj_AML")
 
 # Create output directories
 dir.create("03_Results/01_Processed_Data", recursive = TRUE, showWarnings = FALSE)

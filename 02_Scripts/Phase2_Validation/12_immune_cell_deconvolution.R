@@ -24,7 +24,7 @@ cat("Loading gene annotations...\n")
 original_expr <- read.delim("01_Data/BeatAML_Downloaded_Data/beataml_expression.txt",
                             stringsAsFactors = FALSE, sep = "\t")
 gene_annotations <- original_expr %>%
-  select(Gene_ID = Gene.ID, Gene_Symbol = Gene.Symbol) %>%
+  select(Gene_ID = stable_id, Gene_Symbol = display_label) %>%
   distinct()
 cat("Gene annotations:", nrow(gene_annotations), "genes\n")
 
@@ -37,13 +37,8 @@ has_symbol <- !is.na(matched_symbols) & matched_symbols != ""
 expr_data_symbol <- expr_data[has_symbol, ]
 rownames(expr_data_symbol) <- matched_symbols[has_symbol]
 
-# Remove duplicates by aggregating (take mean)
-expr_aggregated <- aggregate(expr_data_symbol,
-                             by = list(gene = rownames(expr_data_symbol)),
-                             FUN = mean)
-rownames(expr_aggregated) <- expr_aggregated$gene
-expr_aggregated$gene <- NULL
-expr_data <- as.matrix(expr_aggregated)
+# Remove duplicates by aggregating (take mean) using fast limma::avereps
+expr_data <- limma::avereps(expr_data_symbol)
 
 cat("After converting to gene symbols:", nrow(expr_data), "genes\n")
 
@@ -313,7 +308,7 @@ annotation_colors <- list(
 
 # Heatmap
 pdf("04_Figures/15_Immune_Deconvolution/immune_cell_heatmap.pdf",
-    width = 14, height = 8)
+    width = 18, height = 12)
 pheatmap(result_ordered,
          scale = "row",
          cluster_cols = FALSE,
@@ -323,7 +318,9 @@ pheatmap(result_ordered,
          annotation_colors = annotation_colors,
          color = colorRampPalette(c("blue", "white", "red"))(100),
          main = paste0("Immune Cell Deconvolution (", best_method, ")"),
-         fontsize_row = 8)
+         fontsize = 18,
+         fontsize_row = 22,
+         fontsize_col = 22)
 dev.off()
 
 cat("✓ Saved: immune_cell_heatmap.pdf\n")

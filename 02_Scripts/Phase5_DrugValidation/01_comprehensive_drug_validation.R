@@ -17,7 +17,7 @@ suppressPackageStartupMessages({
 })
 
 set.seed(42)
-setwd("D:/Projects/Project_AML")
+setwd("d:/Proj_AML")
 
 dir.create("03_Results/23_Drug_Validation", recursive = TRUE, showWarnings = FALSE)
 dir.create("04_Figures/22_Drug_Validation", recursive = TRUE, showWarnings = FALSE)
@@ -57,6 +57,23 @@ mutations <- read.csv("03_Results/05_Analysis_Ready_Data/mutations_gold_standard
 
 # Load expression data (for BCL-2 pathway and immune checkpoints)
 expr_raw <- readRDS("03_Results/05_Analysis_Ready_Data/expression_filtered_all.rds")
+
+# Convert Ensembl IDs to gene symbols
+cat("Converting Ensembl IDs to gene symbols...\n")
+original_expr <- read.delim("01_Data/BeatAML_Downloaded_Data/beataml_expression.txt",
+                            stringsAsFactors = FALSE, sep = "\t")
+gene_annotations <- original_expr %>%
+  dplyr::select(Gene_ID = stable_id, Gene_Symbol = display_label) %>%
+  distinct()
+
+ensembl_ids <- rownames(expr_raw)
+matched_symbols <- gene_annotations$Gene_Symbol[match(ensembl_ids, gene_annotations$Gene_ID)]
+
+has_symbol <- !is.na(matched_symbols) & matched_symbols != ""
+expr_data_symbol <- expr_raw[has_symbol, ]
+rownames(expr_data_symbol) <- matched_symbols[has_symbol]
+
+expr_raw <- limma::avereps(expr_data_symbol)
 
 # Match samples
 common_samples <- intersect(rownames(drug_auc), clusters$sample_id)
@@ -497,8 +514,8 @@ for (class_name in names(drug_classes)) {
   total_sig <- nrow(sig_drugs)
 
   fisher_table <- matrix(c(
-    n_sig, total_sig - n_sig,
-    n_tested - n_sig, total_tested - total_tested + n_sig - n_tested + n_sig
+    n_sig, n_tested - n_sig,
+    total_sig - n_sig, (total_tested - n_tested) - (total_sig - n_sig)
   ), nrow = 2, byrow = TRUE)
 
   if (n_tested > 0) {

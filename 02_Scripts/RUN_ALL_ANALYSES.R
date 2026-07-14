@@ -10,7 +10,7 @@
 #   Phase 4.1: Drug response integration
 # ==============================================================================
 
-setwd("D:/Projects/Project_AML")
+setwd("d:/Proj_AML")
 
 cat("==============================================================================\n")
 cat("BEATML PROJECT - SEQUENTIAL ANALYSIS PIPELINE\n")

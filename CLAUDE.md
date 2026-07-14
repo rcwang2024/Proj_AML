@@ -59,7 +59,7 @@ Phase 1: Data Processing & Integration (671 samples)
 #### Execute R Scripts (Primary Analysis Language)
 
 ```bash
-# From project root (D:/Projects/Project_AML)
+# From project root (d:/Proj_AML)
 Rscript 02_Scripts/[phase_folder]/[script_name].R
 
 # Examples:
@@ -69,7 +69,7 @@ Rscript 02_Scripts/Phase3_CriticalValidation/05_multivariate_analysis.R
 Rscript 02_Scripts/Phase4_ManuscriptPrep/09_main_figures.R
 ```
 
-**Note**: R scripts expect working directory to be project root. Most scripts set `setwd("D:/Projects/Project_AML")` internally.
+**Note: R scripts expect working directory to be project root. Most scripts set `setwd("d:/Proj_AML")` internally.
 
 #### Execute Python Scripts (Data Processing)
 
@@ -108,36 +108,22 @@ Rscript 02_Scripts/Phase4_ManuscriptPrep/10_supplementary_tables.R
 
 ### Critical File Locations
 
-**Analysis-Ready Data** (use these for new analyses):
+### 📁 Critical Project Files (N=478 Gold Standard)
 - `03_Results/05_Analysis_Ready_Data/gold_standard_cohort.rds` - 478 complete multi-omics samples
-- `03_Results/06_Molecular_Subtypes/sample_cluster_assignments.csv` - Cluster labels (k=2)
-- `03_Results/08_Survival_Analysis/survival_data_with_clusters.csv` - 671 samples with survival + clusters
-- `03_Results/05_Analysis_Ready_Data/mutations_gold_standard.csv` - Mutation matrix for 478 samples
-- `03_Results/04_Batch_Corrected/beataml_expression_batchcorrected.rds` - Normalized expression
+- `03_Results/06_Molecular_Subtypes/sample_cluster_assignments.csv` - Definitive Cluster labels (k=2)
+- `03_Results/Phase11_Finalization/` - Definitive analytical proofs (N=478 synchronized)
+- `05_Submission/Submission_Hub/` - **The Submission Hub** (Final PDFs, PNGs, Tables, and Drafts)
 
-**Key Results**:
-- `03_Results/11_Survival_Reanalysis/` - All Phase 3 validation analyses (multivariate, meta-analysis)
-- `03_Results/21_Manuscript_Prep/` - Phase 4 manuscript preparation analyses
-- `03_Results/22_Supplementary_Tables/` - Publication-ready tables (TableS1-S4)
-- `03_Results/23_Drug_Validation/` - ⭐ **Phase 5 drug validation results (ALL ANALYSES)**
-- `04_Figures/21_Main_Figures/` - Main manuscript figures (Figure1-4 PDFs)
-- `04_Figures/22_Drug_Validation/` - ⭐ **Phase 5 drug validation figures (Figure5, FigureS1-S3)**
-
-**Phase 5 Drug Validation Files** ⭐ (Most Important):
-- `03_Results/23_Drug_Validation/all_drugs_differential_response.csv` - 155 drugs tested, 72 significant
-- `03_Results/23_Drug_Validation/drug_cluster_independence_SIMPLIFIED.csv` - **R² improvement analysis (19/20 drugs independent)**
-- `03_Results/23_Drug_Validation/bcl2_pathway_expression_FIXED.csv` - BCL-2 mechanism validation
-- `03_Results/23_Drug_Validation/Supplementary_Table_S5_All_Drugs.csv` - Publication table
-- `03_Results/23_Drug_Validation/Supplementary_Table_S6_Cluster_Independence.csv` - **Independence evidence**
-- `04_Figures/22_Drug_Validation/Figure5_Drug_Response_Main.pdf` - **Main drug response figure**
-
-**Summaries** (read these first for context):
-- `COMPLETE_PROJECT_SUMMARY_ALL_PHASES_V3.md` - **⭐ Comprehensive overview of ALL 5 phases with drug validation**
-- `03_Results/23_Drug_Validation/PHASE5_FINAL_COMPLETE_SUMMARY.md` - **Phase 5 detailed summary**
-- `03_Results/23_Drug_Validation/MANUSCRIPT_UPDATES_DRUG_VALIDATION.md` - **Manuscript integration guide**
-- `PHASE4_COMPLETE_SUMMARY.md` - Phase 4 manuscript preparation details
-- `Phase3_CriticalValidation_Summary.md` - Phase 3 validation findings
-- `TARGET_AML_VALIDATION_COMPLETE.md` - Pediatric validation results
+### 📈 Final High-Fidelity Pipeline (Phase 11)
+- **Main Figures**: `02_Scripts/Phase11_Finalization/01_generate_MainFigure1_HighFid.R` to `05_generate_MainFigure5_HighFid.R`
+- **Supplementary Figures (Master Wrappers - One Script Per Figure)**:
+  - `python 02_Scripts/Phase11_Finalization/generate_FigureS1.py` - Technical Normalization (8-panel QC grid)
+  - `python 02_Scripts/Phase11_Finalization/generate_FigureS2.py` - Cox Proportional Diagnostics (PH tests)
+  - `python 02_Scripts/Phase11_Finalization/generate_FigureS3.py` - ELN Subgroup Survival Grid (2x2 un-mocked)
+  - `python 02_Scripts/Phase11_Finalization/generate_FigureS4.py` - Microenvironment Deconvolution (Enlarged Heatmap/Boxplots)
+  - `python 02_Scripts/Phase11_Finalization/generate_FigureS5.py` - Subgroup Benchmarking & Decision Curve Analysis (DCA)
+  - `python 02_Scripts/Phase11_Finalization/generate_FigureS6.py` - Metabolic Shift & Collateral Sensitivity (Synergy)
+  - *Note: These master scripts automate both intermediate R component generation and PyMuPDF vector assembly, output high-resolution PNG previews, and automatically synchronize results across all submission targets.*
 
 ---
 
@@ -553,7 +539,7 @@ dev.off()
 ## Important Conventions
 
 ### Working Directory
-All R scripts expect: `setwd("D:/Projects/Project_AML")`
+All R scripts expect: `setwd("d:/Proj_AML")`
 
 ### Sample IDs
 - RNA: `BA####R`

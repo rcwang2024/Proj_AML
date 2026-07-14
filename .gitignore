@@ -25,9 +25,15 @@
 !02_Scripts/Phase5_DrugValidation/**
 !02_Scripts/Phase7_Enhancements/
 !02_Scripts/Phase7_Enhancements/**
+!02_Scripts/Phase11_Finalization/
+!02_Scripts/Phase11_Finalization/**
 !02_Scripts/RUN_ALL_ANALYSES.R
 !02_Scripts/paper_download_aml.py
 !02_Scripts/paper_recovery_script.py
+
+# Submission Assets
+!05_Submission/
+!05_Submission/**
 
 # Documentation
 !06_Documentation/
@@ -48,6 +54,14 @@
 **/*.log
 **/*.bak
 **/*.tmp
+**/*.aux
+**/*.out
+**/*.toc
+**/*.bbl
+**/*.blg
+**/*.synctex.gz
+**/*.fdb_latexmk
+**/*.fls
 **/.ipynb_checkpoints/
 **/__pycache__/
 **/.claude/

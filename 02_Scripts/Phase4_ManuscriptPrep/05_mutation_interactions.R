@@ -8,7 +8,7 @@ suppressPackageStartupMessages({
   library(ggplot2)
 })
 
-setwd("D:/Projects/Project_AML")
+setwd("d:/Proj_AML")
 
 cat("==============================================================================\n")
 cat("MUTATION × CLUSTER INTERACTION ANALYSIS\n")

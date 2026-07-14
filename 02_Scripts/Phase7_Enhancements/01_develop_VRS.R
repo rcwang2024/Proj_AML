@@ -16,7 +16,7 @@ suppressPackageStartupMessages({
 })
 
 # Set paths
-BASE_DIR <- "d:/Projects/Project_AML"
+BASE_DIR <- "d:/Proj_AML"
 setwd(BASE_DIR)
 
 # Create output dirs

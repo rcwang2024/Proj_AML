@@ -5,7 +5,7 @@
 # Status: Clinical translation analysis
 ################################################################################
 
-setwd("D:/Projects/Project_AML")
+setwd("d:/Proj_AML")
 
 # Load libraries
 library(dplyr)

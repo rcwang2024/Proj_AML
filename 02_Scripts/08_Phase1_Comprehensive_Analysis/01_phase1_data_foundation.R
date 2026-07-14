@@ -28,7 +28,7 @@ set.seed(42)
 options(stringsAsFactors = FALSE)
 
 # Set working directory
-setwd("D:/Projects/Project_AML")
+setwd("d:/Proj_AML")
 
 # Create organized output directory structure
 dirs_to_create <- c(

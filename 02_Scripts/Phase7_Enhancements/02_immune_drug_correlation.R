@@ -13,7 +13,7 @@ suppressPackageStartupMessages({
     library(data.table)
 })
 
-BASE_DIR <- "d:/Projects/Project_AML"
+BASE_DIR <- "d:/Proj_AML"
 setwd(BASE_DIR)
 
 # Output Paths
@@ -47,13 +47,8 @@ keep <- !is.na(matched_syms)
 expr_sym <- expr_data[keep, ]
 rownames(expr_sym) <- matched_syms[keep]
 
-# Aggregate duplicates (mean)
-expr_sym_df <- as.data.frame(expr_sym) %>%
-    rownames_to_column("gene") %>%
-    group_by(gene) %>%
-    summarise(across(everything(), mean)) %>%
-    column_to_rownames("gene") %>%
-    as.matrix()
+# Aggregate duplicates (mean) using fast limma::avereps
+expr_sym_df <- limma::avereps(expr_sym)
 
 # Linearize (if log)
 if (max(expr_sym_df, na.rm = TRUE) < 50) {
@@ -119,6 +114,7 @@ if (nrow(cor_results) > 0) {
             ) +
             theme_minimal()
 
-        ggsave(paste0("04_Figures/25_Enhancements/corr_", cell, "_venetoclax.pdf"), p, width = 5, height = 5)
+        cell_clean <- gsub("/", "_", cell)
+        ggsave(paste0("04_Figures/25_Enhancements/corr_", cell_clean, "_venetoclax.pdf"), p, width = 5, height = 5)
     }
 }

@@ -1,0 +1,23 @@
+PROJECT AML: FINAL DATA-SCRIPT-ASSET AUDIT MANIFEST
+Date: 2026-05-12
+Environment: Windows (Cairo-PDF Rendering Engine, 600 DPI)
+
+[AUDIT PATH: MAIN FIGURES 1-6]
+Input 1: 03_Results/08_Survival_Analysis/survival_data_with_clusters.csv
+Input 2: 03_Results/Phase10_Analysis/10_3_Variance_Decomposition_Results.csv (+645% R2)
+Input 3: 03_Results/28_VRS_Clinical_Utility/VRS_vs_LSC17_comparison.csv (Superiority)
+Script:  02_Scripts/Phase4_ManuscriptPrep/unified_main_figures.R (v10.0 Master)
+Output:  05_Submission/Submission_Hub/02_Main_Figures/Figure*_Consolidated.pdf/png
+
+[AUDIT PATH: SUPPLEMENTARY FIGURES S1-S5]
+Input:  High-Impact Enhancements Hub (Metabolic/Trial/VRS)
+Script: unified_main_figures.R (Synchronized Re-indexing)
+Output: 05_Submission/Submission_Hub/03_Supplementary_Figures/FigureS*.pdf/png
+
+[AUDIT PATH: MANUSCRIPT]
+Files: 01_Manuscript_Source/Manuscript.tex, Manuscript_Reading.tex, Manuscript_Submission.tex
+Status: Synchronized with re-numbered 02_Main_Figures and 03_Supplementary_Figures pathing
+
+STATUS: VERIFIED & AUDIT-LOCKED
+All redundant assets (S6-S8) purged. High-Impact Promotion (LSC17/Metabolic) implemented.
+Structural re-indexing (01-06) complete.

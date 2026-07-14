@@ -4,7 +4,7 @@
 library(data.table)
 library(readxl)
 
-setwd("D:/Projects/Project_AML")
+setwd("d:/Proj_AML")
 
 # Load data
 cat("Loading data files...\n")

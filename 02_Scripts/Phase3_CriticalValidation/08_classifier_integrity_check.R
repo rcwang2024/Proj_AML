@@ -18,7 +18,7 @@ suppressPackageStartupMessages({
 })
 
 set.seed(42)
-setwd("D:/Projects/Project_AML")
+setwd("d:/Proj_AML")
 
 # Create output directories
 dir.create("03_Results/11_Survival_Reanalysis/06_integrity_check",

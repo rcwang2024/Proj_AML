@@ -5,7 +5,7 @@
 # Tables: S1, S6, S7, S8
 ################################################################################
 
-setwd("D:/Projects/Project_AML")
+setwd("d:/Proj_AML")
 
 # Load libraries
 library(dplyr)

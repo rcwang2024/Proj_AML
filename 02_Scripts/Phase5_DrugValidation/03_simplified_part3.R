@@ -12,7 +12,7 @@ suppressPackageStartupMessages({
 })
 
 set.seed(42)
-setwd("D:/Projects/Project_AML")
+setwd("d:/Proj_AML")
 
 cat("==============================================================================\n")
 cat("PART 3: SIMPLIFIED THREE-WAY INTERACTIONS\n")

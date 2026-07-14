@@ -13,7 +13,7 @@ suppressPackageStartupMessages({
   library(data.table)
 })
 
-setwd("D:/Projects/Project_AML")
+setwd("d:/Proj_AML")
 
 # Create output file
 output_file <- "03_Results/02_QC_Reports/data_inspection_summary.txt"

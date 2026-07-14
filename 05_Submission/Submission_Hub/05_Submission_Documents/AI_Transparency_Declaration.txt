@@ -1,0 +1,26 @@
+══════════════════════════════════════════════════════════════════════════
+                AI TRANSPARENCY & INTEGRITY DECLARATION
+══════════════════════════════════════════════════════════════════════════
+Project: Molecular Subtyping in Adult AML
+Date: May 12, 2026
+
+1. DISCLOSURE OF AI ASSISTANCE
+We formally disclose the use of Large Language Models (LLMs) and agentic AI systems (specifically the Antigravity system) in the preparation of this manuscript. AI was utilized in the following specific capacities:
+
+A. Narrative Optimization: AI assisted in the structural reorganization of the manuscript into an "Analytically Narrative" format to enhance the clarity of complex multi-omic findings.
+B. Statistical Auditing: AI systems were used to cross-reference reported metrics (e.g., the +645.4% R2 boost) against raw audited results (10_3_Variance_Decomposition_Results.csv) to ensure zero-error synchronization.
+C. Figure Assembly Logic: Python and R scripts for high-resolution composite figure assembly (unified_main_figures.R) were developed and debugged with AI assistance.
+
+2. SCIENTIFIC OVERSIGHT & ACCOUNTABILITY
+The corresponding author maintains full responsibility for the scientific integrity, data interpretation, and final approval of all manuscript content. All AI-generated suggestions were rigorously reviewed and validated against primary data sources.
+
+3. DATA PRIVACY & SECURITY
+No patient-identifiable information (PII) was shared with AI systems. All analysis was conducted on anonymized, dbGaP-level data in a secure local environment.
+
+4. ALIGNMENT WITH ETHICAL GUIDELINES
+This declaration is provided in accordance with the latest transparency guidelines from Nature Portfolio and ICMJE regarding the use of AI in scientific reporting.
+
+Signed,
+
+[Your Name, PhD/MD]
+══════════════════════════════════════════════════════════════════════════

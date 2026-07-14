@@ -23,8 +23,8 @@ if sys.platform == 'win32':
     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
 
 # Paths
-DATA_DIR = Path("D:/Projects/Project_AML/01_Data/BeatAML_Downloaded_Data")
-OUTPUT_DIR = Path("D:/Projects/Project_AML/03_Results/01_Processed_Data")
+DATA_DIR = Path("d:/Proj_AML/01_Data/BeatAML_Downloaded_Data")
+OUTPUT_DIR = Path("d:/Proj_AML/03_Results/01_Processed_Data")
 FIGURE_DIR = OUTPUT_DIR
 
 # Create output directory if needed
