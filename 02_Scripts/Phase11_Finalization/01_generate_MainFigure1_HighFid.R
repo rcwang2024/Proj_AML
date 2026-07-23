@@ -96,7 +96,7 @@ p1b <- ggplot(volcano_df, aes(x = logFC, y = -log10(adj.P.Val), color = Status))
   guides(color = guide_legend(nrow = 1, override.aes = list(alpha = 1, size = 4)))
 
 # --- Panel C: Mutation Enrichment ---
-top_genes <- c("NPM1", "DNMT3A", "FLT3", "RUNX1", "ASXL1", "TP53", "TET2", "IDH2")
+top_genes <- c("NRAS", "NPM1", "KRAS", "WT1", "CEBPA", "FLT3", "TP53", "DNMT3A", "RUNX1", "ASXL1")
 
 # We need raw mutation status per sample to run Fisher's exact tests
 mut_raw <- survival_data %>%
