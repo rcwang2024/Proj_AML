@@ -660,14 +660,11 @@ SynergyFinder: a web application for analyzing drug combination dose--response m
 \newpage
 
 % Tables
-\newpage
-
-% Figure Legends
 \section*{Figure Legends}
 
-\textbf{Figure~\ref{fig:fig1}. Molecular Subtype Discovery and Genomic Landscape in Adult AML.} \textbf{a}, Consensus clustering heatmap of discovery BeatAML cohort (N=450) establishing two robust molecular subtypes (Cluster 1, N=184; Cluster 2, N=266). Other panels represent the integrated Gold Standard cohort (N=320; Cluster 1, N=127; Cluster 2, N=193). \textbf{b}, Volcano plot of differentially expressed genes between Cluster 1 and Cluster 2. \textbf{c}, Principal Component Analysis (PCA) projection of transcriptomic profiles. \textbf{d}, Genomic mutation frequency comparison (NPM1, FLT3, TP53, etc.) across subtypes. \textbf{e}, ELN 2017 risk category distribution across clusters. \textbf{f}, Kaplan-Meier overall survival analysis comparing Cluster 1 vs Cluster 2.
+\textbf{Figure~\ref{fig:fig1}. Molecular Subtype Discovery and Genomic Landscape in Adult AML.} \textbf{a}, Principal Component Analysis (PCA) projection of discovery BeatAML cohort ($N=450$; Cluster 1, $N=184$; Cluster 2, $N=266$). \textbf{b}, Volcano plot of differentially expressed genes between Cluster 1 and Cluster 2. \textbf{c}, Somatic driver mutation frequencies (NPM1, FLT3, TP53, NRAS, KRAS, WT1, CEBPA) across molecular subtypes. \textbf{d}, ELN 2017 risk category distribution across clusters.
 
-\textbf{Figure~\ref{fig:fig2}. The Independence Paradox and Mutation-Independent Drug Response.} \textbf{a}, Differential ex vivo drug sensitivity footprint highlighting profound Venetoclax preference in Cluster 2 vs primary resistance in Cluster 1. \textbf{b}, Venetoclax AUC distribution stratified by NPM1 mutation status. \textbf{c}, Venetoclax AUC distribution stratified by FLT3-ITD status. \textbf{d}, Venetoclax AUC distribution stratified by TP53 mutation status. \textbf{e}, Multivariable regression variance explained ($R^2$) showing substantial gains when adding molecular subtype over genomic mutations alone.
+\textbf{Figure~\ref{fig:fig2}. The Independence Paradox and Genomic-Orthogonal Predictive Value of Molecular Subtypes.} \textbf{a}, Multivariable regression variance explained ($R^2$) showing substantial predictive gains when incorporating transcriptomic subtype over 11 established genomic alterations. \textbf{b}, Multivariate regression analysis demonstrating subtype assignment as an independent predictor of Venetoclax response. \textbf{c}, Ex vivo Venetoclax response (AUC) distribution in Cluster 1 (Monocytic/Resistant, $N=89$) vs Cluster 2 (Primitive/Sensitive, $N=148$; $p = 6.37 \times 10^{-19}$). \textbf{d}, Receiver Operating Characteristic (ROC) curve validating predictive specificity for Venetoclax response.
 
 \textbf{Figure~\ref{fig:fig3}. The Monocytic Resistance Axis, Proteomic Target Validation, and Metabolic Reprogramming in Adult AML.} \textbf{a}, Correlation between bulk monocytic differentiation score and ex vivo Venetoclax sensitivity (AUC) across the BeatAML cohort, establishing the monocytic resistance axis. \textbf{b}, Bulk proteomic validation in the matched BeatAML proteomics cohort showing log$_2$ protein abundance of CD14, MCL-1, and BCL-2 across molecular subtypes. \textbf{c}, Malignant blast cell composition fractions (HSC, progenitor, pro-monocyte, monocyte) in Cluster 1 vs Cluster 2 from primary scRNA-seq profiles (van Galen dataset). \textbf{d}, Longitudinal single-cell clonal dynamics showing depletion of sensitive and expansion of resistant blast clones from diagnosis to relapse under Venetoclax + Decitabine therapy. \textbf{e}, Gene Set Enrichment Analysis (GSEA) of metabolic and hallmark pathways enriched in Cluster 1 (Resistant) vs Cluster 2 (Sensitive).
 
@@ -677,11 +674,16 @@ SynergyFinder: a web application for analyzing drug combination dose--response m
 
 \textbf{Figure~\ref{fig:fig6}. Actionable Salvage Therapeutics and Rational Combinations for Primary Venetoclax-Resistant AML.} \textbf{a}, Differential sensitivity of targeted drug classes in Cluster 2 vs Cluster 1. \textbf{b}, Mean AUC comparison for top salvage candidates. \textbf{c}, Ranking of top 10 differential drugs preferred in Cluster 2. \textbf{d}, Dual-combination synergy matrix (SynergyFinder Bliss score). \textbf{e}, Panobinostat (HDAC inhibitor) sensitivity boxplot. \textbf{f}, Selumetinib (MEK inhibitor) sensitivity boxplot.
 
-\section*{Supplementary Information}
+% Back Matter
+\section*{Data and Code Availability}
+
+The raw and processed sequencing data for the BeatAML cohort are available through the dbGaP repository under accession code phs001657.v1.p1. The TCGA-LAML dataset is available through the Genomic Data Commons (GDC) portal. The pediatric TARGET-AML dataset is available through the NCI TARGET Data Matrix and dbGaP (phs000465). Microarray validation datasets are accessible via NCBI GEO (GSE12417, GSE22845, GSE106291). Single-cell RNA-seq datasets are available under accession GEO GSE116256 (van Galen et al.) and GSE143363.
+
+All custom computational workflows, R/Python scripts, and reproducible pipeline steps are publicly available on GitHub at: \url{https://github.com/rcwang2024/Proj_AML.git}. An interactive clinical VRS calculator web application is hosted at: \url{https://share.streamlit.io/}.
+
+\section*{Supplementary Materials}
 
 Supplementary Methods, Tables S1--S10, and Figures S1--S16 are available online.
-
-\textbf{Supplementary Methods:} Detailed methodological descriptions including data processing, RNA-seq normalization, consensus clustering parameters, gene signature development, survival analysis methods, drug response analysis, BCL-2 pathway analysis, VRS calculation, and statistical software.
 
 \textbf{Supplementary Tables:}
 \begin{itemize}
@@ -692,14 +694,12 @@ Supplementary Methods, Tables S1--S10, and Figures S1--S16 are available online.
 \item Table S5: Ex vivo drug sensitivity profiling results for all 155 tested compounds
 \item Table S6: Full multivariate Cox regression results
 \item Table S7: Robustness validation results (bootstrap, LOOCV, permutation, sample-split)
-\item Table S8: Cluster 2 salvage drug options (26 drugs, clinical priorities)
+\item Table S8: Cluster 1 salvage drug options (29 active agents, clinical priorities)
 \item Table S9: VRS clinical decision tool with tertile classification
 \item Table S10: Random Forest subtype classifier validation and posterior mapping confidences across independent adult validation cohorts
 \end{itemize}
 
 \textbf{Supplementary Figures:}
-\textbf{Supplementary Protocol:} CLUSTER-AML Phase II clinical trial protocol (cluster-guided therapy vs standard of care, 200 patients, randomized 1:1).
-
 \newpage
 \section*{Supplementary Figures}
 \setcounter{figure}{0}
@@ -729,7 +729,7 @@ Supplementary Methods, Tables S1--S10, and Figures S1--S16 are available online.
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.82\textwidth]{Supplementary/FigureS4.pdf}
-\caption{\textbf{Microenvironment Characterization and Cell Composition Analysis.} Estimated cell type proportions using CIBERSORTx deconvolution across molecular subtypes, highlighting monocytic lineage enrichment in Cluster 2.}
+\caption{\textbf{Microenvironment Characterization and Cell Composition Analysis.} Estimated cell type proportions using CIBERSORTx deconvolution across molecular subtypes, highlighting monocytic lineage enrichment in Cluster 1.}
 \label{fig:figS4}
 \end{figure}
 
@@ -743,7 +743,7 @@ Supplementary Methods, Tables S1--S10, and Figures S1--S16 are available online.
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.85\textwidth]{Supplementary/FigureS6.pdf}
-\caption{\textbf{Metabolic Reprogramming and Venetoclax+S63845 Co-targeting in BCL-2-Independent Subtypes.} (A) Gene Set Enrichment Analysis (GSEA) hallmark metabolic pathways (OXPHOS, Glycolysis, Fatty Acid Metabolism) enriched in Cluster 2. (B) Mitochondrial bioenergetic dependencies and oxygen consumption rate profiles. (C) Synergistic co-targeting of BCL-2 and MCL-1 with Venetoclax + S63845.}
+\caption{\textbf{Metabolic Reprogramming and Venetoclax+S63845 Co-targeting in BCL-2-Independent Subtypes.} (A) Gene Set Enrichment Analysis (GSEA) hallmark metabolic pathways (OXPHOS, Glycolysis, Fatty Acid Metabolism) enriched in Cluster 1. (B) Mitochondrial bioenergetic dependencies and oxygen consumption rate profiles. (C) Synergistic co-targeting of BCL-2 and MCL-1 with Venetoclax + S63845.}
 \label{fig:figS6}
 \end{figure}
 
