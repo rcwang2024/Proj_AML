@@ -8,8 +8,8 @@ library(gridExtra)
 cat("=== GENERATING HIGH-FIDELITY SUPPLEMENTARY FIGURE S2 (PEDIATRIC KM) ===\n")
 
 # Canonical color palette
-color_c1 <- "#3498DB" # Blue
-color_c2 <- "#E67E22" # Orange
+color_c1 <- "#E67E22" # Soft Orange (Cluster 1)
+color_c2 <- "#3498DB" # Soft Blue (Cluster 2)
 
 # Shared theme for KM plots
 theme_hf <- theme_minimal(base_size = 14) + 

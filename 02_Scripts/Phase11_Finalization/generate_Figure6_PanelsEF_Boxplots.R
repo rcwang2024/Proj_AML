@@ -21,9 +21,9 @@ salvage_data <- drug_auc %>%
 merged_data <- inner_join(clusters, salvage_data, by="sample_id") %>%
   mutate(cluster = factor(sprintf("Cluster %d", cluster), levels = c("Cluster 1", "Cluster 2")))
 
-# Define standard cluster colors (Blue for C1, Orange for C2)
-color_c1 <- "#3498DB"
-color_c2 <- "#E67E22"
+# Define standard cluster colors (Soft Orange for C1, Soft Blue for C2)
+color_c1 <- "#E67E22"
+color_c2 <- "#3498DB"
 
 # Theme matching salvage comprehensive script
 theme_hf <- theme_minimal(base_size = 14) + 

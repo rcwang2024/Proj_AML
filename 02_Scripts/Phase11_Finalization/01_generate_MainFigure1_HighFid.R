@@ -13,8 +13,8 @@ eln_data <- read_csv("D:/Proj_AML/03_Results/12_ELN_Comparison/samples_with_eln_
 expr_matrix <- readRDS("D:/Proj_AML/03_Results/05_Analysis_Ready_Data/expression_filtered_all.rds")
 deg_markers <- readRDS("D:/Proj_AML/03_Results/07_Subtype_Characterization/differential_expression_results.rds")
 
-color_c1 <- "#3498DB" # Blue
-color_c2 <- "#E67E22" # Orange
+color_c1 <- "#E67E22" # Soft Orange (Monocytic / Resistant Cluster 1)
+color_c2 <- "#3498DB" # Soft Blue (Primitive / Sensitive Cluster 2)
 cluster_colors <- c("Cluster 1" = color_c1, "Cluster 2" = color_c2)
 
 # --- High-Fidelity Theme ---

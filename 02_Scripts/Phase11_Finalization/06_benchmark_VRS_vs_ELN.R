@@ -96,8 +96,8 @@ write_csv(subgroup_correlations, "03_Results/28_VRS_Clinical_Utility/eln_subgrou
 cat("=== 6. GENERATING PLOTS ===\n")
 
 # Colors
-color_c1 <- "#3498DB" # Soft Blue
-color_c2 <- "#E67E22" # Warm Orange
+color_c1 <- "#E67E22" # Soft Orange (Cluster 1)
+color_c2 <- "#3498DB" # Soft Blue (Cluster 2)
 
 # Custom Theme
 theme_hf <- theme_minimal(base_size = 14) + 

@@ -18,8 +18,8 @@ ven_data <- dr_raw %>%
 
 survival_data <- survival_data %>% left_join(ven_data, by = "sample_id")
 
-color_c1 <- "#3498DB" # Blue
-color_c2 <- "#E67E22" # Orange
+color_c1 <- "#E67E22" # Soft Orange (Monocytic / Resistant Cluster 1)
+color_c2 <- "#3498DB" # Soft Blue (Primitive / Sensitive Cluster 2)
 cluster_colors <- c("Cluster 1" = color_c1, "Cluster 2" = color_c2)
 
 # --- High-Fidelity Theme ---
@@ -55,7 +55,7 @@ ind_stats <- read_csv("D:/Proj_AML/03_Results/Phase10_Analysis/10_3_Variance_Dec
 p3a <- ggplot(ind_stats, aes(x = reorder(Drug, R2), y = R2, fill = Source)) +
   geom_bar(stat = "identity", alpha=0.9, width=0.7) +
   coord_flip() +
-  scale_fill_manual(values = c("Genomic Baseline" = "#95a5a6", "Added Value (Subtype)" = color_c2)) +
+  scale_fill_manual(values = c("Genomic Baseline" = "#95a5a6", "Added Value (Subtype)" = color_c1)) +
   labs(title = "A. The Independence Paradox", subtitle = "Subtype provides +161.3% relative improvement", x = "", y = expression(paste("Variance Explained (", R^2, ")"))) +
   theme_hf + theme(legend.position = "bottom")
 
@@ -84,7 +84,7 @@ p3c <- ggplot(survival_data %>% filter(!is.na(venetoclax_auc)), aes(x = cluster,
   scale_fill_manual(values = cluster_colors) +
   coord_cartesian(ylim = c(0, 450)) + 
   annotate("text", x = 1.5, y = 400, label = "p == 2.78 %*% 10^-24", fontface="bold", size=4.5, color="darkblue", parse=TRUE) +
-  labs(title = "C. Target Sensitization", subtitle = "Hypersensitivity in Cluster 1", x = "", y = "Venetoclax AUC\n(Lower = Higher Sensitivity)") +
+  labs(title = "C. Target Sensitization", subtitle = "Hypersensitivity in Cluster 2 (Primitive)", x = "", y = "Venetoclax AUC\n(Lower = Higher Sensitivity)") +
   theme_hf + theme(legend.position = "none")
 
 # --- Panel D: BCL-2 Specificity (ROC Curves BeatAML vs. GSE106291) ---

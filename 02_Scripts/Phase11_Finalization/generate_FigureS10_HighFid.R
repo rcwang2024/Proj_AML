@@ -118,10 +118,10 @@ p_scatter <- ggplot(merged_df, aes(x = VRS, y = venetoclax_auc)) +
 # ============================================================
 # 4. PANEL B: DISCRETE CLUSTER RESPONSE DIFFERENCE
 # ============================================================
-color_c1 <- "#3498DB"  # Soft Blue (Primitive/Cluster 1)
-color_c2 <- "#E67E22"  # Soft Orange (Monocytic/Cluster 2)
+color_c1 <- "#E67E22"  # Soft Orange (Monocytic/Cluster 1)
+color_c2 <- "#3498DB"  # Soft Blue (Primitive/Cluster 2)
 
-p_boxplot <- ggplot(merged_df, aes(x = factor(predicted_cluster, labels = c("Cluster 1\n(Primitive)", "Cluster 2\n(Monocytic)")), 
+p_boxplot <- ggplot(merged_df, aes(x = factor(predicted_cluster, labels = c("Cluster 1\n(Monocytic)", "Cluster 2\n(Primitive)")), 
                                   y = venetoclax_auc, 
                                   fill = factor(predicted_cluster))) +
   geom_boxplot(outlier.shape = NA, alpha = 0.7, width = 0.4, linewidth = 1.0, color = "black") +
@@ -130,7 +130,7 @@ p_boxplot <- ggplot(merged_df, aes(x = factor(predicted_cluster, labels = c("Clu
   scale_color_manual(values = c("1" = color_c1, "2" = color_c2)) +
   scale_y_continuous(limits = c(0, 360)) +
   annotate("text", x = 1.5, y = 330, 
-           label = "Wilcoxon p = 2.7e-28\nMean AUC: 102.3 vs 193.9", 
+           label = "Wilcoxon p = 2.7e-28\nMean AUC: 193.9 vs 102.3", 
            size = 4.0, fontface = "bold", color = "black", hjust = 0.5) +
   labs(
     title = "B. Discrete Subtype Validation",

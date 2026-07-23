@@ -11,7 +11,7 @@ vrs_scores <- read_csv("03_Results/25_Enhancements/vrs_9gene_scores.csv")
 
 # Merge data
 merged_data <- inner_join(trial_results, vrs_scores, by="sample_id") %>%
-  mutate(cluster = factor(cluster, levels=c(1,2), labels=c("Cluster 1 (Sensitive)", "Cluster 2 (Resistant)")))
+  mutate(cluster = factor(cluster, levels=c(1,2), labels=c("Cluster 1 (Resistant)", "Cluster 2 (Sensitive)")))
 
 # Calculate correlations
 spearman_res <- cor.test(merged_data$VRS9, merged_data$TRIAL_SCORE, method="spearman")
@@ -30,8 +30,8 @@ write_csv(
 )
 
 # Colors matching Figure 1 and Panel A
-color_c1 <- "#3498DB" # Soft Blue
-color_c2 <- "#E67E22" # Warm Orange
+color_c1 <- "#E67E22" # Soft Orange (Resistant Cluster 1)
+color_c2 <- "#3498DB" # Soft Blue (Sensitive Cluster 2)
 
 theme_hf <- theme_minimal(base_size = 14) + 
   theme(
@@ -53,8 +53,8 @@ theme_hf <- theme_minimal(base_size = 14) +
 p5e <- ggplot(merged_data, aes(x = VRS9, y = TRIAL_SCORE)) +
   geom_point(aes(fill = cluster), shape = 21, color = "black", size = 2.5, alpha = 0.8) +
   geom_smooth(method = "lm", color = "black", linetype = "dashed", linewidth = 1.2, se = TRUE, fill = "gray80") +
-  scale_fill_manual(values = c("Cluster 1 (Sensitive)" = color_c1, "Cluster 2 (Resistant)" = color_c2)) +
-  scale_color_manual(values = c("Cluster 1 (Sensitive)" = color_c1, "Cluster 2 (Resistant)" = color_c2)) +
+  scale_fill_manual(values = c("Cluster 1 (Resistant)" = color_c1, "Cluster 2 (Sensitive)" = color_c2)) +
+  scale_color_manual(values = c("Cluster 1 (Resistant)" = color_c1, "Cluster 2 (Sensitive)" = color_c2)) +
   labs(
     title = NULL,
     subtitle = NULL,

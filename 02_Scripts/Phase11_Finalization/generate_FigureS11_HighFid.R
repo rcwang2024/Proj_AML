@@ -10,8 +10,8 @@ library(grid)
 cat("=== GENERATING COMPREHENSIVE 5-PANEL SUPPLEMENTARY FIGURE S11 ===\n")
 
 # Canonical color palette
-color_c1 <- "#3498DB" # Blue
-color_c2 <- "#E67E22" # Orange
+color_c1 <- "#E67E22" # Soft Orange (Cluster 1)
+color_c2 <- "#3498DB" # Soft Blue (Cluster 2)
 
 # Helper: compute HR annotation string
 compute_hr_label <- function(surv_data, time_var, event_var) {
