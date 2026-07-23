@@ -78,6 +78,7 @@ expr_raw <- limma::avereps(expr_data_symbol)
 # Match samples
 common_samples <- intersect(rownames(drug_auc), clusters$sample_id)
 common_samples <- intersect(common_samples, colnames(expr_raw))
+common_samples <- intersect(common_samples, rownames(mutations))
 
 cat(sprintf("Samples with complete data: %d\n", length(common_samples)))
 cat(sprintf("  - Drug response: %d drugs\n", ncol(drug_auc)))

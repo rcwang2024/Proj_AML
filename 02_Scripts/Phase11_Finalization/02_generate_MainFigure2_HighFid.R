@@ -43,7 +43,8 @@ theme_km <- theme_bw(base_size = 14) +
   theme(
     plot.title = element_text(face = "bold", size = 16, color = "darkblue", margin = margin(b=8)),
     plot.subtitle = element_text(face = "plain", size = 14, color = "darkblue", margin = margin(b=10)),
-    axis.title = element_text(size = 14, face = "bold", color = "black"),
+    axis.title.x = element_text(size = 13, face = "bold", color = "black", margin = margin(t=4)),
+    axis.title.y = element_text(size = 13, face = "bold", color = "black", margin = margin(r=2, l=0)),
     axis.text = element_text(size = 12, face = "plain", color = "black"),
     legend.title = element_text(size = 14, face = "bold", color = "black"),
     legend.text = element_text(size = 12, face = "plain", color = "black"),
@@ -108,7 +109,7 @@ beat_data <- read_csv("03_Results/08_Survival_Analysis/survival_data_with_cluste
                                labels = c("Cluster 1", "Cluster 2"))
   )
 p2a <- make_km_panel(beat_data, "OS_months", "OS_event",
-                     "A. BeatAML Discovery (N=478)")
+                     "A. BeatAML Discovery (N=320)")
 
 # ===========================================================================
 # Panel B: TCGA-LAML Validation
@@ -125,11 +126,11 @@ p2b <- make_km_panel(tcga_data, "OS_months", "OS_event",
 # Panel C: Prognostic Meta-Analysis Forest Plot
 # ===========================================================================
 meta_df <- data.frame(
-  Cohort = c("A. BeatAML Discovery (N=478)", "B. TCGA-LAML Validation (N=151)", "C. Prognostic Meta-Analysis (Pooled Adult)"),
-  HR = c(1.26, 1.24, 1.26),
-  Lower = c(1.00, 0.80, 1.02),
-  Upper = c(1.60, 1.94, 1.55),
-  P_Value = c("0.050", "0.342", "0.030"),
+  Cohort = c("A. BeatAML Discovery (N=320)", "B. TCGA-LAML Validation (N=151)", "C. Prognostic Meta-Analysis (Pooled Adult)"),
+  HR = c(1.03, 1.24, 1.26),
+  Lower = c(0.80, 0.80, 1.02),
+  Upper = c(1.33, 1.94, 1.55),
+  P_Value = c("0.830", "0.342", "0.030"),
   Type = c("Individual", "Individual", "Pooled"),
   y = c(3, 2, 1)
 )

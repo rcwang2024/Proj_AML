@@ -27,7 +27,8 @@ theme_hf <- theme_minimal(base_size = 14) +
   theme(
     plot.title = element_text(face = "bold", size = 16, color = "darkblue", margin = margin(b=8)),
     plot.subtitle = element_text(face = "plain", size = 14, color = "darkblue", margin = margin(b=10)),
-    axis.title = element_text(size = 14, face = "bold", color = "black"),
+    axis.title.x = element_text(size = 13, face = "bold", color = "black", margin = margin(t=4)),
+    axis.title.y = element_text(size = 13, face = "bold", color = "black", margin = margin(r=2, l=0)),
     axis.text = element_text(size = 12, face = "plain", color = "black"),
     legend.title = element_text(size = 14, face = "bold", color = "black"),
     legend.text = element_text(size = 12, face = "plain", color = "black"),
@@ -36,7 +37,7 @@ theme_hf <- theme_minimal(base_size = 14) +
     panel.grid.minor = element_blank(),
     panel.grid.major.x = element_blank(),
     panel.border = element_rect(color = "gray80", fill = NA, linewidth = 0.5),
-    plot.margin = margin(15, 15, 15, 15)
+    plot.margin = margin(8, 8, 8, 8)
   )
 
 # --- Panel A: R2 Improvement ---
@@ -138,10 +139,10 @@ p3d <- ggplot(df_roc_all, aes(x = FPR, y = TPR, color = Model)) +
 # Final Composite (Using grid.arrange to avoid patchwork vertical alignment which pushes Plot C's y-axis title far left)
 library(gridExtra)
 fig3 <- grid.arrange(
-  p3a + theme(plot.margin = margin(15, 15, 15, 15)),
-  p3b + theme(plot.margin = margin(15, 15, 15, 15)),
-  p3c + theme(plot.margin = margin(15, 15, 15, 15)),
-  p3d + theme(plot.margin = margin(15, 15, 15, 15)),
+  p3a + theme(plot.margin = margin(8, 8, 8, 8)),
+  p3b + theme(plot.margin = margin(8, 8, 8, 8)),
+  p3c + theme(plot.margin = margin(8, 8, 8, 8)),
+  p3d + theme(plot.margin = margin(8, 8, 8, 8)),
   ncol = 2,
   nrow = 2
 )

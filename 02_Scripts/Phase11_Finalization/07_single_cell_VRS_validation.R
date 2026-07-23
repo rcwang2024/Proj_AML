@@ -148,8 +148,8 @@ cell_type_colors <- c(
 # Custom Theme
 theme_umap <- theme_void(base_size = 14) +
   theme(
-    plot.title = element_text(face = "bold", size = 15, color = "darkblue", hjust = 0.5, margin = margin(b=10)),
-    plot.subtitle = element_text(face = "plain", size = 13, color = "darkblue", hjust = 0.5, margin = margin(b=15)),
+    plot.title = element_text(face = "bold", size = 15, color = "darkblue", hjust = 0, margin = margin(b=10)),
+    plot.subtitle = element_text(face = "plain", size = 13, color = "darkblue", hjust = 0, margin = margin(b=15)),
     legend.position = "right",
     legend.title = element_text(size = 12, face = "bold"),
     legend.text = element_text(size = 10),
@@ -174,34 +174,34 @@ p_umap_celltype <- ggplot(sim_cells, aes(x = umap_1, y = umap_2, color = cell_ty
   geom_point(size = 1.0, alpha = 0.7) +
   scale_color_manual(values = cell_type_colors, name = "Cell State") +
   labs(
-    title = "Single-Cell Resolution of the AML Microenvironment",
+    title = "A. Single-Cell Resolution of the AML Microenvironment",
     subtitle = "Projection of GSE116256 Bone Marrow Niche coordinates"
   ) +
   theme_umap +
   guides(color = guide_legend(override.aes = list(size=3)))
 
-ggsave("04_Figures/Phase11_Finalization/FigureS10_sc_UMAP_celltypes.pdf", p_umap_celltype, width = 6.5, height = 5.5, device = cairo_pdf)
-ggsave("04_Figures/Phase11_Finalization/FigureS10_sc_UMAP_celltypes.png", p_umap_celltype, width = 6.5, height = 5.5, dpi = 300)
+ggsave("04_Figures/Phase11_Finalization/FigureS18_sc_UMAP_celltypes.pdf", p_umap_celltype, width = 6.5, height = 5.5, device = cairo_pdf)
+ggsave("04_Figures/Phase11_Finalization/FigureS18_sc_UMAP_celltypes.png", p_umap_celltype, width = 6.5, height = 5.5, dpi = 300)
 
 # Figure S10B: UMAP Colored by continuous VRS
 p_umap_vrs <- ggplot(sim_cells, aes(x = umap_1, y = umap_2, color = VRS)) +
   geom_point(size = 1.0, alpha = 0.7) +
   scale_color_gradientn(colors = c("#FFD3B6", "#FFAAA6", "#FF8B94", "#E67E22", "#3498DB"), name = "VRS Score") +
   labs(
-    title = "Venetoclax Response Score (VRS) in Cell States",
+    title = "B. Venetoclax Response Score (VRS) in Cell States",
     subtitle = "Primitive stem-like blasts exhibit highest VRS (BCL2 dependent)"
   ) +
   theme_umap
 
-ggsave("04_Figures/Phase11_Finalization/FigureS10_sc_UMAP_VRS.pdf", p_umap_vrs, width = 6.5, height = 5.5, device = cairo_pdf)
-ggsave("04_Figures/Phase11_Finalization/FigureS10_sc_UMAP_VRS.png", p_umap_vrs, width = 6.5, height = 5.5, dpi = 300)
+ggsave("04_Figures/Phase11_Finalization/FigureS18_sc_UMAP_VRS.pdf", p_umap_vrs, width = 6.5, height = 5.5, device = cairo_pdf)
+ggsave("04_Figures/Phase11_Finalization/FigureS18_sc_UMAP_VRS.png", p_umap_vrs, width = 6.5, height = 5.5, dpi = 300)
 
 # Figure S10C: Boxplot of VRS by Cell Type
 p_box_vrs <- ggplot(sim_cells, aes(x = factor(cell_type, levels = cell_types), y = VRS)) +
   geom_boxplot(aes(fill = cell_type), outlier.shape = NA, alpha = 0.7, width = 0.5, color = "black") +
   scale_fill_manual(values = cell_type_colors) +
   labs(
-    title = "VRS Activity across Developmental Coordinates",
+    title = "C. VRS Activity across Developmental Coordinates",
     subtitle = "VRS is significantly elevated in LSC/HSC vs monocytic clones",
     x = "Cell Population",
     y = "Calculated 9-Gene VRS"
@@ -210,8 +210,8 @@ p_box_vrs <- ggplot(sim_cells, aes(x = factor(cell_type, levels = cell_types), y
   theme(axis.text_x = element_text(angle = 45, hjust = 1), legend.position = "none") +
   stat_compare_means(method = "anova", label.y = 105, size = 3.5)
 
-ggsave("04_Figures/Phase11_Finalization/FigureS10_sc_VRS_boxplot.pdf", p_box_vrs, width = 6.5, height = 5.5, device = cairo_pdf)
-ggsave("04_Figures/Phase11_Finalization/FigureS10_sc_VRS_boxplot.png", p_box_vrs, width = 6.5, height = 5.5, dpi = 300)
+ggsave("04_Figures/Phase11_Finalization/FigureS18_sc_VRS_boxplot.pdf", p_box_vrs, width = 6.5, height = 5.5, device = cairo_pdf)
+ggsave("04_Figures/Phase11_Finalization/FigureS18_sc_VRS_boxplot.png", p_box_vrs, width = 6.5, height = 5.5, dpi = 300)
 
 # Figure S10D: Gene Expression Dot Plot
 # Format data for dot plot (average expression and percent expressing)
@@ -233,7 +233,7 @@ p_dot <- ggplot(dot_data, aes(x = Gene, y = cell_type)) +
   scale_color_gradientn(colors = c("gray90", "yellow", "red", "darkred"), name = "Mean Expression") +
   scale_size_continuous(range = c(2, 8), name = "% Expressing\n(Cutoff > 1.5)") +
   labs(
-    title = "BCL2 vs. MCL1 Developmental Partitioning",
+    title = "D. BCL2 vs. MCL1 Developmental Partitioning",
     subtitle = "Co-segregation of target genes with lineage markers",
     x = "Gene Marker",
     y = "Cell State"
@@ -241,8 +241,8 @@ p_dot <- ggplot(dot_data, aes(x = Gene, y = cell_type)) +
   theme_hf +
   theme(legend.position = "right")
 
-ggsave("04_Figures/Phase11_Finalization/FigureS10_sc_dotplot.pdf", p_dot, width = 7.0, height = 5.5, device = cairo_pdf)
-ggsave("04_Figures/Phase11_Finalization/FigureS10_sc_dotplot.png", p_dot, width = 7.0, height = 5.5, dpi = 300)
+ggsave("04_Figures/Phase11_Finalization/FigureS18_sc_dotplot.pdf", p_dot, width = 7.0, height = 5.5, device = cairo_pdf)
+ggsave("04_Figures/Phase11_Finalization/FigureS18_sc_dotplot.png", p_dot, width = 7.0, height = 5.5, dpi = 300)
 
 # Figure S10E: Correlation Scatter of BCL2 vs MCL1
 p_scatter_corr <- ggplot(sim_cells %>% filter(cell_type != "T_NK_cells"), aes(x = BCL2, y = MCL1)) +
@@ -250,7 +250,7 @@ p_scatter_corr <- ggplot(sim_cells %>% filter(cell_type != "T_NK_cells"), aes(x 
   geom_smooth(method = "lm", color = "black", linetype = "dashed", size = 1.0) +
   scale_color_manual(values = cell_type_colors, name = "Cell State") +
   labs(
-    title = "BCL2 vs. MCL1 Expression Trade-off",
+    title = "E. BCL2 vs. MCL1 Expression Trade-off",
     subtitle = sprintf("Developmental shift from BCL2 to MCL1 (Spearman r = %.3f)", cor(sim_cells$BCL2, sim_cells$MCL1, method="spearman")),
     x = "BCL2 Expression (Primitive/Sensitive Marker)",
     y = "MCL1 Expression (Differentiated/Resistant Marker)"
@@ -258,8 +258,8 @@ p_scatter_corr <- ggplot(sim_cells %>% filter(cell_type != "T_NK_cells"), aes(x 
   theme_hf +
   theme(legend.position = "right")
 
-ggsave("04_Figures/Phase11_Finalization/FigureS10_sc_BCL2_MCL1_tradeoff.pdf", p_scatter_corr, width = 7.5, height = 5.5, device = cairo_pdf)
-ggsave("04_Figures/Phase11_Finalization/FigureS10_sc_BCL2_MCL1_tradeoff.png", p_scatter_corr, width = 7.5, height = 5.5, dpi = 300)
+ggsave("04_Figures/Phase11_Finalization/FigureS18_sc_BCL2_MCL1_tradeoff.pdf", p_scatter_corr, width = 7.5, height = 5.5, device = cairo_pdf)
+ggsave("04_Figures/Phase11_Finalization/FigureS18_sc_BCL2_MCL1_tradeoff.png", p_scatter_corr, width = 7.5, height = 5.5, dpi = 300)
 
-cat("✓ Saved Figure S10 panels to: 04_Figures/Phase11_Finalization/\n")
+cat("✓ Saved Figure S18 panels to: 04_Figures/Phase11_Finalization/\n")
 cat("\n### Single-cell VRS Validation Complete ###\n")

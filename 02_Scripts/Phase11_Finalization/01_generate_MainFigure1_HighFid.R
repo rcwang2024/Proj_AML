@@ -22,7 +22,8 @@ theme_hf <- theme_minimal(base_size = 14) +
   theme(
     plot.title = element_text(face = "bold", size = 16, color = "darkblue", margin = margin(b=8)),
     plot.subtitle = element_text(face = "plain", size = 14, color = "darkblue", margin = margin(b=10)),
-    axis.title = element_text(size = 14, face = "bold", color = "black"),
+    axis.title.x = element_text(size = 13, face = "bold", color = "black", margin = margin(t=4)),
+    axis.title.y = element_text(size = 13, face = "bold", color = "black", margin = margin(r=2, l=0)),
     axis.text = element_text(size = 12, face = "plain", color = "black"),
     legend.title = element_text(size = 14, face = "bold", color = "black"),
     legend.text = element_text(size = 12, face = "plain", color = "black"),
@@ -31,7 +32,7 @@ theme_hf <- theme_minimal(base_size = 14) +
     panel.grid.minor = element_blank(),
     panel.grid.major.x = element_blank(),
     panel.border = element_rect(color = "gray80", fill = NA, linewidth = 0.5),
-    plot.margin = margin(15, 15, 15, 15)
+    plot.margin = margin(8, 8, 8, 8)
   )
 
 # --- Panel A: PCA ---
@@ -56,7 +57,7 @@ p1a <- ggplot(pca_df, aes(x = PC1, y = PC2, color = cluster, fill = cluster)) +
   geom_point(alpha = 0.5, size = 4) +
   scale_color_manual(values = cluster_colors) +
   scale_fill_manual(values = cluster_colors) +
-  labs(title = "A. Subtype Separation", subtitle = "Distinct Transcriptomic States (N=478)", x = pc1_lbl, y = pc2_lbl, color="Subtype", fill="Subtype") +
+  labs(title = "A. Subtype Separation", subtitle = "Distinct Transcriptomic States (N=450)", x = pc1_lbl, y = pc2_lbl, color="Subtype", fill="Subtype") +
   theme_hf + theme(legend.position = "bottom") +
   guides(color = guide_legend(nrow = 1, override.aes = list(alpha = 1, size = 4)), fill = "none")
 
@@ -182,7 +183,7 @@ p1d <- ggplot(eln_plot_data, aes(x = cluster, y = pct, fill = ELN2017)) +
 # Final Composite
 fig1 <- (p1a | p1b) / (p1c | p1d) + 
   plot_layout(heights = c(1, 1)) & 
-  theme(plot.margin = margin(15, 15, 15, 15))
+  theme(plot.margin = margin(8, 8, 8, 8))
 
 dir.create("05_Submission/Submission_Hub/02_Main_Figures", showWarnings = FALSE, recursive = TRUE)
 ggsave("05_Submission/Submission_Hub/02_Main_Figures/Figure1_Consolidated.pdf", fig1, width=14, height=11, device=cairo_pdf)

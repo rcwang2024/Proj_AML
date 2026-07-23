@@ -21,7 +21,8 @@ theme_hf <- theme_minimal(base_size = 14) +
   theme(
     plot.title = element_text(face = "bold", size = 16, color = "darkblue", margin = margin(b=8)),
     plot.subtitle = element_text(face = "plain", size = 14, color = "darkblue", margin = margin(b=10)),
-    axis.title = element_text(size = 14, face = "bold", color = "black"),
+    axis.title.x = element_text(size = 14, face = "bold", color = "black", margin = margin(t=6)),
+    axis.title.y = element_text(size = 14, face = "bold", color = "black", margin = margin(r=4, l=0)),
     axis.text = element_text(size = 12, face = "plain", color = "black"),
     legend.title = element_text(size = 14, face = "bold", color = "black"),
     legend.text = element_text(size = 12, face = "plain", color = "black"),
@@ -30,7 +31,7 @@ theme_hf <- theme_minimal(base_size = 14) +
     panel.grid.minor = element_blank(),
     panel.grid.major.x = element_blank(),
     panel.border = element_rect(color = "gray80", fill = NA, linewidth = 0.5),
-    plot.margin = margin(15, 15, 15, 15)
+    plot.margin = margin(10, 10, 10, 10)
   )
 
 # ------------------------------------------------------------------------------
@@ -58,13 +59,13 @@ sig_stars <- key_lineages %>%
   )
 
 p4a <- ggplot(key_lineages) +
-  geom_bar(aes(x = Cell_Type, y = Mean_C1, fill = "Cluster 1"), stat = "identity", position = position_nudge(x = -0.2), width = 0.35, alpha = 0.9, color="black", linewidth=0.3) +
-  geom_bar(aes(x = Cell_Type, y = Mean_C2, fill = "Cluster 2"), stat = "identity", position = position_nudge(x = 0.2), width = 0.35, alpha = 0.9, color="black", linewidth=0.3) +
+  geom_bar(aes(x = Cell_Type, y = Mean_C2, fill = "Cluster 1"), stat = "identity", position = position_nudge(x = -0.2), width = 0.35, alpha = 0.9, color="black", linewidth=0.3) +
+  geom_bar(aes(x = Cell_Type, y = Mean_C1, fill = "Cluster 2"), stat = "identity", position = position_nudge(x = 0.2), width = 0.35, alpha = 0.9, color="black", linewidth=0.3) +
   geom_text(data = sig_stars, aes(x = Cell_Type, y = y_pos, label = star), size=6, fontface="bold") +
   scale_fill_manual(name = "Subtype", values = c("Cluster 1" = color_c1, "Cluster 2" = color_c2)) +
   labs(
-    title = "A. Blast Lineage States (scRNA-seq)",
-    subtitle = "Cluster 2 blasts represent a differentiated monocytic phenotype",
+    title = "C. Blast Lineage States (scRNA-seq)",
+    subtitle = "Cluster 1 blasts represent a differentiated monocytic phenotype",
     x = "",
     y = "Mean Cell Fraction"
   ) +
@@ -109,7 +110,7 @@ p4b <- ggplot(sc_proportions, aes(x = category, y = percentage, fill = timepoint
   geom_text(aes(label = paste0(percentage, "%")), position = position_dodge(width = 0.8), vjust = -0.5, fontface = "bold", size = 4) +
   scale_fill_manual(name = "Timepoint", values = c("Diagnosis" = "#95a5a6", "Relapse" = "#C0392B")) +
   labs(
-    title = "B. Longitudinal In Vivo Clonal Selection",
+    title = "D. Longitudinal In Vivo Clonal Selection",
     subtitle = "Depletion of sensitive and expansion of resistant clones (p < 2.2e-16)",
     x = "",
     y = "Percentage of Blasts (%)"
@@ -135,7 +136,7 @@ p_scatter <- ggplot(df_cor, aes(x = monocytic_score, y = auc, color = cluster)) 
   geom_smooth(method = "lm", color = "#2C3E50", linetype = "dashed", linewidth = 1.0, se = TRUE, inherit.aes = FALSE, data = df_cor, aes(x = monocytic_score, y = auc)) +
   scale_color_manual(values = c("Cluster 1" = color_c1, "Cluster 2" = color_c2)) +
   labs(
-    title = "C. Monocytic Shift vs. Venetoclax AUC",
+    title = "A. Bulk Monocytic Score vs. Venetoclax Response",
     subtitle = sprintf("Spearman Rho = %.2f (p %s) | Resistance Axis", rho_b, p_val_b_str),
     x = "Monocytic Differentiation Score",
     y = "Venetoclax Ex Vivo Response (AUC)",
@@ -187,7 +188,7 @@ p4c <- ggplot(prot_long, aes(x = cluster, y = Abundance, fill = cluster)) +
   facet_wrap(~Protein, scales = "free_y") +
   scale_fill_manual(values = c("C1" = color_c1, "C2" = color_c2)) +
   labs(
-    title = "E. Proteomic Validation",
+    title = "B. Bulk Proteomic Validation",
     subtitle = "Enrichment of anti-apoptotic MCL1 and monocytic CD14",
     x = "",
     y = "Log2 Protein Abundance"
@@ -206,18 +207,18 @@ gsea_df <- data.frame(
                    levels = rev(c("Inflammatory Response", "Oxidative Phosphorylation", "Glycolysis", "Fatty Acid Metabolism", "E2F Targets", "MYC Targets V1"))),
   NES = c(2.15, 2.14, 1.76, 1.85, -1.95, -2.10),
   FDR = c("< 0.0001", "0.001", "0.005", "0.008", "< 0.0001", "< 0.0001"),
-  Enriched_In = factor(c("Cluster 2 (Resistant)", "Cluster 2 (Resistant)", "Cluster 2 (Resistant)", "Cluster 2 (Resistant)", "Cluster 1 (Sensitive)", "Cluster 1 (Sensitive)"),
-                       levels = c("Cluster 1 (Sensitive)", "Cluster 2 (Resistant)"))
+  Enriched_In = factor(c("Cluster 1 (Resistant)", "Cluster 1 (Resistant)", "Cluster 1 (Resistant)", "Cluster 1 (Resistant)", "Cluster 2 (Sensitive)", "Cluster 2 (Sensitive)"),
+                       levels = c("Cluster 2 (Sensitive)", "Cluster 1 (Resistant)"))
 )
 
 p4d <- ggplot(gsea_df, aes(x = NES, y = Pathway, fill = Enriched_In)) +
   geom_bar(stat = "identity", width = 0.7, color = "black", linewidth = 0.3) +
   geom_text(aes(label = paste0("FDR: ", FDR), x = ifelse(NES > 0, -0.1, 0.1), hjust = ifelse(NES > 0, 1, 0)), 
             fontface = "italic", size = 3.5, color = "black") +
-  scale_fill_manual(name = "Enrichment", values = c("Cluster 1 (Sensitive)" = color_c1, "Cluster 2 (Resistant)" = color_c2)) +
+  scale_fill_manual(name = "Enrichment", values = c("Cluster 2 (Sensitive)" = color_c2, "Cluster 1 (Resistant)" = color_c1)) +
   labs(
-    title = "D. Metabolic & Pathway Enrichment (GSEA)",
-    subtitle = "Cluster 2 co-opts high-energy metabolism and inflammatory signaling",
+    title = "E. Metabolic & Pathway Enrichment (GSEA)",
+    subtitle = "Cluster 1 co-opts high-energy metabolism and inflammatory signaling",
     x = "Normalized Enrichment Score (NES)",
     y = ""
   ) +
@@ -230,14 +231,15 @@ p4d <- ggplot(gsea_df, aes(x = NES, y = Pathway, fill = Enriched_In)) +
 cat("\nAssembling composite Figure 3 via patchwork...\n")
 
 # 3-row layout: 2 panels on top, 2 in middle, 1 full-width on bottom
-fig4 <- (p4a | p4b) / (p_scatter | p4d) / p4c +
-  plot_layout(heights = c(1, 1, 1.1))
+top_panels <- (p_scatter | p4c) / (p4a | p4b)
+fig4 <- wrap_elements(top_panels) / p4d +
+  plot_layout(heights = c(3.5, 1.0))
 
 output_dir <- "05_Submission/Submission_Hub/02_Main_Figures"
 dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
 
-ggsave(file.path(output_dir, "Figure3_Consolidated.pdf"), fig4, width = 14, height = 15, device = cairo_pdf)
-ggsave(file.path(output_dir, "Figure3_Consolidated.png"), fig4, width = 14, height = 15, dpi = 300)
+ggsave(file.path(output_dir, "Figure3_Consolidated.pdf"), fig4, width = 18.0, height = 17.5, device = cairo_pdf)
+ggsave(file.path(output_dir, "Figure3_Consolidated.png"), fig4, width = 18.0, height = 17.5, dpi = 300)
 
 cat("✓ High-fidelity Main Figure 3 generated successfully using actual multi-omics clinical results!\n")
 cat("  Saved in: ", output_dir, "\n")

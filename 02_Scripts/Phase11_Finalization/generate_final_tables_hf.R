@@ -1,20 +1,21 @@
-# R script to generate Definitive High-Fidelity Tables (N=478)
+# R script to generate Definitive High-Fidelity Tables (N=320)
 setwd("d:/Proj_AML")
 library(tidyverse)
 
-cat("=== GENERATING DEFINITIVE HIGH-FIDELITY TABLES (N=478) ===\n")
+cat("=== GENERATING DEFINITIVE HIGH-FIDELITY TABLES (N=320) ===\n")
 
-# 1. Load Gold Standard Cohort (N=478)
+# 1. Load Gold Standard Cohort (N=320)
 survival_data <- read_csv("D:/Proj_AML/03_Results/08_Survival_Analysis/survival_data_with_clusters.csv")
 mutation_data <- read_csv("D:/Proj_AML/03_Results/05_Analysis_Ready_Data/mutations_gold_standard.csv") %>% rename(sample_id = 1)
 eln_data <- read_csv("D:/Proj_AML/03_Results/12_ELN_Comparison/samples_with_eln_and_cluster.csv")
 
-# Ensure N=478
+# Ensure N=320 (this is the gold standard cohort)
 gs_samples <- survival_data$sample_id
 cat("Gold Standard N =", length(gs_samples), "\n")
 
-# --- Table S1: Baseline Characteristics (N=478) ---
+# --- Table S1: Baseline Characteristics (N=320) ---
 char_df <- survival_data %>%
+  filter(sample_id %in% mutation_data$sample_id) %>%
   left_join(mutation_data, by = "sample_id") %>%
   left_join(eln_data %>% select(sample_id, ELN2017), by = "sample_id") %>%
   mutate(cluster = factor(cluster, levels=c(1,2), labels=c("Cluster 1", "Cluster 2")))
@@ -38,15 +39,29 @@ table_s1 <- char_df %>%
 
 dir.create("05_Submission/Submission_Hub/04_Supplementary_Tables", showWarnings = FALSE, recursive = TRUE)
 write_csv(table_s1, "05_Submission/Submission_Hub/04_Supplementary_Tables/TableS1_Sample_Characteristics.csv")
+write_csv(table_s1, "05_Submission/Submission_Hub/01_Manuscript_Source/tables/TableS1_Sample_Characteristics.csv")
 
-# --- Table S6: Full Multivariate Cox (N=478) ---
-# (Already audited in Figure 2/3, just ensuring the CSV is clean)
-# Model: OS ~ Cluster + Age + Sex + TP53 + TET2 + RUNX1 + ASXL1
-write_csv(data.frame(
-  Variable = c("Cluster 2", "Age", "Sex (Male)", "TP53", "TET2", "RUNX1", "ASXL1"),
-  HR = c(1.06, 1.03, 1.12, 2.96, 1.42, 1.13, 1.21),
-  CI_95 = c("0.83-1.36", "1.02-1.04", "0.91-1.38", "2.10-4.17", "1.03-1.94", "0.78-1.64", "0.82-1.79"),
-  P_value = c(0.649, 7.3e-12, 0.278, 5.6e-10, 0.031, 0.518, 0.331)
-), "05_Submission/Submission_Hub/04_Supplementary_Tables/TableS6_Multivariate_Cox.csv")
+# --- Table S6: Full Multivariate Cox (N=320) ---
+coefs <- read_csv("03_Results/11_Survival_Reanalysis/05_full_model_coefficients.csv", show_col_types = FALSE)
+name_map <- c(
+  "cluster_assignmentCluster2" = "Cluster 2",
+  "AGE" = "Age",
+  "SEXM" = "Sex (Male)",
+  "TP53" = "TP53",
+  "TET2" = "TET2",
+  "RUNX1" = "RUNX1",
+  "ASXL1" = "ASXL1"
+)
+table_s6 <- coefs %>%
+  mutate(
+    Variable = name_map[variable],
+    CI_95 = sprintf("%.2f-%.2f", HR_lower, HR_upper),
+    HR = round(HR, 2),
+    P_value = signif(pvalue, 2)
+  ) %>%
+  select(Variable, HR, CI_95, P_value)
 
-cat("✓ Definitive High-Fidelity Tables generated and synced to N=478.\n")
+write_csv(table_s6, "05_Submission/Submission_Hub/04_Supplementary_Tables/TableS6_Multivariate_Cox.csv")
+write_csv(table_s6, "05_Submission/Submission_Hub/01_Manuscript_Source/tables/TableS6_Multivariate_Cox.csv")
+
+cat("✓ Definitive High-Fidelity Tables generated and synced to N=320.\n")

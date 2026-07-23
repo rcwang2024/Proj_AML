@@ -39,6 +39,7 @@ def main():
         "generate_Figure5E_VIALE_Validation.R",
         # Supplementary Figures R scripts
         "01_generate_FigureS1.R",
+        "generate_FigureS2_HighFid_Pediatric.R",
         "02_generate_FigureS2_HighFid.R",
         "03_generate_FigureS3_HighFid.R",
         "04_generate_FigureS4_HighFid.R",
@@ -55,20 +56,24 @@ def main():
     
     # 2. Python Assembly Scripts
     py_scripts = [
+        "assemble_MainFigure4_SingleCell.py",
         "assemble_MainFigure5_HighFid.py",
         "assemble_MainFigure6_HighFid.py",
-        "assemble_s2_high_fid_v2.py",
+        "generate_FigureS2.py",
+        "generate_FigureS16.py",
         "assemble_s3_high_fid.py",
         "assemble_s4_high_fid_v2.py",
         "assemble_s5_high_fid.py",
         "assemble_s6_high_fid.py",
-        "assemble_new_supplementary_figures.py"
+        "assemble_new_supplementary_figures.py",
+        "assemble_s17_to_s20.py"
     ]
     
     # 3. Synchronization & Packaging Scripts
     sync_and_pack_scripts = [
         "synchronize_main_figures.py",
         "synchronize_supplementary_figures.py",
+        "sync_overleaf_repo.py",
         "rebuild_overleaf_package.py"
     ]
     
@@ -99,31 +104,29 @@ def main():
         if not success:
             failed.append(script)
             
-    print("\n--- PHASE 2: Running Python Composite Assembly Scripts ---")
+    print("\n--- PHASE 2: Running Python Figure Assembly Scripts ---")
     for script in py_scripts:
         script_path = os.path.join(script_dir, script)
         if not os.path.exists(script_path):
             print(f"[SKIP] Script not found: {script_path}")
             continue
-        success = run_script(["python", script_path])
+        success = run_script(["python", script_path], cwd=script_dir)
         if not success:
             failed.append(script)
             
-    print("\n--- PHASE 3: Running Sync and Packaging Scripts ---")
+    print("\n--- PHASE 3: Running Synchronization & Packaging Scripts ---")
     for script in sync_and_pack_scripts:
         script_path = os.path.join(script_dir, script)
         if not os.path.exists(script_path):
             print(f"[SKIP] Script not found: {script_path}")
             continue
-        success = run_script(["python", script_path])
+        success = run_script(["python", script_path], cwd=script_dir)
         if not success:
             failed.append(script)
             
-    print("\n=== PIPELINE EXECUTION SUMMARY ===")
+    print("\n========================================")
     if failed:
-        print(f"[WARNING] The following {len(failed)} scripts failed to execute successfully:")
-        for script in failed:
-            print(f"  - {script}")
+        print(f"[WARNING] Pipeline finished with failures in {len(failed)} scripts: {', '.join(failed)}")
         sys.exit(1)
     else:
         print("[SUCCESS] All pipeline scripts executed successfully with exit code 0!")

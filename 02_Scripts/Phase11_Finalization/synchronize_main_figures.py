@@ -12,8 +12,8 @@ def main():
         r"d:\Proj_AML\05_Submission\Submission_Hub_2026-05-16\01_Manuscript_Source\Figures"
     ]
     
-    # We synchronize Figure1 to Figure5, both PDF and PNG formats
-    fig_basenames = [f"Figure{i}_Consolidated" for i in range(1, 6)]
+    # We synchronize Figure1 to Figure6, both PDF and PNG formats
+    fig_basenames = [f"Figure{i}_Consolidated" for i in range(1, 7)]
     extensions = [".pdf", ".png"]
     
     files_to_sync = [base + ext for base in fig_basenames for ext in extensions]

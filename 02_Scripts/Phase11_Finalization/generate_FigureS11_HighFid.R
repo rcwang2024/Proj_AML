@@ -112,7 +112,7 @@ beat_data <- read_csv("03_Results/08_Survival_Analysis/survival_data_with_cluste
                                labels = c("Cluster 1", "Cluster 2"))
   )
 ps11a <- make_km_panel(beat_data, "OS_months", "OS_event",
-                       "A. BeatAML Discovery (N=478)")
+                        "A. BeatAML Discovery (N=320)")
 
 # ===========================================================================
 # Panel B: TCGA-LAML Validation
@@ -129,11 +129,11 @@ ps11b <- make_km_panel(tcga_data, "OS_months", "OS_event",
 # Panel C: Prognostic Meta-Analysis Forest Plot
 # ===========================================================================
 meta_df <- data.frame(
-  Cohort = c("A. BeatAML Discovery (N=478)", "B. TCGA-LAML Validation (N=151)", "E. Prognostic Meta-Analysis (Pooled Adult)"),
-  HR = c(1.26, 1.24, 1.26),
-  Lower = c(1.00, 0.80, 1.02),
-  Upper = c(1.60, 1.94, 1.55),
-  P_Value = c("0.050", "0.342", "0.030"),
+  Cohort = c("A. BeatAML Discovery (N=320)", "B. TCGA-LAML Validation (N=151)", "E. Prognostic Meta-Analysis (Pooled Adult)"),
+  HR = c(1.03, 1.24, 1.08),
+  Lower = c(0.80, 0.80, 0.86),
+  Upper = c(1.33, 1.94, 1.35),
+  P_Value = c("0.825", "0.342", "0.506"),
   Type = c("Individual", "Individual", "Pooled"),
   y = c(3, 2, 1)
 )

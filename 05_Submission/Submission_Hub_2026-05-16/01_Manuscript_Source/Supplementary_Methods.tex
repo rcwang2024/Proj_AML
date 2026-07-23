@@ -44,7 +44,7 @@
 \section{Study Cohorts, Data Acquisition, and Preprocessing}
 
 \subsection{BeatAML Discovery Cohort}
-We utilized multi-omic and functional profiling data from the "Gold Standard" BeatAML cohort comprising 478 adult acute myeloid leukemia (AML) patients with complete molecular and functional annotation (dbGaP accession: \href{https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=phs001657.v1.p1}{phs001657.v1.p1}). The dataset incorporates:
+We utilized multi-omic and functional profiling data from the "Gold Standard" BeatAML cohort comprising 320 adult acute myeloid leukemia (AML) patients with complete molecular and functional annotation (dbGaP accession: \href{https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=phs001657.v1.p1}{phs001657.v1.p1}). The dataset incorporates:
 \begin{enumerate}
     \item \textbf{Transcriptomic RNA-Sequencing:} Raw count data and transcripts per million (TPM) values for 22,843 genes.
     \item \textbf{Targeted DNA Sequencing:} Mutation status across a 76-gene myeloid clinical panel.
@@ -71,15 +71,15 @@ Unsupervised transcriptomic subtyping was performed using the \texttt{ConsensusC
     \item \textbf{Clustering Algorithm:} Ward's linkage (Ward.D2)
     \item \textbf{K-range:} 2 to 10
 \end{itemize}
-We evaluated the optimal clustering solution using consensus cumulative distribution function (CDF) curves, tracking the area under the CDF curve (delta area), consensus cluster stability index indices ($> 0.9$ representing high stability), and silhouette width values ($> 0.1$ representing robust partition). The definitive molecular subtype partition resolved into two major lineage states: Cluster 1 ($n=229$) and Cluster 2 ($n=249$).
+We evaluated the optimal clustering solution using consensus cumulative distribution function (CDF) curves, tracking the area under the CDF curve (delta area), consensus cluster stability index indices ($> 0.9$ representing high stability), and silhouette width values ($> 0.1$ representing robust partition). The definitive molecular subtype partition resolved into two major lineage states: Cluster 1 ($n=184$) and Cluster 2 ($n=266$).
 
 \subsection{50-Gene Random Forest Classifier}
 To enable robust subtype classification in external cohorts, we trained a 50-gene transcriptomic classifier.
 \begin{enumerate}
-    \item \textbf{Data Partitioning:} The 478-sample gold standard cohort was randomly partitioned into a 70\% training set ($n=335$) and a 30\% held-out internal validation set ($n=143$).
+    \item \textbf{Data Partitioning:} The 450-sample expression cohort was randomly partitioned into a 70\% training set ($n=315$) and a 30\% held-out internal validation set ($n=135$).
     \item \textbf{Feature Selection:} Recursive Feature Elimination (RFE) was performed within the training set using the \texttt{caret} package in R, coupled with the Random Forest algorithm.
     \item \textbf{Model Training:} A Random Forest model was trained on the top 50 selected features using the \texttt{randomForest} package (version 4.7-1) with $ntree = 500$ trees and $mtry = \sqrt{p} \approx 7$ features per split.
-    \item \textbf{Performance Validation:} The classifier achieved $94.4\%$ classification accuracy, $94.3\%$ sensitivity, $94.5\%$ specificity, and a Receiver Operating Characteristic Area Under the Curve (ROC-AUC) of $0.987$ on this independent internal test split, and was subsequently applied to all external cohorts (classification statistics, proportions, and mean posterior probability mapping confidences across cohorts are detailed in \textbf{Supplementary Table~\ref{tab:tabS10}}).
+    \item \textbf{Performance Validation:} The classifier achieved $95.6\%$ classification accuracy, $92.2\%$ sensitivity, $97.6\%$ specificity, and a Receiver Operating Characteristic Area Under the Curve (ROC-AUC) of $0.994$ on this independent internal test split, and was subsequently applied to all external cohorts (classification statistics, proportions, and mean posterior probability mapping confidences across cohorts are detailed in \textbf{Supplementary Table~\ref{tab:tabS10}}).
 \end{enumerate}
 
 \section{Drug Sensitivity and Subtype Independence}
@@ -190,7 +190,7 @@ Below is a complete index of the supplementary tables, including their titles, c
 
 \clearpage
 
-\subsection*{Table S1. Baseline Clinical and Molecular Characteristics of Molecular Subtypes (N=478)}
+\subsection*{Table S1. Baseline Clinical and Molecular Characteristics of Molecular Subtypes (N=320)}
 \hypertarget{tab:tabS1}{}
 \label{tab:tabS1}
 \begin{itemize}
@@ -235,7 +235,7 @@ Below is a complete index of the supplementary tables, including their titles, c
     \item \textbf{Notes:} AUC: area under the dose-response curve (lower = more sensitive). FDR: Benjamini-Hochberg. Cohen's d: effect size (positive = Cluster 2 higher AUC).
 \end{itemize}
 
-\subsection*{Table S6. Full Multivariate Cox Proportional Hazards Regression Analysis on Overall Survival (N=478)}
+\subsection*{Table S6. Full Multivariate Cox Proportional Hazards Regression Analysis on Overall Survival (N=320)}
 \hypertarget{tab:tabS6}{}
 \label{tab:tabS6}
 \begin{itemize}
@@ -271,13 +271,13 @@ Below is a complete index of the supplementary tables, including their titles, c
     \item \textbf{Notes:} All compounds are targeted therapies. P-values: two-sided Wilcoxon rank-sum. Priority Candidate = pre-specified top salvage candidates for Cluster 2.
 \end{itemize}
 
-\subsection*{Table S9. Full Patient-Level Venetoclax Response Score (VRS) and Clinical Tier Assignments (N=478)}
+\subsection*{Table S9. Full Patient-Level Venetoclax Response Score (VRS) and Clinical Tier Assignments (N=320)}
 \hypertarget{tab:tabS9}{}
 \label{tab:tabS9}
 \begin{itemize}
     \item \textbf{Excel Workbook Sheet:} \texttt{Table S9}
     \item \textbf{Content:} Individual patient-level VRS scoring, clinical classification tiers, subtype assignments, and corresponding clinical data.
-    \item \textbf{Notes:} VRS: Venetoclax Response Score (0-100). Tiers: Low ($<41.8$), Medium ($41.8$--$71.0$), High ($>71.0$).
+    \item \textbf{Notes:} VRS: Venetoclax Response Score (0-100). Tiers: Low ($<39.4$), Medium ($39.4$--$70.5$), High ($>70.5$).
 \end{itemize}
 
 \subsection*{Table S10. Random Forest Subtype Classifier Validation and Posterior Mapping Confidences Across Independent Cohorts}

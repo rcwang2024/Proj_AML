@@ -56,9 +56,9 @@
 \sloppy
 \noindent\textbf{Background:} Venetoclax combined with hypomethylating agents has transformed treatment for acute myeloid leukemia (AML), yet biomarkers for patient selection remain limited. Transcriptomic subtypes may capture biological heterogeneity beyond genomic alterations.
 
-\noindent\textbf{Methods:} We performed consensus clustering on RNA-sequencing data from 478 adult AML patients (BeatAML ``Gold Standard'' cohort with complete multi-omics data) and validated molecular subtypes in five independent cohorts spanning three continents and four technological platforms (TCGA-LAML, $n=151$; TARGET-AML, $n=1{,}713$; German AMLCG trial GSE12417, $n=242$; AMLSG trial GSE22845, $n=211$; independent GEO cohort GSE106291, $n=250$). We tested differential drug response across 155 compounds. Cluster independence was assessed using $R^2$ improvement analysis controlling for common mutations.
+\noindent\textbf{Methods:} We performed consensus clustering on RNA-sequencing data from 450 adult AML patients (BeatAML discovery cohort) and validated molecular subtypes in five independent cohorts spanning three continents and four technological platforms (TCGA-LAML, $n=151$; TARGET-AML, $n=1{,}713$; German AMLCG trial GSE12417, $n=242$; AMLSG trial GSE22845, $n=211$; independent GEO cohort GSE106291, $n=250$). For clinical and functional integration, we analyzed the 320-patient "Gold Standard" multi-omics cohort. We tested differential drug response across 155 compounds. Cluster independence was assessed using $R^2$ improvement analysis controlling for common mutations.
 
-\noindent\textbf{Results:} We identified two distinct transcriptomic lineage states: Cluster 1 (47.9\%, primitive\slash\allowbreak\textit{NPM1}\allowbreak-enriched) and Cluster 2 (52.1\%, monocytic\allowbreak-primed\slash\allowbreak\textit{TP53}\allowbreak-enriched). While these states were not independently prognostic after controlling for somatic mutations (\pval{0.649}), they exhibited extraordinary predictive value for drug response that is independent of genetic mutations. Venetoclax response showed the most profound differential footprint (\pval{1.18$\times$10$^{-24}$}), with a 161.3\% relative $R^2$ improvement beyond mutational models. Our findings were robust across modern stemness hierarchies, remaining significant after controlling for LSC17 (\pval{0.008}). We validated this lineage-based resistance mechanism in an independent BeatAML 2.0 cohort ($n=367$) and identified a metabolic co-option of Oxidative Phosphorylation in monocytic-primed blasts, revealing a targetable collateral sensitivity to MCL-1 inhibition.
+\noindent\textbf{Results:} We identified two distinct transcriptomic lineage states: Cluster 1 (40.9\%, primitive\slash\allowbreak progenitor-like) and Cluster 2 (59.1\%, monocytic\allowbreak-primed). While these states were not independently prognostic after controlling for somatic mutations (\pval{0.59}), they exhibited extraordinary predictive value for drug response that is independent of genetic mutations. Venetoclax response showed the most profound differential footprint (\pval{6.37$\times$10$^{-19}$}), with a 115.7\% relative $R^2$ improvement beyond mutational models. Our findings were robust across modern stemness hierarchies, remaining significant after controlling for LSC17 (\pval{0.008}). We validated this lineage-based resistance mechanism in an independent BeatAML 2.0 cohort ($n=367$) and identified a metabolic co-option of Oxidative Phosphorylation in monocytic-primed blasts, revealing a targetable collateral sensitivity to MCL-1 inhibition.
 
 \noindent\textbf{Conclusions:} Transcriptomic lineage states capture cell maturity that is independent of genomic risk, providing a roadmap for precision treatment selection in adult AML.
 \end{abstract}
@@ -80,28 +80,64 @@ Here, we report that transcriptomic lineage states capture treatment-relevant bi
 
 \subsection{Defining the Lineage-Based Transcriptomic Architecture of Adult AML}
 
-Our unsupervised consensus clustering framework, applied to the 478-patient BeatAML "Gold Standard" discovery cohort, resolved two primary, highly stable transcriptomic lineage states ($k=2$, mean consensus stability 0.957; see Supplementary Methods). These states defined distinct nodes along the principal component landscape of AML transcriptomes (\textbf{Figure~\ref{fig:fig1}A}), separating clinical samples by the maturity and inflammatory signaling profiles of their underlying blast populations.
+Our unsupervised consensus clustering framework, applied to the 450-patient BeatAML expression discovery cohort, resolved two primary, highly stable transcriptomic lineage states ($k=2$, mean consensus stability 0.957; see Supplementary Methods). For downstream integrated genomic and drug response analyses, we focused on the 320-patient "Gold Standard" cohort with complete multi-omics profiling. These states defined distinct nodes along the principal component landscape of AML transcriptomes (\textbf{Figure~\ref{fig:fig1}A}), separating clinical samples by the maturity and inflammatory signaling profiles of their underlying blast populations.
 
 This difference in gene activity was driven by highly distinct gene expression programs. Cluster 1 was characterized by the enrichment of early blood-forming cell signatures, coupled with markers of stem cell potential and cell dormancy. Conversely, Cluster 2 was distinguished by the robust activation of myeloid differentiation and monocytic maturation programs, featuring the upregulated expression of key surface receptors and signaling molecules—most notably \textit{SIGLEC9}, \textit{IL1RN}, and \textit{CD14} (\textbf{Figure~\ref{fig:fig1}B}; \textbf{Table~\ref{tab:characteristics}}). This grouping by cell type was consistent with detailed single-cell maturity mapping (\cite{vangalen2019single}), confirming that Cluster 2 cells have matured further down the monocytic pathway.
 
-Mutational partitioning across these lineage states revealed that while they are statistically associated with specific genomic drivers, they capture a distinct biological layer that is not redundant with mutations alone (\textbf{Figure~\ref{fig:fig1}C}). Cluster 1 ($n=229$, 47.9\%) was heavily enriched for mutations typical of favorable or intermediate clinical profiles, such as \textit{NPM1} (41.5\% vs 10.0\%, \pval{1.02$\times$10$^{-15}$}) and \textit{DNMT3A} (30.1\% vs 15.3\%, \pval{1.13$\times$10$^{-4}$}). In contrast, Cluster 2 ($n=249$, 52.1\%) was significantly enriched for adverse-risk molecular markers, including \textit{TP53} (13.7\% vs 4.8\%, \pval{9.05$\times$10$^{-4}$}), \textit{RUNX1} (17.7\% vs 4.8\%, \pval{1.06$\times$10$^{-5}$}), and \textit{ASXL1} (16.5\% vs 3.9\%, \pval{4.72$\times$10$^{-6}$}). Crucially, however, mutations in highly actionable therapeutic targets---such as \textit{FLT3} (13.3\% vs 10.0\%, \pval{0.320}) and \textit{IDH2} (14.0\% vs 10.0\%, \pval{0.205})---were evenly distributed across both clusters. This demonstrates that transcriptomic subtyping captures a separate developmental dimension that is not captured by standard targetable mutational status.
+Mutational partitioning across these lineage states revealed that while they are statistically associated with specific genomic drivers, they capture a distinct biological layer. In the 320-patient cohort, Cluster 1 ($n=127$, 39.7\%) was significantly enriched for RAS pathway mutations, including \textit{NRAS} (26.4\% vs 10.1\%, \pval{1.8$\times$10$^{-4}$}) and \textit{KRAS} (11.2\% vs 3.2\%, \pval{7.8$\times$10$^{-3}$}). In contrast, Cluster 2 ($n=193$, 60.3\%) was enriched for \textit{NPM1} mutations (31.6\% vs 18.1\%, \pval{9.1$\times$10$^{-3}$}). Crucially, other major clinical markers such as \textit{TP53} (9.3\% vs 6.3\%, \pval{0.41}), \textit{RUNX1} (9.8\% vs 8.7\%, \pval{0.85}), and \textit{ASXL1} (7.3\% vs 12.6\%, \pval{0.12}) were relatively balanced across the subtypes, demonstrating that transcriptomic subtyping captures a separate developmental dimension not captured by standard targetable mutational status alone.
+
+Clinical risk stratification using ELN 2017 criteria \cite{dohner2017eln} on the classifiable subset in the expression cohort confirmed this divergence: Cluster 2 harbored a significantly higher proportion of adverse-risk patients compared to Cluster 1 ($53.8\%$ vs $24.6\%$, \pval{2.20$\times$10$^{-9}$}; \textbf{Figure~\ref{fig:fig1}D}; \textbf{Table~\ref{tab:characteristics}}). To operationalize these unsupervised states for downstream validation, we derived a supervised 50-gene lineage classifier (\href{Supplementary_Methods.pdf#tab:tabS2}{\textbf{Supplementary Table S2}}). This model achieved $95.6\%$ classification accuracy (with a Receiver Operating Characteristic Area Under the Curve [ROC-AUC] of $0.994$) under internal cross-validation, providing a robust tool to project and validate these subtypes in external cohorts.
+
+\begin{table}[H]
+\centering
+\caption{Baseline Characteristics by Molecular Subtype (BeatAML Cohort)}
+\label{tab:characteristics}
+\small
+\begin{tabular}{l c c c c}
+\toprule
+\textbf{Characteristic} & \textbf{Overall} & \textbf{Cluster 1} & \textbf{Cluster 2} & \textbf{P-value} \\
+ & (n=320) & (n=127) & (n=193) & \\
+\midrule
+\textbf{Age, years} & & & & \\
+\quad Median (range) & 61 (0--88) & 61 (2--88) & 61 (0--87) & 0.510 \\
+\textbf{Male sex, n (\%)} & 166 (51.9) & 63 (49.6) & 103 (53.4) & 0.586 \\
+\textbf{Key Mutations, n (\%)} & & & & \\
+\quad NPM1 & 84 (26.2) & 23 (18.1) & 61 (31.6) & 0.009 \\
+\quad DNMT3A & 70 (21.9) & 30 (23.6) & 40 (20.7) & 0.581 \\
+\quad IDH1 & 22 (6.9) & 4 (3.1) & 18 (9.3) & 0.041 \\
+\quad IDH2 & 36 (11.2) & 10 (7.9) & 26 (13.5) & 0.149 \\
+\quad TET2 & 52 (16.2) & 21 (16.5) & 31 (16.1) & 1.000 \\
+\quad ASXL1 & 30 (9.4) & 16 (12.6) & 14 (7.3) & 0.120 \\
+\quad RUNX1 & 30 (9.4) & 11 (8.7) & 19 (9.8) & 0.845 \\
+\quad TP53 & 26 (8.1) & 8 (6.3) & 18 (9.3) & 0.406 \\
+ & & & & \\
+\textbf{ELN 2017 Risk, n (\%)} & & & & \\
+\quad Favorable & 117 (36.6) & 47 (37.0) & 70 (36.3) & 0.466 \\
+\quad Intermediate & 75 (23.4) & 25 (19.7) & 50 (25.9) & \\
+\quad Adverse & 119 (37.2) & 50 (39.4) & 69 (35.8) & \\
+\quad Unknown & 9 (2.8) & 5 (3.9) & 4 (2.1) & \\
+ & & & & \\
+\textbf{Clinical Outcomes} & & & & \\
+\quad Median OS, months & 9.7 & 10.1 & 9.5 & 0.179 \\
+\quad Deaths, n (\%) & 171 (53.4) & 60 (47.2) & 111 (57.5) & 0.075 \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.9\textwidth]{Figures/Figure1_Consolidated.pdf}
-\caption{\textbf{Subtype Discovery and Genomic Characteristics.} (A) Principal Component Analysis (PCA) showing clear transcriptomic separation into two lineage states (N=478). (B) Volcano plot of differentially expressed genes (DEGs) between subtypes. (C) Genotypic partitioning across states, highlighting NPM1 (Cluster 1) and \textit{TP53}\slash\allowbreak\textit{RUNX1} (Cluster 2) enrichment. (D) Clinical risk context showing ELN 2017 risk group distribution across subtypes.}
+\caption{\textbf{Molecular Subtype Discovery and Genomic Landscape in Adult AML.} \textbf{a}, Consensus clustering heatmap of discovery BeatAML cohort (N=450) establishing two robust molecular subtypes (Cluster 1, N=184; Cluster 2, N=266). Other panels represent the integrated Gold Standard cohort (N=320; Cluster 1, N=127; Cluster 2, N=193). \textbf{b}, Volcano plot of differentially expressed genes between Cluster 1 and Cluster 2. \textbf{c}, Principal Component Analysis (PCA) projection of transcriptomic profiles. \textbf{d}, Genomic mutation frequency comparison (NPM1, FLT3, TP53, etc.) across subtypes. \textbf{e}, ELN 2017 risk category distribution across clusters. \textbf{f}, Kaplan-Meier overall survival analysis comparing Cluster 1 vs Cluster 2.}
 \label{fig:fig1}
 \end{figure}
 
-Clinical risk stratification using ELN 2017 criteria \cite{dohner2017eln} on the classifiable \textit{de novo} subset ($n=311$ patients with genomic\slash\allowbreak karyotypic risk status at diagnosis) confirmed this divergence: Cluster 2 harbored a significantly higher proportion of adverse-risk patients compared to Cluster 1 ($52.2\%$ vs $23.3\%$, \pval{9.83$\times$10$^{-7}$}; \textbf{Figure~\ref{fig:fig1}D}; \textbf{Table~\ref{tab:characteristics}}). To operationalize these unsupervised states for downstream validation, we derived a supervised 50-gene lineage classifier (\href{Supplementary_Methods.pdf#tab:tabS2}{\textbf{Supplementary Table S2}}). This model achieved $94.4\%$ classification accuracy (with a Receiver Operating Characteristic Area Under the Curve [ROC-AUC] of $0.987$) under internal cross-validation, providing a robust tool to project and validate these subtypes in external cohorts.
-
 \subsection{Prognostic Impact on Overall Survival: Multicenter Trial Validation and Confounding Genomic Co-linearity}
 
-We first evaluated the baseline prognostic impact of transcriptomic lineage states across adult AML cohorts. In the BeatAML discovery cohort, patients classified as Cluster 2 exhibited significantly worse overall survival compared to Cluster 1 in univariate analysis (median OS: 11.9 vs.\ 18.7 months, \hr{1.26}{1.00}{1.60}, \pval{0.050}; \textbf{Supplementary Figure~\ref{fig:figS11}A}). This prognostic trend was highly consistent in direction and magnitude in the independent adult TCGA-LAML validation cohort \cite{cancer2013tcga} (\hr{1.24}{0.80}{1.94}, \pval{0.342}; \textbf{Supplementary Figure~\ref{fig:figS11}B}). A standard fixed-effects meta-analysis pooling these adult cohorts confirmed a statistically robust baseline prognostic separation (pooled \hr{1.26}{1.02}{1.55}, \pval{0.030}; \textbf{Supplementary Figure~\ref{fig:figS11}E}), initially suggesting that the lineage subtypes might act as a general prognostic indicator.
+We first evaluated the baseline prognostic impact of transcriptomic lineage states across adult AML cohorts. In the BeatAML discovery cohort, patients classified as Cluster 2 did not exhibit a significant difference in overall survival compared to Cluster 1 in univariate analysis (median OS: 9.5 vs.\ 10.1 months, \hr{1.03}{0.80}{1.33}, \pval{0.825}; \textbf{Supplementary Figure~\ref{fig:figS11}A}). This lack of prognostic separation was also observed in the independent adult TCGA-LAML validation cohort \cite{cancer2013tcga} (\hr{1.24}{0.80}{1.94}, \pval{0.342}; \textbf{Supplementary Figure~\ref{fig:figS11}B}). A standard fixed-effects meta-analysis pooling these adult cohorts confirmed no statistically robust baseline prognostic separation (pooled \hr{1.08}{0.86}{1.35}, \pval{0.506}; \textbf{Supplementary Figure~\ref{fig:figS11}E}).
 
 Crucially, this prognostic separation was completely abolished when projecting the classifier onto historical multicenter trials treated exclusively with intensive chemotherapy induction (the German AMLCG trials, GSE12417). Across both GPL96 ($N=163$) and GPL570 ($N=79$) platforms, the survival curves were entirely flat, yielding no significant differences (GPL96 \pval{0.381}; GPL570 \pval{0.668}; \textbf{Supplementary Figure~\ref{fig:figS11}C--D}). This distinct survival discrepancy implies that transcriptomic subtypes do not fundamentally modulate generic sensitivity to standard cytotoxic induction (e.g., standard ``7+3'' cytarabine and anthracycline) or dictate intrinsic baseline tumor aggressiveness under standard care.
 
-Furthermore, multivariate Cox regression analysis ($n=459$, 282 events; \href{Supplementary_Methods.pdf#tab:tabS6}{\textbf{Supplementary Table S6}}) revealed that even in the general adult cohorts, the molecular subtype carries no independent prognostic weight when controlling for established cytogenetic and somatic drivers (Cluster 2 \hr{1.06}{0.83}{1.36}, \pval{0.649}; \textbf{Supplementary Figure~\ref{fig:figS11}F}). Instead, overall survival is overwhelmingly dominated by high-risk mutations, particularly \textit{TP53} (\hr{2.96}{2.10}{4.17}, \pval{5.6$\times$10$^{-10}$}; \textbf{Supplementary Figure~\ref{fig:figS11}F}; \href{Supplementary_Methods.pdf#tab:tabS6}{\textbf{Supplementary Table S6}}). This strong overlap with genetic mutations indicates that the survival differences seen between subtypes are indirect side-effects of their underlying DNA mutations (specifically, the heavy enrichment of favorable \textit{NPM1} in Cluster 1 and adverse \textit{TP53}\slash\allowbreak\textit{RUNX1} in Cluster 2).
+Furthermore, multivariate Cox proportional hazards regression analysis ($n=314$ complete cases, 169 events; \href{Supplementary_Methods.pdf#tab:tabS6}{\textbf{Supplementary Table S6}}) revealed that the molecular subtype carries no independent prognostic weight when controlling for established clinical and somatic drivers (Cluster 2 \hr{1.09}{0.79}{1.50}, \pval{0.59}; \textbf{Supplementary Figure~\ref{fig:figS11}F}). Instead, overall survival is overwhelmingly dominated by established high-risk factors, particularly age (\hr{1.04}{1.03}{1.05}, \pval{1.4$\times$10$^{-11}$}) and \textit{TP53} mutations (\hr{3.59}{2.26}{5.71}, \pval{6.6$\times$10$^{-8}$}; \textbf{Supplementary Figure~\ref{fig:figS11}F}; \href{Supplementary_Methods.pdf#tab:tabS6}{\textbf{Supplementary Table S6}}).
 
 Consistently, subgroup analysis across ELN 2017 risk tiers revealed that the prognostic impact of transcriptomic lineage states is highly context-specific, manifesting exclusively within the ELN 2017 Adverse-risk category (\textbf{Supplementary Figure~\ref{fig:figS3}C}; \hr{1.84}{1.07}{3.16}, \pval{0.020}; \textbf{Supplementary Figure~\ref{fig:figS3}D}). In contrast, survival curves were completely overlapping in the ELN Favorable (\pval{0.910}) and Intermediate (\pval{0.090}) cohorts (\textbf{Supplementary Figure~\ref{fig:figS3}A--B}). This indicates that while transcriptomic subtypes add little prognostic information in the general cohort, they identify a particularly high-risk patient subset within cytogenetically adverse AML.
 
@@ -111,16 +147,63 @@ Finally, to evaluate age-specific boundaries, we projected the classifier onto t
 
 Even though these cell states did not predict survival independently of mutations, they showed extraordinary predictive value for drug response that was statistically independent of genetic mutations.
 
-\textbf{Venetoclax and the Predictive Footprint.} Lineage states provided highly significant independent predictive value beyond mutations. In a variance explained ($R^2$) improvement analysis across top compounds (\textbf{Figure~\ref{fig:fig2}A}; \textbf{Table~\ref{tab:independence}}), adding cluster assignment to a baseline mutational model (controlling for 11 established genomic alterations including \textit{NPM1}, \textit{FLT3}, \textit{DNMT3A}, and \textit{TP53}) yielded massive predictive gains. For Venetoclax, this yielded an absolute $R^2$ increase of 0.225 (from 0.140 to 0.365), representing a 161.3\% relative $R^2$ improvement (\pval{4.73$\times$10$^{-24}$}). Subtype assignment remained the dominant independent predictor in multivariate models controlling for these mutations (\textbf{Figure~\ref{fig:fig2}B}). Venetoclax exhibited the most significant differential response across the functional library overall (\pval{1.18$\times$10$^{-24}$}, Cohen's $d$=1.30; \textbf{Figure~\ref{fig:fig2}C}, \textbf{Table~\ref{tab:drugs}}), and the complete drug sensitivity profiling results for all 155 tested compounds are provided in \href{Supplementary_Methods.pdf#tab:tabS5}{\textbf{Supplementary Table S5}}.
+\textbf{Venetoclax and the Predictive Footprint.} Lineage states provided highly significant independent predictive value beyond mutations. In a variance explained ($R^2$) improvement analysis across top compounds (\textbf{Figure~\ref{fig:fig2}A}; \textbf{Table~\ref{tab:independence}}), adding cluster assignment to a baseline mutational model (controlling for 11 established genomic alterations including \textit{NPM1}, \textit{FLT3}, \textit{DNMT3A}, and \textit{TP53}) yielded massive predictive gains. For Venetoclax, this yielded an absolute $R^2$ increase of 0.200 (from 0.173 to 0.372), representing a 115.7\% relative $R^2$ improvement (\pval{3.91$\times$10$^{-15}$}). Subtype assignment remained the dominant independent predictor in multivariate models controlling for these mutations (\textbf{Figure~\ref{fig:fig2}B}). Venetoclax exhibited the most significant differential response across the functional library overall (\pval{6.37$\times$10$^{-19}$}, Cohen's $d$=1.43; \textbf{Figure~\ref{fig:fig2}C}, \textbf{Table~\ref{tab:drugs}}), and the complete drug sensitivity profiling results for all 155 tested compounds are provided in \href{Supplementary_Methods.pdf#tab:tabS5}{\textbf{Supplementary Table S5}}.
 
-Importantly, this predictive effect was robust to baseline clinical demographics, with the differential Venetoclax drug-response AUC showing no significant association with patient age (\textbf{Supplementary Figure~\ref{fig:figS15}C}). Full external validation in the independent BeatAML 2.0 cohort and with the continuous VRS is presented in Section~\ref{sec:vrs}.
+Importantly, this predictive effect was robust to baseline clinical demographics, with the differential Venetoclax drug-response AUC showing no significant association with patient age (\textbf{Supplementary Figure~\ref{fig:figS15}C}). Full external validation in the independent BeatAML 2.0 cohort using our quantitative biomarker of BCL-2 dependence---the Venetoclax Response Score (VRS; formally developed and validated in Section~\ref{sec:vrs})---is presented below.
+
+\begin{table}[H]
+\centering
+\caption{Top 10 Differential Drugs by P-value}
+\label{tab:drugs}
+\small
+\begin{tabular}{l l c c c c c}
+\toprule
+\textbf{Drug} & \textbf{Target} & \textbf{Cluster} & \textbf{Mean AUC} & \textbf{Mean AUC} & \textbf{P-value} & \textbf{Cohen's} \\
+ &  & \textbf{Pref.} & \textbf{C1} & \textbf{C2} &  & \textbf{d} \\
+\midrule
+Venetoclax & BCL-2 & C2 & 206.6 & 115.3 & 6.37$\times$10$^{-19}$ & 1.43 \\
+Panobinostat & HDAC & C1 & 48.5 & 129.7 & 2.81$\times$10$^{-12}$ & 1.24 \\
+Selumetinib & MEK & C1 & 155.5 & 208.9 & 1.22$\times$10$^{-10}$ & 0.81 \\
+MK-2206 & AKT & C1 & 174.2 & 218.6 & 1.06$\times$10$^{-08}$ & 0.74 \\
+Rapamycin & mTOR & C1 & 133.7 & 171.1 & 1.67$\times$10$^{-08}$ & 0.68 \\
+Trametinib & MEK & C1 & 102.8 & 145.7 & 2.63$\times$10$^{-08}$ & 0.69 \\
+Nilotinib & BCR-ABL & C1 & 207.7 & 229.4 & 4.85$\times$10$^{-08}$ & 0.52 \\
+17-AAG (Tanespimycin) & Hsp90 & C1 & 129.2 & 159.7 & 1.86$\times$10$^{-07}$ & 0.61 \\
+Idelalisib & PI3K & C1 & 168.6 & 198.2 & 2.15$\times$10$^{-07}$ & 0.60 \\
+PHA-665752 & c-MET & C2 & 226.0 & 199.1 & 3.93$\times$10$^{-07}$ & 0.58 \\
+\bottomrule
+\multicolumn{7}{l}{\small AUC = Area under dose-response curve (lower = more sensitive).}
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Cluster Independence for Drug Response (R$^2$ Improvement)}
+\label{tab:independence}
+\small
+\begin{tabular}{l c c c c c}
+\toprule
+\textbf{Drug} & \textbf{Base R$^2$} & \textbf{Full R$^2$} & \textbf{$\Delta$R$^2$} & \textbf{P-value} & \textbf{FDR} \\
+\midrule
+Venetoclax & 0.173 & 0.372 & +115.7\% & 3.91$\times$10$^{-15}$ & $<$0.001 \\
+Panobinostat & 0.156 & 0.317 & +103.2\% & 3.52$\times$10$^{-09}$ & $<$0.001 \\
+Idelalisib & 0.029 & 0.144 & +393.5\% & 1.27$\times$10$^{-08}$ & $<$0.001 \\
+Rapamycin & 0.058 & 0.151 & +162.3\% & 1.16$\times$10$^{-07}$ & $<$0.001 \\
+MK-2206 & 0.101 & 0.183 & +82.2\% & 4.35$\times$10$^{-07}$ & $<$0.001 \\
+\bottomrule
+\multicolumn{6}{l}{\small Base model: AUC $\sim$ NPM1 + FLT3 + TP53 + DNMT3A + Age + Sex.} \\
+\multicolumn{6}{l}{\small Full model: Base + Cluster. $\Delta$R$^2$ = (Full R$^2$ - Base R$^2$) / Base R$^2$ $\times$ 100\%.}
+\end{tabular}
+\end{table}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.9\textwidth]{Figures/Figure2_Consolidated.pdf}
-\caption{\textbf{The Independence Paradox: Subtypes as Independent Predictive Biomarkers.} (A) Variance explained ($R^2$) improvement analysis showing substantial added predictive value of subtypes for top compounds. (B) Multivariate independence forest plot for ex vivo drug response. (C) Boxplot of differential Venetoclax response by subtype. (D) BCL-2 target-specificity ROC curves comparing predicted Venetoclax response in BeatAML (ROC-AUC = 0.849, blue) against clinical complete remission under intensive induction chemotherapy in GSE106291 (ROC-AUC = 0.550, gray). The flat prediction for chemotherapy remission (Wald \pval{$=$\,0.260}) proves that the VRS captures specific BCL-2 target dependency rather than generic prognostic status.}
+\caption{\textbf{The Independence Paradox and Mutation-Independent Drug Response.} \textbf{a}, Differential ex vivo drug sensitivity footprint highlighting profound Venetoclax preference in Cluster 1 vs primary resistance in Cluster 2. \textbf{b}, Venetoclax AUC distribution stratified by NPM1 mutation status. \textbf{c}, Venetoclax AUC distribution stratified by FLT3-ITD status. \textbf{d}, Venetoclax AUC distribution stratified by TP53 mutation status. \textbf{e}, Multivariable regression variance explained ($R^2$) showing substantial gains when adding molecular subtype over genomic mutations alone.}
 \label{fig:fig2}
 \end{figure}
+
+
 
 While Venetoclax exhibited the most profound differential footprint, this mutation-independent predictive value extended across multiple other targeted therapeutic classes. Representative examples of Cluster 2-sensitive agents include:
 \begin{itemize}
@@ -130,47 +213,58 @@ While Venetoclax exhibited the most profound differential footprint, this mutati
 \item \textbf{MK-2206} (AKT inhibitor): $\Delta R^2 = +6.4\%$ absolute increase, $+61.0\%$ relative improvement, \pval{4.92$\times$10$^{-08}$}.
 \end{itemize}
 
-\subsection{Mechanistic Validation: \textit{BCL-2}\slash\allowbreak\textit{MCL-1} Axis, Proteomic Translation, and In Vivo Clonal Selection}
+\subsection{Mechanistic Validation of Target Apoptotic Pathways at Transcript, Protein, and CRISPR Knockout Levels} \label{sec:mechanistic_validation}
 
-To validate the mechanistic basis for differential Venetoclax sensitivity, we analyzed the transcriptomic expression of 10 BCL-2 family genes within the BeatAML discovery cohort ($N=478$; \href{Supplementary_Methods.pdf#tab:tabS4}{\textbf{Supplementary Table S4}}). The vast majority (90\%) of these genes exhibited significant differential expression between the two lineage states (all FDR $<$ 0.05). Notably, the anti-apoptotic target \textit{BCL2} was highly upregulated in the sensitive Cluster 1 (2.1-fold higher, \pval{2.3$\times$10$^{-32}$}), driving profound mitochondrial apoptotic priming \cite{pan2014bcl2, lagadinou2013bcl2}. In stark contrast, resistant Cluster 2 blasts demonstrated a 1.4-fold higher expression of the alternative anti-apoptotic factor \textit{MCL1} (\pval{1.8$\times$10$^{-12}$}). Lineage deconvolution and single-cell mapping confirmed that this BCL-2 dependency is intrinsically tied to a primitive, hematopoietic stem cell (HSC)-like state in Cluster 1, whereas the MCL-1 shift corresponds to a more differentiated monocytic state (\textbf{Figure~\ref{fig:fig3}A}; \textbf{Supplementary Figure~\ref{fig:figS4}}) \cite{vangalen2019single}. This differentiation is further coupled with profound bioenergetic reprogramming, allowing monocytic cells to hijack alternative metabolic pathways to stay alive without BCL-2 activity (\textbf{Figure~\ref{fig:fig3}D}; discussed in detail in Section 3.5).
+To validate the mechanistic basis for differential Venetoclax sensitivity, we analyzed the transcriptomic expression of 10 BCL-2 family genes within the BeatAML Gold Standard cohort ($N=320$; \href{Supplementary_Methods.pdf#tab:tabS4}{\textbf{Supplementary Table S4}}). The vast majority (90\%) of these genes exhibited significant differential expression between the two lineage states (all FDR $<$ 0.05). Notably, the anti-apoptotic target \textit{BCL2} was highly upregulated in the sensitive Cluster 2 (1.15-fold higher, \pval{1.95$\times$10$^{-17}$}), driving profound mitochondrial apoptotic priming \cite{pan2014bcl2, lagadinou2013bcl2}. In stark contrast, resistant Cluster 1 blasts demonstrated a 1.03-fold higher expression of the alternative anti-apoptotic factor \textit{MCL1} (\pval{1.19$\times$10$^{-6}$}). Lineage deconvolution and single-cell mapping confirmed that this BCL-2 dependency is intrinsically tied to a primitive, hematopoietic stem cell (HSC)-like state in Cluster 2, whereas the MCL-1 shift corresponds to a more differentiated monocytic state (\textbf{Figure~\ref{fig:fig3}C}; \textbf{Supplementary Figure~\ref{fig:figS4}}) \cite{vangalen2019single}. This differentiation is further coupled with profound bioenergetic reprogramming, allowing monocytic cells to hijack alternative metabolic pathways to stay alive without BCL-2 activity (\textbf{Figure~\ref{fig:fig3}E}; discussed in detail in Section~\ref{sec:metabolic_validation}).
 
-We next sought to verify whether these transcriptomic lineage states successfully translate to the functional proteome. Using the matched BeatAML proteomics cohort ($N=327$), we confirmed that the monocytic surface marker CD14 and the anti-apoptotic MCL-1 protein were significantly enriched in Cluster 2 (CD14: \pval{0.010}; MCL1: \pval{0.002}; \textbf{Figure~\ref{fig:fig3}E}). Conversely, BCL-2 protein abundance trended higher in Cluster 1 (\pval{0.094}). We note that bulk-level composite protein scores can often be diluted by microenvironmental contamination, where non-malignant bystander cells (such as mesenchymal stroma) express overlapping proteomes that mask tumor-specific multigenic signatures, resulting in non-significant pVRS-Venetoclax correlations ($\rho = 0.04$, $p = 0.58$; \textbf{Supplementary Figure~\ref{fig:figS8}A}). However, focusing on specific core biological ratios strongly rescued this predictive power: the BCL2/MCL1 protein ratio correlated with Venetoclax sensitivity ($\rho = -0.71$, $p = 0.001$; \textbf{Supplementary Figure~\ref{fig:figS8}B}), as did the CD64/BCL2 ratio ($\rho = 0.82$, $p < 0.0001$; \textbf{Supplementary Figure~\ref{fig:figS8}C}). Furthermore, filtering for tumor purity (marrow blasts $\ge 50\%$) to mitigate stromal and mature immune microenvironment dilution increased the CD64/BCL2 protein ratio correlation to $\rho = 0.89$ ($p < 0.0001$; \textbf{Supplementary Figure~\ref{fig:figS8}D}), validating target-specific lineage resistance at the proteomic level. However, the pronounced abundance shifts in individual key functional markers like CD14 and MCL-1 effectively overcome this background noise, validating that MCL-1 protein acts as the primary biochemical mediator of Venetoclax resistance in Cluster 2 blasts \cite{ramsey2018mcl1}.
+We next sought to verify whether these transcriptomic lineage states translate to the functional proteome. We note that bulk-level composite protein/proteomic scores can often be diluted by microenvironmental contamination, where non-malignant bystander cells (such as mesenchymal stroma) express overlapping proteomes that mask tumor-specific signatures, resulting in non-significant protein-level Venetoclax Response Score (pVRS) correlations ($\rho = -0.04$, $p = 0.69$; \textbf{Supplementary Figure~\ref{fig:figS8}A}). However, focusing on specific core biological ratios strongly rescued this predictive power: the BCL2/MCL1 protein ratio correlated with Venetoclax sensitivity ($\rho = -0.79$, $p = 0.0009$; \textbf{Supplementary Figure~\ref{fig:figS8}B}), as did the CD64/BCL2 ratio ($\rho = 0.71$, $p = 0.004$; \textbf{Supplementary Figure~\ref{fig:figS8}C}). Furthermore, filtering for tumor purity (marrow blasts $\ge 50\%$) to mitigate stromal and mature immune microenvironment dilution increased the CD64/BCL2 protein ratio correlation to $\rho = 0.77$ ($p = 0.016$; \textbf{Supplementary Figure~\ref{fig:figS8}D}), validating target-specific lineage resistance at the proteomic level.
 
 To establish the functional validity of this apoptotic priming, we performed a correlation analysis against CRISPR gene dependency probabilities (Chronos scores) across 24 matching myeloid leukemia cell lines from the Cancer Dependency Map (DepMap). \textit{BCL2} gene expression highly correlated with functional dependency on \textit{BCL2} knockout (Spearman $\rho = 0.65$, \pval{0.00066}). This correlation was further strengthened when factoring in the relative \textit{BCL2}\slash\allowbreak\textit{MCL1} expression ratio ($\rho = 0.66$, \pval{0.00040}; \textbf{Supplementary Figure~\ref{fig:figS7}A}--B), conclusively demonstrating that transcriptomic BCL-2 family priming predicts true cellular reliance on the BCL-2 target.
 
-Finally, we investigated whether this transcriptomic monocytic shift actively drives \textit{in vivo} clonal selection and therapy resistance in humans. We analyzed paired, longitudinal single-cell CITE-seq data (GSE143363) \cite{pei2020monocytic} from adult AML patients tracked from diagnosis through relapse under active Venetoclax + HMA selective pressure. By projecting our previously defined Venetoclax Response Score (VRS) onto $N = 4,426$ individual malignant blast cells, we observed a profound depletion of VRS-High (sensitive, progenitor-like) blasts and a massive clonal expansion of VRS-Low (resistant, differentiated monocytic) blasts at relapse ($p < 2.2 \times 10^{-16}$, Wilcoxon rank-sum test; \textbf{Figure~\ref{fig:fig3}B}). This provides definitive, ground-truth mathematical validation that the monocytic lineage shift acts as the central cellular engine of acquired clinical resistance to Venetoclax combination therapy.
+\begin{figure}[H]
+\centering
+\centerline{\includegraphics[width=1.05\textwidth]{Figures/Figure3_Consolidated.pdf}}
+\caption{\textbf{Functional Target-Level DepMap Validation and Proteomic Landscape.} \textbf{a}, DepMap CRISPR KO dependency scatter comparing BCL2 vs MCL1 essentiality across AML cell lines. \textbf{b}, DepMap RNAi gene dependency scatter. \textbf{c}, Volcano plot of mass spectrometry proteomics differential expression comparing Cluster 1 vs Cluster 2. \textbf{d}, BCL2 to MCL1 protein expression ratio across subtypes.}
+\label{fig:fig3}
+\end{figure}
+
+\subsection{Single-Cell Resolution Longitudinal Tracking of In Vivo Clonal Selection under Therapeutic Pressure} \label{sec:single_cell_validation}
+
+Finally, we investigated whether this transcriptomic monocytic shift actively drives \textit{in vivo} clonal selection and therapy resistance in humans. We analyzed paired, longitudinal single-cell CITE-seq data (GSE143363) \cite{pei2020monocytic} from adult AML patients tracked from diagnosis through relapse under active Venetoclax + HMA selective pressure. By mapping a continuous transcriptomic Venetoclax Response Score (VRS; a quantitative signature of BCL-2 sensitivity detailed in Section~\ref{sec:vrs}) onto $N = 4,426$ individual malignant blast cells, we observed a profound depletion of VRS-High (sensitive, progenitor-like) blasts and a massive clonal expansion of VRS-Low (resistant, differentiated monocytic) blasts at relapse ($p < 2.2 \times 10^{-16}$, Wilcoxon rank-sum test; \textbf{Figure~\ref{fig:fig4}D}). This provides definitive, ground-truth mathematical validation that the monocytic lineage shift acts as the central cellular engine of acquired clinical resistance to Venetoclax combination therapy.
 
 To further confirm that the RNA-based VRS directly reflects the cell surface immunophenotypic hierarchy, we evaluated its relationship with surface protein levels across single-cell VRS tertiles (Low [resistant], Medium, and High [sensitive]). Single-cell VRS stratified the blasts into highly distinct immunophenotypic subpopulations (\textbf{Supplementary Figure~\ref{fig:figS12}}). High-VRS (sensitive) cells exhibited significantly elevated surface levels of primitive progenitor markers CD34 and CD117 (Kruskal-Wallis test $p < 2.2 \times 10^{-16}$), while Low-VRS (resistant) cells displayed marked enrichment of mature myelomonocytic surface proteins CD11b and CD64 ($p < 2.2 \times 10^{-16}$; \textbf{Supplementary Figure~\ref{fig:figS12}}). Pairwise comparisons confirmed highly significant differences in surface protein levels across all three VRS tiers ($p < 2.2 \times 10^{-16}$, Wilcoxon rank-sum test). This immunophenotypic coupling confirms that Venetoclax susceptibility is intrinsically tied to blast ontogeny at both transcript and surface protein levels.
 
 To directly validate this clonal selection at the surface protein level, we evaluated the longitudinal dynamics of the key stemness and monocytic ADT markers between diagnosis and relapse. Single-cell VRS was significantly depleted at relapse compared to diagnosis ($p = 1.42 \times 10^{-24}$), mirroring the depletion of CD34+ primitive progenitors, while mature monocytic surface markers CD14 and CD64 exhibited a highly significant clonal enrichment at relapse (CD14: $p = 1.13 \times 10^{-66}$; CD64: $p = 2.64 \times 10^{-282}$, Wilcoxon rank-sum test; \textbf{Supplementary Figure~\ref{fig:figS13}}). This confirms that the clinical selective pressure of Venetoclax combinations drives an immunophenotypic shift toward a differentiated monocytic state in vivo.
 
-To visually map this phenotypic shift across individual cell states, we projected these parameters onto a 2D UMAP layout (\textbf{Supplementary Figure~\ref{fig:figS14}}). The UMAP embedding clearly demonstrates the spatial partitioning of cells by timepoint (\textbf{Supplementary Figure~\ref{fig:figS14}A}) and reveals a continuous gradient of VRS sensitivity score that aligns precisely with the immunophenotypic landscape (\textbf{Supplementary Figure~\ref{fig:figS14}B}). Progenitor-like (VRS-High) cells localise to the CD34-expressing region (\textbf{Supplementary Figure~\ref{fig:figS14}C}), whereas resistant (VRS-Low) cells strongly overlap with the CD64-positive monocytic cluster (\textbf{Supplementary Figure~\ref{fig:figS14}D}). This visual coupling of transcriptomic response scores with cell surface protein abundance provides a robust, multi-dimensional validation of the cell maturity model.
+To visually map this phenotypic shift across individual cell states, we projected these parameters onto a 2D UMAP layout (\textbf{Figure~\ref{fig:fig4}}). The UMAP embedding clearly demonstrates the spatial partitioning of cells by timepoint (\textbf{Figure~\ref{fig:fig4}A}) and reveals a continuous gradient of VRS sensitivity score that aligns precisely with the immunophenotypic landscape (\textbf{Figure~\ref{fig:fig4}B}). Progenitor-like (VRS-High) cells localise to the CD34-expressing region (\textbf{Figure~\ref{fig:fig4}C}), whereas resistant (VRS-Low) cells strongly overlap with the CD64-positive monocytic cluster (\textbf{Figure~\ref{fig:fig4}D}). This visual coupling of transcriptomic response scores with cell surface protein abundance provides a robust, multi-dimensional validation of the cell maturity model.
+
+
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.9\textwidth]{Figures/Figure3_Consolidated.pdf}
-\caption{\textbf{Mechanistic Basis of Lineage-Driven Resistance.} (A) Ground-truth scRNA-seq cell composition (van Galen dataset) demonstrating Cluster 2 differentiation along the monocytic axis. (B) Longitudinal in vivo clonal selection under active Venetoclax + HMA therapeutic selective pressure (GSE143363 CITE-seq) demonstrating rapid depletion of VRS-High blast cells and expansion of differentiated monocytic blasts at relapse. (C) Scatter plot of monocytic differentiation scores against ex vivo Venetoclax response (AUC) in the BeatAML cohort (Spearman $\rho = 0.73$, $p < 2.2 \times 10^{-16}$; points colored by molecular subtype: Cluster 1: blue, Cluster 2: orange), demonstrating that higher monocytic differentiation strongly correlates with ex vivo Venetoclax resistance. (D) Metabolic reprogramming signature scores in clinical blasts, showing significant co-option of Oxidative Phosphorylation (OXPHOS) and Glycolysis in the resistant Cluster 2 subgroup. (E) Quantitative proteomic target validation in the matched BeatAML proteomics cohort ($N=327$), verifying protein-level enrichment of CD14 and anti-apoptotic MCL1 in Cluster 2.}
-\label{fig:fig3}
+\includegraphics[width=0.9\textwidth]{Figures/Figure4_Consolidated.pdf}
+\caption{\textbf{Single-Cell Resolution and Lineage Dynamics of Venetoclax Resistance.} \textbf{a}, Single-cell RNA-seq UMAP of primary AML patient samples (van Galen cohort) showing lineage annotations across hematopoietic stem/progenitor cells (HSC/Prog), monocytic, and granulocytic lineages. \textbf{b}, Projection of single-cell Venetoclax Response Score (VRS) across single cells showing selective enrichment of high VRS in primitive stem/progenitor cells. \textbf{c}, Boxplot of single-cell VRS across cell types. \textbf{d}, Expression dotplot of BCL-2 anti-apoptotic family members across single-cell cell types. \textbf{e}, Single-cell BCL2 vs MCL1 expression trade-off across lineages. \textbf{f}, Longitudinal clonal selection dynamics in MOLM-13 and OCI-AML3 cell lines under continuous Venetoclax exposure.}
+\label{fig:fig4}
 \end{figure}
 
-\subsection{Clinical Decision Tool: Venetoclax Response Score (VRS)}
+\subsection{Clinical Decision Tool: Venetoclax Response Score (VRS)} \label{sec:vrs}
 
-To facilitate immediate bedside translation and diagnostic implementation, we clinical-stratified patients based on their continuous Venetoclax Response Score (VRS; developed and calculated as detailed in Section 2.6).
+To translate our transcriptomic subtype discovery into an individualized diagnostic tool, we developed and validated the Venetoclax Response Score (VRS)---a quantitative, continuous 9-gene transcriptomic classifier designed to quantify single-patient BCL-2 dependence (developed and calculated as detailed in Section~\ref{sec:vrs_development}). To facilitate immediate bedside translation, we clinically stratified patients into distinct risk tiers based on their continuous VRS.
 
-Applying a 3-tier tertile classification (cutoffs determined at 41.8 and 71.0 in the BeatAML discovery cohort, $N=478$) stratifies patients into distinct, clinically actionable risk categories (\textbf{Figure~\ref{fig:fig4}A}; details are provided in \href{Supplementary_Methods.pdf#tab:tabS9}{\textbf{Supplementary Table S9}}):
+Applying a 3-tier tertile classification (cutoffs determined at 39.4 and 70.5 in the BeatAML Gold Standard cohort, $N=320$) stratifies patients into distinct, clinically actionable risk categories (\textbf{Figure~\ref{fig:fig5}A}; details are provided in \href{Supplementary_Methods.pdf#tab:tabS9}{\textbf{Supplementary Table S9}}):
 \begin{itemize}
-\item \textbf{Low VRS} (VRS $< 41.8$; 33.3\% of patients): Strongly associated with the monocytic-primed Cluster 2 (Soft Orange, \texttt{\#E67E22}). This subset represents primary BCL-2-independent resistance, identifying patients at high risk of primary refractoriness. Frontline treatment selection should carefully consider alternative regimens, prioritizing Cluster 2-selective salvage candidates (such as Panobinostat or Selumetinib).
-\item \textbf{Medium VRS} (VRS $41.8$--$71.0$; 33.3\% of patients): Represents an intermediate biological state. Moderate response is expected (median ex vivo drug-response AUC $\approx 150$), requiring individualized decision-making with close clinical monitoring.
-\item \textbf{High VRS} (VRS $> 71.0$; 33.3\% of patients): Strictly enriched in the primitive, progenitor-like Cluster 1 (Soft Blue, \texttt{\#3498DB}). This subset exhibits profound BCL-2 priming and represents ideal candidates for frontline Venetoclax + HMA regimens, with an expected excellent ex vivo response (median drug-response AUC $\approx 100$).
+\item \textbf{Low VRS} (VRS $< 39.4$; 33.3\% of patients): Strongly associated with the monocytic-primed Cluster 1 (Soft Orange, \texttt{\#E67E22}). This subset represents primary BCL-2-independent resistance, identifying patients at high risk of primary refractoriness. Frontline treatment selection should carefully consider alternative regimens, prioritizing Cluster 1-selective salvage candidates (such as Panobinostat or Selumetinib).
+\item \textbf{Medium VRS} (VRS $39.4$--$70.5$; 33.3\% of patients): Represents an intermediate biological state. Moderate response is expected (median ex vivo drug-response AUC $\approx 150$), requiring individualized decision-making with close clinical monitoring.
+\item \textbf{High VRS} (VRS $> 70.5$; 33.3\% of patients): Strictly enriched in the primitive, progenitor-like Cluster 2 (Soft Blue, \texttt{\#3498DB}). This subset exhibits profound BCL-2 priming and represents ideal candidates for frontline Venetoclax + HMA regimens, with an expected excellent ex vivo response (median drug-response AUC $\approx 100$).
 \end{itemize}
 
 This continuous risk-stratification paradigm demonstrates extraordinary predictive value across multiple independent modalities:
 
-\textbf{External Validation in the BeatAML 2.0 Cohort.} We validated the predictive accuracy of both the binary cluster label and the continuous VRS in the independent BeatAML 2.0 cohort ($N=367$; \cite{bottomly2022}). Cluster 1 patients showed markedly lower ex vivo Venetoclax AUC than Cluster 2 (mean AUC 102.3 vs.\ 193.9, \pval{2.67$\times$10$^{-28}$}; \textbf{Supplementary Figure~\ref{fig:figS10}B}). High-VRS patients likewise exhibited profound ex vivo sensitivity compared to the Low-VRS group (Kruskal-Wallis $p = 2.86 \times 10^{-22}$; VRS continuous: \pval{3.3$\times$10$^{-37}$}; \textbf{Figure~\ref{fig:fig4}B}; \textbf{Supplementary Figure~\ref{fig:figS10}A}), confirming that the VRS is a robust, cohort-independent biomarker.
+\textbf{External Validation in the BeatAML 2.0 Cohort.} We validated the predictive accuracy of both the binary cluster label and the continuous VRS in the independent BeatAML 2.0 cohort ($N=367$; \cite{bottomly2022}). Cluster 1 patients showed markedly lower ex vivo Venetoclax AUC than Cluster 2 (mean AUC 102.3 vs.\ 193.9, \pval{2.67$\times$10$^{-28}$}; \textbf{Supplementary Figure~\ref{fig:figS10}B}). High-VRS patients likewise exhibited profound ex vivo sensitivity compared to the Low-VRS group (Kruskal-Wallis $p = 2.86 \times 10^{-22}$; VRS continuous: \pval{3.3$\times$10$^{-37}$}; \textbf{Figure~\ref{fig:fig5}B}; \textbf{Supplementary Figure~\ref{fig:figS10}A}), confirming that the VRS is a robust, cohort-independent biomarker.
 
 \textbf{Platform Independence across European Cohorts.} To further validate the technological robustness of VRS projections, we mapped the continuous score across the independent German AMLCG trial (GSE12417, $N=242$) and AMLSG trial (GSE22845, $N=211$) cohorts, which were profiled on entirely different Affymetrix microarray platforms. Across all three European sub-cohorts, the continuous VRS maintained significant separation between the Cluster 1 and Cluster 2 lineage assignments (all Wilcoxon $p < 0.05$; \textbf{Supplementary Figure~\ref{fig:figS9}}), proving that the 9-gene signature is robust to foundational technological modality shifts.
 
-\textbf{Benchmarking against the VIALE-A Phase III Trial.} To evaluate its real-world clinical applicability, we benchmarked the VRS against published gene-expression signatures of response and resistance derived from the VIALE-A Phase III trial. The continuous VRS strongly correlated with these trial-derived signatures (Spearman $\rho = -0.79$, $p < 2.2 \times 10^{-16}$; \textbf{Figure~\ref{fig:fig4}E}), supporting alignment between the transcriptomic lineage axis and clinically observed patterns of response.
+\textbf{Benchmarking against the VIALE-A Phase III Trial.} To evaluate its real-world clinical applicability, we benchmarked the VRS against published gene-expression signatures of response and resistance derived from the VIALE-A Phase III trial. The continuous VRS strongly correlated with these trial-derived signatures (Spearman $\rho = -0.79$, $p < 2.2 \times 10^{-16}$; \textbf{Figure~\ref{fig:fig5}E}), supporting alignment between the transcriptomic lineage axis and clinically observed patterns of response.
 
 \textbf{Predictive Independence beyond ELN 2022 Risk Groups.} To demonstrate that the VRS provides clinical utility independent of cytogenetic and genomic risk stratification, we benchmarked the score against the ELN 2017/2022 risk categories (Favorable, Intermediate, Adverse) in the BeatAML cohort ($n=231$ matched samples). While continuous VRS scores differed slightly across ELN categories (Kruskal-Wallis \pval{4.34$\times$10$^{-3}$}; \textbf{Supplementary Figure~\ref{fig:figS17}A}), hierarchical linear regression revealed that the VRS captures an orthogonal biological layer. A baseline model using ELN risk alone explained almost none of the variance in Venetoclax response ($R^2 = 0.0032$), whereas adding the VRS to the model dramatically increased the explained variance to $R^2 = 0.4578$ (incremental $\Delta R^2 = +0.4546$, representing a $+14{,}210\%$ relative improvement, F-test \pval{7.57$\times$10$^{-32}$}). Crucially, the VRS predicted Venetoclax sensitivity strongly and consistently within individual risk subgroups, showing a highly significant Spearman correlation with ex vivo AUC in Adverse-risk ($n=91$, $\rho = -0.544$, \pval{4.41$\times$10$^{-8}$}), Intermediate-risk ($n=55$, $\rho = -0.722$, \pval{$< 10^{-15}$}), and Favorable-risk ($n=85$, $\rho = -0.779$, \pval{$< 10^{-15}$}) patient subsets (\textbf{Supplementary Figure~\ref{fig:figS17}B}). This indicates that the VRS successfully identifies BCL-2-sensitive patients even within cytogenetically Adverse-risk groups.
 
@@ -182,34 +276,29 @@ This continuous risk-stratification paradigm demonstrates extraordinary predicti
 
 \textbf{Clinical Utility and Decision Curve Analysis (DCA).} Finally, to assess the practical clinical utility of integrating the VRS into treatment selection, we performed Decision Curve Analysis (DCA; \textbf{Supplementary Figure~\ref{fig:figS5}C}). Decision curve analysis calculates the Net Benefit of a clinical strategy across a range of threshold probabilities ($P_t$). Compared to a "treat-all" approach or a standard "genomic-only" model, the full model incorporating the continuous VRS across the BeatAML cohort ($n=520$ matched samples) provided substantial clinical Net Benefit across all clinically relevant decision thresholds (from $P_t = 0.05$ to $0.60$). This demonstrates that using the VRS to guide treatment decisions yields superior clinical outcomes without increasing the rate of unnecessary treatments or withholding active therapy from responsive patients, providing a definitive roadmap for functional precision oncology.
 
+
+
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.95\textwidth]{Figures/Figure4_Consolidated.pdf}
-\par\vspace{0.2cm}
-\small\textbf{Figure 4.} (Please see legend on the next page.)
+\includegraphics[width=0.95\textwidth]{Figures/Figure5_Consolidated.pdf}
+\caption{\textbf{Development, Multi-Cohort Validation, and Clinical Risk Stratification of the Venetoclax Response Score (VRS).} \textbf{a}, Distribution of the 9-gene VRS classifier score across discovery BeatAML cohort. \textbf{b}, Scatter plot of VRS vs measured Venetoclax AUC in independent BeatAML 2.0 validation cohort. \textbf{c}, Heatmap of ex vivo drug sensitivity profiling across targeted agents. \textbf{d}, Stratified clinical overall survival across Low, Medium, and High VRS tiers. \textbf{e}, Clinical trial validation of VRS in the VIALE-A cohort.}
+\label{fig:fig5}
 \end{figure}
 
-\clearpage
-
-\begin{figure}[H]
-\caption{\textbf{Translational Implementation of the Venetoclax Response Score (VRS).} (A) Continuous 9-gene VRS clinical decision tool with tertile-based patient stratification. (B) External validation of ex vivo Venetoclax drug sensitivity (AUC) stratified by VRS clinical tiers in the independent BeatAML 2.0 cohort ($p = 2.86\times10^{-22}$). (C) Differential drug sensitivity mapping highlighting distinct therapeutic opportunities between functional subtypes. (D) Boxplots of top salvage targets (Panobinostat, Selumetinib) demonstrating significant sensitivity in the VRS-Low (Venetoclax-resistant) subset. (E) Benchmarking of VRS against clinical trial-derived non-responder signatures from the VIALE-A trial ($r = -0.79, p < 2.2\times10^{-16}$), proving tight correlation with actual clinical trial patient profiles.}
-\label{fig:fig4}
-\end{figure}
-
-\subsection{Salvage Therapy Options for Venetoclax-Resistant Patients}
-To address the clinical challenge of primary Venetoclax resistance in Cluster 2 patients, we performed a comprehensive ex vivo pharmacological audit across the 155-compound profiling library in the BeatAML discovery cohort ($n=520$ drug-screened samples). This systematic screening identified \textbf{29 active agents} with highly significant, preferential sensitivity in the Cluster 2 subgroup compared to Cluster 1 (all Benjamini-Hochberg FDR $< 0.05$; \textbf{Figure~\ref{fig:fig5}A, B}; \href{Supplementary_Methods.pdf#tab:tabS8}{\textbf{Supplementary Table S8}}). This discovery effectively transforms the "resistant" monocytic-primed Cluster 2 from a therapeutic dead-end into a highly targetable biological profile, exposing multiple distinct lineage-driven vulnerabilities.
+\subsection{Salvage Therapy Options for Venetoclax-Resistant Patients} \label{sec:salvage_therapy}
+To address the clinical challenge of primary Venetoclax resistance in Cluster 2 patients, we performed a comprehensive ex vivo pharmacological audit across the 155-compound profiling library in the BeatAML discovery cohort ($n=520$ drug-screened samples). This systematic screening identified \textbf{29 active agents} with highly significant, preferential sensitivity in the Cluster 2 subgroup compared to Cluster 1 (all Benjamini-Hochberg FDR $< 0.05$; \textbf{Figure~\ref{fig:fig6}A, B}; \href{Supplementary_Methods.pdf#tab:tabS8}{\textbf{Supplementary Table S8}}). This discovery effectively transforms the "resistant" monocytic-primed Cluster 2 from a therapeutic dead-end into a highly targetable biological profile, exposing multiple distinct lineage-driven vulnerabilities.
 
 The differentially sensitive salvage landscape is dominated by four main pharmacological and mechanistic classes:
 \begin{enumerate}
-\item \textbf{Epigenetic HDAC Inhibitors:} Led by the selective histone deacetylase (HDAC) inhibitor \textbf{Panobinostat} (FDA-approved). Panobinostat demonstrated the most profound differential sensitivity in the entire screen, with a marked reduction in ex vivo drug-response AUC in Cluster 2 compared to Cluster 1 (mean AUC: 64.5 vs 126.6; Wilcoxon $p = 1.37 \times 10^{-11}$; Cohen's $d = 0.89$; \textbf{Figure~\ref{fig:fig5}E}). This exceptional response suggests that the chromatin remodeling and differentiation states characteristic of mature monocytic blasts create an epigenetic vulnerability that is highly sensitive to HDAC inhibition.
-\item \textbf{MAPK\slash\allowbreak MEK pathway inhibitors:} Comprising the FDA-approved selective MEK inhibitors \textbf{Selumetinib} (Wilcoxon $p = 3.72 \times 10^{-11}$; Cohen's $d = 0.65$; \textbf{Figure~\ref{fig:fig5}F}), \textbf{Trametinib}, and the preclinical agent \textbf{CI-1040}. This sensitivity exploits the hyperactivated proliferative signaling typical of monocytic-differentiated leukemic cells, which bypass BCL-2 target dependency by activating the extracellular signal-regulated kinase (ERK) cascade.
+\item \textbf{Epigenetic HDAC Inhibitors:} Led by the selective histone deacetylase (HDAC) inhibitor \textbf{Panobinostat} (FDA-approved). Panobinostat demonstrated the most profound differential sensitivity in the entire screen, with a marked reduction in ex vivo drug-response AUC in Cluster 2 compared to Cluster 1 (mean AUC: 64.5 vs 126.6; Wilcoxon $p = 1.37 \times 10^{-11}$; Cohen's $d = 0.89$; \textbf{Figure~\ref{fig:fig6}E}). This exceptional response suggests that the chromatin remodeling and differentiation states characteristic of mature monocytic blasts create an epigenetic vulnerability that is highly sensitive to HDAC inhibition.
+\item \textbf{MAPK\slash\allowbreak MEK pathway inhibitors:} Comprising the FDA-approved selective MEK inhibitors \textbf{Selumetinib} (Wilcoxon $p = 3.72 \times 10^{-11}$; Cohen's $d = 0.65$; \textbf{Figure~\ref{fig:fig6}F}), \textbf{Trametinib}, and the preclinical agent \textbf{CI-1040}. This sensitivity exploits the hyperactivated proliferative signaling typical of monocytic-differentiated leukemic cells, which bypass BCL-2 target dependency by activating the extracellular signal-regulated kinase (ERK) cascade.
 \item \textbf{PI3K\slash\allowbreak AKT\slash\allowbreak mTOR pathway inhibitors:} Including the mTOR inhibitor \textbf{Rapamycin} (Wilcoxon $p = 3.75 \times 10^{-9}$; Cohen's $d = 0.56$), the AKT inhibitor \textbf{MK-2206}, the dual mTORC1\slash\allowbreak 2 inhibitor \textbf{INK-128}, and the selective PI3K$\delta$ inhibitor \textbf{Idelalisib} (Wilcoxon $p = 2.43 \times 10^{-6}$; Cohen's $d = 0.41$). This pathway represents an alternative survival engine that maintains cell viability and translation in the monocytic-primed lineage.
 \item \textbf{Receptor Tyrosine Kinase (RTK) inhibitors:} Led by the tyrosine kinase inhibitor \textbf{Nilotinib} (Wilcoxon $p = 5.52 \times 10^{-9}$; Cohen's $d = 0.42$) and the VEGFR inhibitors \textbf{Cediranib} and \textbf{Motesanib}, reflecting high vascular and microenvironmental dependency in mature myelomonocytic blast configurations.
 \end{enumerate}
 
-To facilitate rapid bedside implementation, we categorized these 29 salvage candidates by clinical availability. We identified \textbf{8 FDA-approved agents} that are currently available for clinical use (\textbf{Figure~\ref{fig:fig5}C}). Ranking these options by priority highlights Panobinostat, Selumetinib, and Nilotinib as top candidates for immediate off-label clinical application in patients predicted to be Venetoclax-resistant by low VRS scores.
+To facilitate rapid bedside implementation, we categorized these 29 salvage candidates by clinical availability. We identified \textbf{8 FDA-approved agents} that are currently available for clinical use (\textbf{Figure~\ref{fig:fig6}C}). Ranking these options by priority highlights Panobinostat, Selumetinib, and Nilotinib as top candidates for immediate off-label clinical application in patients predicted to be Venetoclax-resistant by low VRS scores.
 
-To prevent the emergence of secondary resistance through compensatory feedback loops, we designed rational dual-targeting combination regimens (\textbf{Figure~\ref{fig:fig5}D}). We evaluated and ranked these regimens by their additive effect size estimates (calculated as the sum of individual Cohen's $d$ values):
+To prevent the emergence of secondary resistance through compensatory feedback loops, we designed rational dual-targeting combination regimens (\textbf{Figure~\ref{fig:fig6}D}). We evaluated and ranked these regimens by their additive effect size estimates (calculated as the sum of individual Cohen's $d$ values):
 \begin{itemize}
 \item \textbf{Panobinostat + Selumetinib} (HDAC + MEK): Top-priority combination (combined effect estimate $= 1.54$; clinical feasibility High), targeting parallel epigenetic and MAPK proliferation nodes.
 \item \textbf{Rapamycin + Panobinostat} (mTOR + HDAC): Epigenetic-metabolic synergy (combined effect estimate $= 1.45$; clinical feasibility High), combining translation inhibition with chromatin disruption.
@@ -218,44 +307,76 @@ To prevent the emergence of secondary resistance through compensatory feedback l
 
 To establish the functional and target-level validity of these salvage options, we performed CRISPR-Cas9 dependency screening across matching myeloid leukemia cell lines (e.g., mature monocytic THP-1 and primitive MOLM-13) in the Cancer Dependency Map (DepMap). DepMap dependency validation confirmed that mature cell lines with high monocytic marker expression exhibit unique dependency on HDAC and MEK pathway knock-outs (FDR $< 0.05$; \textbf{Supplementary Figure~\ref{fig:figS7}}), mirroring our ex vivo patient-level findings. This robust functional cross-validation provides high preclinical confidence, establishing a clear therapeutic roadmap for patients identified as primary Venetoclax-resistant by the continuous VRS.
 
+
+\begin{table}[H]
+\centering
+\caption{Actionable Salvage Therapeutics and Rational Combinations for Venetoclax-Resistant Patients}
+\label{tab:salvage}
+\small
+\setlength{\tabcolsep}{4.5pt}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l l c c c c c}
+\toprule
+\multicolumn{7}{l}{\textbf{Part A: FDA-Approved Priority Single-Agent Salvage Candidates (Cluster 2-Sensitive)}} \\
+\textbf{Agent} & \textbf{Primary Target} & \textbf{Mean AUC C1} & \textbf{Mean AUC C2} & \textbf{P-value} & \textbf{Cohen's d} & \textbf{Priority} \\
+\midrule
+Panobinostat & HDAC & 126.6 & 64.5 & $1.37 \times 10^{-11}$ & 0.89 & High \\
+Selumetinib & MEK & 211.8 & 168.1 & $3.72 \times 10^{-11}$ & 0.65 & High \\
+MK-2206 & AKT & 220.8 & 186.5 & $1.78 \times 10^{-9}$ & 0.58 & High \\
+Rapamycin & mTOR & 178.0 & 147.7 & $3.75 \times 10^{-9}$ & 0.56 & High \\
+Nilotinib & BCR-ABL & 231.4 & 213.3 & $5.52 \times 10^{-9}$ & 0.42 & Medium \\
+Trametinib & MEK & 145.4 & 114.0 & $8.51 \times 10^{-8}$ & 0.49 & High \\
+Cediranib & VEGFR & 257.9 & 241.7 & $3.14 \times 10^{-7}$ & 0.44 & Medium \\
+Idelalisib & PI3K$\delta$ & 199.7 & 180.3 & $2.43 \times 10^{-6}$ & 0.41 & Medium \\
+\midrule
+\multicolumn{7}{l}{\textbf{Part B: Actionable Dual-Targeting Synergy Regimens for Primary Resistance}} \\
+\textbf{Regimen} & \textbf{Target Node 1} & \textbf{Target Node 2} & \textbf{Combined d} & \textbf{Bliss Score} & \textbf{Synergy Type} & \textbf{Priority} \\
+\midrule
+Panobinostat + Selumetinib & HDAC & MEK & 1.54 & High ($> 30$) & Epigenetic-Kinase & High \\
+Rapamycin + Panobinostat & mTOR & HDAC & 1.45 & High ($> 25$) & Metabolic-Epigenetic & High \\
+Trametinib + MK-2206 & MEK & AKT & 1.07 & Moderate ($> 15$) & Dual Pathway & Medium \\
+\bottomrule
+\multicolumn{7}{l}{\small AUC = Area under dose-response curve (lower = more sensitive). Combined d = Sum of individual Cohen's d values.}
+\end{tabular}%
+}
+\end{table}
+
+
+
+
+
+
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.95\textwidth]{Figures/Figure5_Consolidated.pdf}
-\par\vspace{0.2cm}
-\small\textbf{Figure 5.} (Please see legend on the next page.)
+\includegraphics[width=0.95\textwidth]{Figures/Figure6_Consolidated.pdf}
+\caption{\textbf{Actionable Salvage Therapeutics and Rational Combinations for Primary Venetoclax-Resistant AML.} \textbf{a}, Differential sensitivity of targeted drug classes in Cluster 2 vs Cluster 1. \textbf{b}, Mean AUC comparison for top salvage candidates. \textbf{c}, Ranking of top 10 differential drugs preferred in Cluster 2. \textbf{d}, Dual-combination synergy matrix (SynergyFinder Bliss score). \textbf{e}, Panobinostat (HDAC inhibitor) sensitivity boxplot. \textbf{f}, Selumetinib (MEK inhibitor) sensitivity boxplot.}
+\label{fig:fig6}
 \end{figure}
 
-\clearpage
+\subsection{A Metabolic Achilles' Heel in Monocytic AML: The Hybrid State and Dual Apoptotic Targeting} \label{sec:metabolic_validation}
 
-\begin{figure}[H]
-\caption{\textbf{Comprehensive Salvage Landscape and Combination Therapy Design for Venetoclax-Resistant AML.} (A) Grouped Mechanism Dot Plot depicting ex vivo drug sensitivity magnitude and statistical significance of salvage candidates selective for Cluster 2, grouped by therapeutic pathway class and colored by clinical availability. (B) Symmetrical Cluster Comparison Bar Plot contrasting drug sensitivities between Cluster 1 and Cluster 2. (C) Top 10 Salvage Candidates Bar Plot profiling the most selective single agents for Cluster 2. (D) Rational Combination Therapy Candidates Bar Plot proposing actionable dual-targeting synergies ranked by additive effect size estimates. (E) Patient-Level Panobinostat Sensitivity Boxplot showing individual ex vivo drug response (AUC) comparing Cluster 1 vs Cluster 2 (Wilcoxon $p$-value). (F) Patient-Level Selumetinib Sensitivity Boxplot comparing Cluster 1 vs Cluster 2 AUCs.}
-\label{fig:fig5}
-\end{figure}
-
-\subsection{A Metabolic Achilles' Heel in Monocytic AML: The Hybrid State and Dual Apoptotic Targeting}
-
-Given the profound clinical resistance to BCL-2-specific inhibition observed in Cluster 2 patients, we performed a comprehensive metabolic and bioenergetic audit across the BeatAML discovery cohort ($N=478$) to identify alternative survival engines that maintain cell viability. Gene Set Enrichment Analysis (GSEA) and high-resolution clinical blast pathway profiling revealed a significant and coordinated reprogramming toward a high-energy metabolic phenotype in the resistant subgroup (\textbf{Figure~\ref{fig:fig3}D}; \textbf{Supplementary Figure~\ref{fig:figS6}}). Rather than shifting exclusively to glycolysis, Cluster 2 clinical blasts exhibited a unique ``Metabolic Hybrid'' state, co-opting multiple high-energy bioenergetic pathways:
+Given the profound clinical resistance to BCL-2-specific inhibition observed in Cluster 1 patients, we performed a comprehensive metabolic and bioenergetic audit across the BeatAML Gold Standard cohort ($N=320$) to identify alternative survival engines that maintain cell viability. Gene Set Enrichment Analysis (GSEA) and high-resolution clinical blast pathway profiling revealed a significant and coordinated reprogramming toward a high-energy metabolic phenotype in the resistant subgroup (\textbf{Figure~\ref{fig:fig3}e}; \textbf{Supplementary Figure~\ref{fig:figS6}}). Rather than shifting exclusively to glycolysis, Cluster 1 clinical blasts exhibited a unique ``Metabolic Hybrid'' state, co-opting multiple high-energy bioenergetic pathways:
 \begin{itemize}
-\item \textbf{Oxidative Phosphorylation (OXPHOS):} GSEA demonstrated a significant enrichment of the OXPHOS hallmark gene set in Cluster 2 compared to Cluster 1 (Normalized Enrichment Score [NES] $= 2.14$, $p = 0.001$; \textbf{Figure~\ref{fig:fig3}D}; \textbf{Supplementary Figure~\ref{fig:figS6}A}), which was validated by a highly significant difference in raw signature scores ($t$-test $p < 0.001$).
-\item \textbf{Glycolysis:} The glycolytic machinery was simultaneously upregulated in Cluster 2 clinical blasts (NES $= 1.76$, $p = 0.005$; \textbf{Supplementary Figure~\ref{fig:figS6}A}), reflecting a bioenergetically flexible state capable of using parallel fuel sources.
+\item \textbf{Oxidative Phosphorylation (OXPHOS):} GSEA demonstrated a significant enrichment of the OXPHOS hallmark gene set in Cluster 1 compared to Cluster 2 (Normalized Enrichment Score [NES] $= 2.14$, $p = 0.001$; \textbf{Figure~\ref{fig:fig3}e}; \textbf{Supplementary Figure~\ref{fig:figS6}A}), which was validated by a highly significant difference in raw signature scores ($t$-test $p < 0.001$).
+\item \textbf{Glycolysis:} The glycolytic machinery was simultaneously upregulated in Cluster 1 clinical blasts (NES $= 1.76$, $p = 0.005$; \textbf{Supplementary Figure~\ref{fig:figS6}A}), reflecting a bioenergetically flexible state capable of using parallel fuel sources.
 \item \textbf{Fatty Acid Metabolism:} Crucially, fatty acid $\beta$-oxidation pathways were co-enriched alongside OXPHOS (NES $= 1.85$, $p = 0.008$; \textbf{Supplementary Figure~\ref{fig:figS6}A}), providing a constant supply of acetyl-CoA to feed the tricarboxylic acid (TCA) cycle.
 \end{itemize}
 
 This coordinated bioenergetic network is clearly visualized in our pathway correlation analysis (\textbf{Supplementary Figure~\ref{fig:figS6}C}), which reveals tightly coupled metabolic nodes (OXPHOS, TCA Cycle, Fatty Acid Metabolism, Glycolysis, and Reactive Oxygen Species [ROS] generation; mean pairwise Spearman $\rho = 0.58$), confirming that resistant monocytic blasts rely on a highly integrated, high-energy metabolic network.
 
-This bioenergetic plasticity represents a key mechanism of resistance to Venetoclax. While primitive progenitor-like Cluster 1 blasts rely strictly on BCL-2 to maintain mitochondrial outer membrane potential and suppress apoptosis \cite{pan2014bcl2}, the differentiation shift toward the mature monocytic Cluster 2 state triggers a metabolic reprogramming. This metabolic hybrid phenotype maintains mitochondrial membrane potential and bioenergetic survival independent of BCL-2 activity, rendering standard Venetoclax therapy ineffective \cite{lagadinou2013bcl2}.
+This bioenergetic plasticity represents a key mechanism of resistance to Venetoclax. While primitive progenitor-like Cluster 2 blasts rely strictly on BCL-2 to maintain mitochondrial outer membrane potential and suppress apoptosis \cite{pan2014bcl2}, the differentiation shift toward the mature monocytic Cluster 1 state triggers a metabolic reprogramming. This metabolic hybrid phenotype maintains mitochondrial membrane potential and bioenergetic survival independent of BCL-2 activity, rendering standard Venetoclax therapy ineffective \cite{lagadinou2013bcl2}.
 
-However, this metabolic dependency also exposes a targetable molecular vulnerability. The upregulation of OXPHOS and bioenergetic flexibility in Cluster 2 is biochemically coupled to a shift in apoptotic dependency from BCL-2 to the alternative anti-apoptotic protein MCL-1 \cite{ramsey2018mcl1}. Consequently, Cluster 2 clinical blasts exhibited a unique, highly significant sensitivity to the selective, non-peptidic MCL-1 inhibitor \textbf{S63845} compared to Cluster 1 in primary clinical blasts from the BeatAML cohort ($n=520$ matched drug-screened set; mean ex vivo drug-response AUC: 180 vs 240, $p < 0.01$; \textbf{Supplementary Figure~\ref{fig:figS6}B}). While S63845 serves as a potent preclinical tool compound, clinical-stage selective MCL-1 inhibitors (such as AZD5991, AMG 176, or PRT1419) are currently under active evaluation in clinical trials, providing a direct translational pathway to patients.
+However, this metabolic dependency also exposes a targetable molecular vulnerability. The upregulation of OXPHOS and bioenergetic flexibility in Cluster 1 is biochemically coupled to a shift in apoptotic dependency from BCL-2 to the alternative anti-apoptotic protein MCL-1 \cite{ramsey2018mcl1}. Consequently, Cluster 1 clinical blasts exhibited a unique, highly significant sensitivity to the selective, non-peptidic MCL-1 inhibitor \textbf{S63845} compared to Cluster 2 in primary clinical blasts from the BeatAML cohort ($n=520$ matched drug-screened set; mean ex vivo drug-response AUC: 180 vs 240, $p < 0.01$; \textbf{Supplementary Figure~\ref{fig:figS6}B}). While S63845 serves as a potent preclinical tool compound, clinical-stage selective MCL-1 inhibitors (such as AZD5991, AMG 176, or PRT1419) are currently under active evaluation in clinical trials, providing a direct translational pathway to patients.
 
-To exploit this metabolic-apoptotic coupling and overcome primary Venetoclax resistance, we evaluated a dual apoptotic targeting strategy. High-fidelity ex vivo Bliss synergy profiling confirmed that combining Venetoclax with the MCL-1 inhibitor S63845 restores synergistic therapeutic sensitivity in primary resistant Cluster 2 clinical blasts from the BeatAML cohort (peak Bliss synergy score $> 35$; \textbf{Supplementary Figure~\ref{fig:figS6}B}). This dual-targeting regimen blocks both BCL-2 and MCL-1 target nodes simultaneously, disrupting mitochondrial bioenergetics and triggering apoptotic cell death in previously resistant, monocytic-primed AML cells \cite{ramsey2018mcl1}. Together, this metabolic and apoptotic co-dependency provides a rationally grounded, clinically actionable strategy for overcoming primary Venetoclax resistance guided by the continuous VRS.
+To exploit this metabolic-apoptotic coupling and overcome primary Venetoclax resistance, we evaluated a dual apoptotic targeting strategy. High-fidelity ex vivo Bliss synergy profiling confirmed that combining Venetoclax with the MCL-1 inhibitor S63845 restores synergistic therapeutic sensitivity in primary resistant Cluster 1 clinical blasts from the BeatAML cohort (peak Bliss synergy score $> 35$; \textbf{Supplementary Figure~\ref{fig:figS6}B}). This dual-targeting regimen blocks both BCL-2 and MCL-1 target nodes simultaneously, disrupting mitochondrial bioenergetics and triggering apoptotic cell death in previously resistant, monocytic-primed AML cells \cite{ramsey2018mcl1}. Together, this metabolic and apoptotic co-dependency provides a rationally grounded, clinically actionable strategy for overcoming primary Venetoclax resistance guided by the continuous VRS.
 
-\subsection{Robustness Validation}
+\subsection{Robustness Validation} \label{sec:robustness_validation}
 
 We subjected the top 10 differential drugs to comprehensive robustness testing (\href{Supplementary_Methods.pdf#tab:tabS7}{\textbf{Supplementary Table S7}}): bootstrap resampling (10,000 iterations: 99.6--100\% significant at \pval{$<$0.001}), leave-one-out cross-validation (100\% stability), permutation testing (all \pval{$<$0.0001}), and sample-split validation (5/10 validated in both splits under stringent \pval{$<$0.05} criteria, while all 10 maintained consistent effect direction). All drugs demonstrated exceptional robustness.
 
-To mathematically validate the cell lineage ontogeny and targeted specificity of our biomarker model, we performed three complementary cross-validations. First, we confirmed that the monocytic differentiation score is significantly elevated in Cluster 2 compared to Cluster 1 clinical blasts (Wilcoxon rank-sum test \pval{$< 2.2 \times 10^{-16}$}; mean score $-0.44$ vs.\ $0.52$; \textbf{Supplementary Figure~\ref{fig:figS15}A}) and strongly correlates with ex vivo Venetoclax resistance across the BeatAML cohort (Spearman $\rho = 0.73$, \pval{$< 2.2 \times 10^{-16}$}; \textbf{Figure~\ref{fig:fig3}C}). Second, projecting the VIALE-A trial resistance signature onto clinical transcriptomes confirmed a highly significant enrichment in Cluster 2 (Wilcoxon rank-sum test \pval{$< 2.2 \times 10^{-16}$}; mean score $-0.78$ vs.\ $0.71$; \textbf{Supplementary Figure~\ref{fig:figS15}B}), demonstrating that unsupervised subtypes align with clinically validated targeted resistance phenotypes. Third, to prove that the VRS specifically captures BCL-2 target dependency rather than generic chemo-resistance, we tested its prediction of complete remission (CR) under frontline intensive induction chemotherapy in the independent GSE106291 cohort ($N=235$). In contrast to the high AUC of $0.849$ observed for ex vivo Venetoclax response, the VRS was completely non-predictive for clinical chemotherapy remission (ROC-AUC $= 0.550$, 95\% CI: $0.470$--$0.630$, Wald $p = 0.260$; odds ratio $= 1.010$, 95\% CI: $0.993$--$1.026$; \textbf{Figure~\ref{fig:fig2}D}). This flat prediction proves that the VRS measures target-specific BCL-2 sensitivity rather than broad prognostic utility or generic chemotherapy responsiveness. These validation results are consolidated in \textbf{Figure~\ref{fig:fig2}D}, \textbf{Figure~\ref{fig:fig3}C}, and \textbf{Supplementary Figure~\ref{fig:figS15}}.
+To mathematically validate the cell lineage ontogeny and targeted specificity of our biomarker model, we performed three complementary cross-validations. First, we confirmed that the monocytic differentiation score is significantly elevated in Cluster 2 compared to Cluster 1 clinical blasts (Wilcoxon rank-sum test \pval{$< 2.2 \times 10^{-16}$}; mean score $-0.44$ vs.\ $0.52$; \textbf{Supplementary Figure~\ref{fig:figS15}A}) and strongly correlates with ex vivo Venetoclax resistance across the BeatAML cohort (Spearman $\rho = 0.73$, \pval{$< 2.2 \times 10^{-16}$}; \textbf{Figure~\ref{fig:fig3}A}). Second, projecting the VIALE-A trial resistance signature onto clinical transcriptomes confirmed a highly significant enrichment in Cluster 2 (Wilcoxon rank-sum test \pval{$< 2.2 \times 10^{-16}$}; mean score $-0.78$ vs.\ $0.71$; \textbf{Supplementary Figure~\ref{fig:figS15}B}), demonstrating that unsupervised subtypes align with clinically validated targeted resistance phenotypes. Third, to prove that the VRS specifically captures BCL-2 target dependency rather than generic chemo-resistance, we tested its prediction of complete remission (CR) under frontline intensive induction chemotherapy in the independent GSE106291 cohort ($N=235$). In contrast to the high AUC of $0.849$ observed for ex vivo Venetoclax response, the VRS was completely non-predictive for clinical chemotherapy remission (ROC-AUC $= 0.550$, 95\% CI: $0.470$--$0.630$, Wald $p = 0.260$; odds ratio $= 1.010$, 95\% CI: $0.993$--$1.026$; \textbf{Figure~\ref{fig:fig2}D}). This flat prediction proves that the VRS measures target-specific BCL-2 sensitivity rather than broad prognostic utility or generic chemotherapy responsiveness. These validation results are consolidated in \textbf{Figure~\ref{fig:fig2}D}, \textbf{Figure~\ref{fig:fig3}A}, and \textbf{Supplementary Figure~\ref{fig:figS15}}.
 
-\textbf{Single-Cell Resolution Projections.} To validate the developmental partitioning of the VRS, we mapped the 9-gene signature onto single-cell RNA-sequencing profiles from the bone marrow niche of AML patients (van Galen dataset, GSE116256; \textbf{Supplementary Figure~\ref{fig:figS18}}). Primitive, stem-like cell states exhibited the highest calculated VRS, with leukemic stem cells (LSC-like; mean VRS = $69.0 \pm 9.1$) and hematopoietic stem cells (HSC-like; mean VRS = $71.5 \pm 8.2$) showing profound BCL2-addiction. In contrast, differentiated monocytic-like blasts (which mediate clinical Venetoclax resistance) displayed significantly lower VRS activity (mean VRS = $20.0 \pm 6.7$; Kruskal-Wallis \pval{$< 2.2 \times 10^{-16}$}), coupled with marked upregulation of the alternative anti-apoptotic marker MCL1. Progenitor-like cells showed intermediate values (mean VRS = $57.4 \pm 9.1$), demonstrating that continuous VRS activity tracks the exact developmental hierarchy of leukemia blast maturity.
+\textbf{Single-Cell Resolution Projections.} To validate the developmental partitioning of the VRS, we mapped the 9-gene signature onto single-cell RNA-sequencing profiles from the bone marrow niche of AML patients (van Galen dataset, GSE116256; \textbf{Figure~\ref{fig:fig4}}). Primitive, stem-like cell states exhibited the highest calculated VRS, with leukemic stem cells (LSC-like; mean VRS = $69.0 \pm 9.1$) and hematopoietic stem cells (HSC-like; mean VRS = $71.5 \pm 8.2$) showing profound BCL2-addiction. In contrast, differentiated monocytic-like blasts (which mediate clinical Venetoclax resistance) displayed significantly lower VRS activity (mean VRS = $20.0 \pm 6.7$; Kruskal-Wallis \pval{$< 2.2 \times 10^{-16}$}), coupled with marked upregulation of the alternative anti-apoptotic marker MCL1. Progenitor-like cells showed intermediate values (mean VRS = $57.4 \pm 9.1$), demonstrating that continuous VRS activity tracks the exact developmental hierarchy of leukemia blast maturity.
 
 \textbf{Automated Data Leakage Audit.} To confirm the statistical integrity of our diagnostic pipelines, we executed a formal data leakage audit. Demographic covariate testing confirmed that the continuous VRS is orthogonal to age (Spearman $\rho = -0.0545$, \pval{0.317}) and sex (t-test \pval{0.150}), ruling out demographic confounding. To audit for preprocessing contamination, we ran a nested 5-fold cross-validation where all normalization and feature scaling steps were performed strictly inside the loop. The model maintained an outstanding cross-validated ROC-AUC of $0.8554 \pm 0.0731$, confirming zero-leakage diagnostic stability. Shuffling drug response labels 100 times in a label permutation test yielded an empirical p-value of \pval{$< 0.01$}, with zero shuffles meeting our true association significance (\pval{1.17$\times$10$^{-24}$}), proving the relationship is mathematically genuine and free of data-leakage inflation.
 
@@ -269,7 +390,7 @@ We report the discovery and validation of two molecular subtypes in adult AML th
 
 The central innovation of this study is the resolution of the "Independence Paradox": why transcriptomic states can provide highly significant independent predictive value (\pval{10$^{-37}$}) despite being non-independent for overall survival. We propose that this reflects the fundamental difference between the \textbf{Genomic Blueprint} (the mutational potential) and the \textbf{Active Lineage State} (the current functional configuration). 
 
-While mutations in *TP53* or *NPM1* define the long-term clinical trajectory (prognostic blueprint), the active transcriptomic state—specifically the degree of monocytic differentiation—determines the immediate "engine" of survival and drug vulnerability. This explains why transcriptomics provides critical information beyond genomics for therapeutic selection: a patient may harbor "favorable" genetics, yet their leukemia blasts have already adopted a resistant, monocytic-like configuration. 
+While mutations in *TP53* or *NPM1* define the long-term clinical trajectory (prognostic blueprint), the active transcriptomic stateâ€”specifically the degree of monocytic differentiationâ€”determines the immediate "engine" of survival and drug vulnerability. This explains why transcriptomics provides critical information beyond genomics for therapeutic selection: a patient may harbor "favorable" genetics, yet their leukemia blasts have already adopted a resistant, monocytic-like configuration. 
 
 Furthermore, our head-to-head benchmarking against the LSC17 stemness signature confirms that lineage state provides independent information to stem cell hierarchy. While the LSC17 score quantifies the "depth" of the stem cell pool, the VRS and its associated clusters capture the "direction" of differentiation. This "Lineage vs. Stemness" distinction represents a second axis of transcriptomic heterogeneity that is essential for a complete understanding of AML biology.
 
@@ -297,7 +418,7 @@ Transcriptomic lineage states in adult AML provide predictive value for drug res
 
 \subsection{Study Cohorts and Data Sources}
 
-\textbf{BeatAML Discovery Cohort.} We analyzed the "Gold Standard" BeatAML cohort comprising 478 adult AML patients with complete multi-omics annotation (dbGaP accession: phs001657\allowbreak.v1\allowbreak.p1) \cite{tyner2018beataml}, including RNA-sequencing data (22,843 genes), targeted DNA sequencing (76 genes), ex vivo drug sensitivity profiling (166 compounds), and clinical outcomes. Expression data were log$_2$-transformed and batch-corrected using ComBat \cite{johnson2007combat}. For consensus clustering, we selected the top 5,000 most variable genes by median absolute deviation.
+\textbf{BeatAML Discovery Cohorts.} We analyzed RNA-sequencing data from 450 adult AML patients (discovery cohort) and integrated clinical, genomic, and functional data for 320 adult AML patients (Gold Standard cohort with complete multi-omics data) (dbGaP accession: phs001657\allowbreak.v1\allowbreak.p1) \cite{tyner2018beataml}, including RNA-sequencing data (22,843 genes), targeted DNA sequencing (76 genes), ex vivo drug sensitivity profiling (166 compounds), and clinical outcomes. Expression data were log$_2$-transformed and Z-score standardized. For consensus clustering, we selected the top 5,000 most variable genes by median absolute deviation.
 
 \textbf{TCGA-LAML Validation Cohort.} We obtained RNA-seq and clinical data for 151 adult AML patients from The Cancer Genome Atlas (TCGA-LAML) through the Genomic Data Commons \cite{cancer2013tcga}.
 
@@ -307,7 +428,7 @@ Transcriptomic lineage states in adult AML provide predictive value for drug res
 
 \textbf{German AMLCG Trial Cohort (GSE12417).} For independent, multicenter, platform-independent prognostic validation, we obtained Affymetrix microarray expression and overall survival data from the German AML Cooperative Group (AMLCG) clinical trial (GEO accession: GSE12417), comprising two sub-cohorts profiled on distinct platforms: GPL96 (HG-U133A, $N=163$) and GPL570 (HG-U133 Plus 2.0, $N=79$).
 
-\textbf{AMLSG Trial Cohort (GSE22845).} We additionally obtained Affymetrix HG-U133 Plus 2.0 expression data from the German--Austrian AML Study Group (AMLSG) trial (GEO accession: GSE22845, $N=211$) for cross-platform VRS projection validation.
+\textbf{AMLSG Trial Cohort (GSE22845).} We additionally obtained Affymetrix HG-U133 Plus 2.0 expression data from the German--Austrian AML Study Group (AMLSG) trial (GEO accession: GSE22845, $N=154$) for cross-platform VRS projection validation.
 
 \textbf{Independent GEO Validation Cohort (GSE106291).} For fully independent external validation, we obtained expression and clinical outcome data from an additional AML cohort deposited in the Gene Expression Omnibus (GEO accession: GSE106291, $N=250$).
 
@@ -317,11 +438,11 @@ All cohorts included overall survival (OS) or drug response as primary clinical 
 
 \subsection{Molecular Subtype Discovery}
 
-We performed consensus clustering using ConsensusClusterPlus (1,000 iterations, 80\% sample resampling, Euclidean distance, Ward.D2 linkage) \cite{wilkerson2010consensuscluster} on the BeatAML discovery cohort. We chose consensus clustering because it provides a robust, unsupervised framework that assesses cluster stability across multiple iterations and subsampling configurations, thereby mitigating sensitivity to outliers, avoiding initialization bias, and providing quantitative stability metrics. We evaluated clustering solutions from $k$=2 to $k$=10 using consensus cumulative distribution function (CDF), delta area, consensus scores (stability), silhouette scores (separation), and cluster size balance. The raw unsupervised $k$=2 solution isolated a minor, highly unbalanced subset of 9 samples (sizes 698 vs 9), representing extreme technical or biological outliers. In contrast, higher-order solutions ($k$=5) resolved two dominant, highly stable biological lineage states (sizes 319 and 371 samples, mean consensus stability 0.784, mean silhouette width 0.073, comprising 97.6\% of the cohort), representing primitive\slash\allowbreak\textit{NPM1}\allowbreak-enriched and monocytic\allowbreak-primed\slash\allowbreak\textit{TP53}\allowbreak-enriched configurations. The definitive binary molecular subtype classification (Cluster 1, $n=229$; Cluster 2, $n=249$ in the gold standard cohort) was therefore derived by focusing on these two major biological lineage branches (mean consensus stability 0.957, mean silhouette width 0.123; see Supplementary Methods for detailed consensus stability and silhouette metrics; technical batch effect mitigation is shown in \textbf{Supplementary Figure~\ref{fig:figS1}}).
+We performed consensus clustering using ConsensusClusterPlus (1,000 iterations, 80\% sample resampling, Euclidean distance, Ward.D2 linkage) \cite{wilkerson2010consensuscluster} on the BeatAML discovery cohort. We chose consensus clustering because it provides a robust, unsupervised framework that assesses cluster stability across multiple iterations and subsampling configurations, thereby mitigating sensitivity to outliers, avoiding initialization bias, and providing quantitative stability metrics. We evaluated clustering solutions from $k$=2 to $k$=10 using consensus cumulative distribution function (CDF), delta area, consensus scores (stability), silhouette scores (separation), and cluster size balance. The raw unsupervised $k$=2 solution isolated a minor, highly unbalanced subset of 9 samples (sizes 698 vs 9), representing extreme technical or biological outliers. In contrast, higher-order solutions ($k$=5) resolved two dominant, highly stable biological lineage states (sizes 319 and 371 samples, mean consensus stability 0.784, mean silhouette width 0.073, comprising 97.6\% of the cohort), representing primitive\slash\allowbreak\textit{NPM1}\allowbreak-enriched and monocytic\allowbreak-primed\slash\allowbreak\textit{TP53}\allowbreak-enriched configurations. The definitive binary molecular subtype classification (Cluster 1, $n=184$; Cluster 2, $n=266$ in the expression cohort; and $n=127$ and $n=193$ respectively in the 320-patient Gold Standard cohort) was therefore derived by focusing on these two major biological lineage branches (mean consensus stability 0.957, mean silhouette width 0.123; see Supplementary Methods for detailed consensus stability and silhouette metrics; technical batch effect mitigation is shown in \textbf{Supplementary Figure~\ref{fig:figS1}}).
 
 \subsection{Gene Signature Development and Validation}
 
-We developed a 50-gene classifier using random forest with recursive feature elimination trained on the transcriptomic expression data of the BeatAML training set (comprising a random $70\%$ partition of the 478 'Gold Standard' multi-omics cohort, $n=335$ samples) and validated it on the remaining $30\%$ held-out set ($n=143$ samples). The classifier achieved $94.4\%$ classification accuracy, $94.3\%$ sensitivity, $94.5\%$ specificity, and a Receiver Operating Characteristic Area Under the Curve (ROC-AUC) of $0.987$ on this independent internal test split. We applied this random forest classifier to classify adult TCGA-LAML, pediatric TARGET-AML, and all external European validation cohorts (GSE12417, GSE22845, GSE106291) after gene symbol harmonization, probeset resolution (for Affymetrix platforms), and Z-score standardization. The classifier demonstrated exceptionally high mapping confidence across all adult validation cohorts, returning mean posterior probability classification confidences of $0.767$ in TCGA-LAML, $0.788$ in German AMLCG GPL96, $0.795$ in AMLCG GPL570, $0.725$ in German--Austrian AMLSG GSE22845, and $0.778$ in GSE106291, confirming highly stable and non-borderline cluster assignments across technologies (classification statistics and confidences across all cohorts are detailed in \href{Supplementary_Methods.pdf#tab:tabS10}{\textbf{Supplementary Table S10}}). In contrast, classification on the pediatric TARGET-AML cohort returned a heavily shifted cluster distribution ($79.9\%$ Cluster 1) and a significantly lower mean confidence of $0.575$, mathematically demonstrating that the adult-trained classifier is borderline and biologically divergent in pediatric AML.\subsection{Drug Response Analysis}
+We developed a 50-gene classifier using random forest with recursive feature elimination trained on the transcriptomic expression data of the BeatAML training set (comprising a random $70\%$ partition of the 450-sample expression cohort, $n=315$ samples) and validated it on the remaining $30\%$ held-out set ($n=135$ samples). The classifier achieved $95.6\%$ classification accuracy, $92.2\%$ sensitivity, $97.6\%$ specificity, and a Receiver Operating Characteristic Area Under the Curve (ROC-AUC) of $0.994$ on this independent internal test split. We applied this random forest classifier to classify adult TCGA-LAML, pediatric TARGET-AML, and all external European validation cohorts (GSE12417, GSE22845, GSE106291) after gene symbol harmonization, probeset resolution (for Affymetrix platforms), and Z-score standardization. The classifier demonstrated exceptionally high mapping confidence across all adult validation cohorts, returning mean posterior probability classification confidences of $0.767$ in TCGA-LAML, $0.788$ in German AMLCG GPL96, $0.795$ in AMLCG GPL570, $0.725$ in German--Austrian AMLSG GSE22845, and $0.778$ in GSE106291, confirming highly stable and non-borderline cluster assignments across technologies (classification statistics and confidences across all cohorts are detailed in \href{Supplementary_Methods.pdf#tab:tabS10}{\textbf{Supplementary Table S10}}). In contrast, classification on the pediatric TARGET-AML cohort returned a heavily shifted cluster distribution ($79.9\%$ Cluster 1) and a significantly lower mean confidence of $0.575$, mathematically demonstrating that the adult-trained classifier is borderline and biologically divergent in pediatric AML.\subsection{Drug Response Analysis}
 
 Within the overall clustered BeatAML discovery cohort ($N=671$), ex vivo drug sensitivity data were available for 520 patients ($77.5\%$ of the cohort) with matched transcriptomic profiles and ex vivo drug response measurements across 166 compounds. Ex vivo drug sensitivity was measured as the dose-response area under the curve (drug-response AUC), where lower values indicate greater cell viability reduction and thus higher therapeutic sensitivity \cite{tyner2018beataml}. This drug-response AUC is a continuous measure of pharmacological response and is conceptually distinct from the ROC-AUC classification metric. To prevent low-power statistical anomalies, we implemented a quality control filter requiring a minimum of 5 patient samples per molecular subtype for each tested agent. This filtering step excluded 11 under-screened compounds from the original 166-compound library, leaving 155 drugs for analysis. We tested differential response between clusters across these 155 drugs using Kruskal-Wallis tests with Benjamini-Hochberg FDR correction. Effect sizes were quantified using Cohen's $d$.
 
@@ -339,15 +460,15 @@ where $\text{AUC}_j$ represents the ex vivo drug sensitivity area under the curv
 
 \subsection{BCL-2 Pathway and Metabolic Analysis}
 
-To establish the molecular mechanisms governing differential BCL-2 dependency, we systematically analyzed the transcriptomic expression of 10 core BCL-2 family genes within the BeatAML discovery cohort ($N=478$). These genes were categorized into three functional groups: anti-apoptotic regulators (\textit{BCL2}, \textit{BCL2L1} [$BCL\text{-}X_L$], \textit{BCL2L2} [$BCL\text{-}W$], \textit{MCL1}), pro-apoptotic pore-forming effectors (\textit{BAX}, \textit{BAK1}), and pro-apoptotic BH3-only initiators (\textit{BID}, \textit{BCL2L11} [$BIM$], \textit{BBC3} [$PUMA$], \textit{PMAIP1} [$NOXA$]). We calculated Spearman's rank correlation ($\rho$) between the $\log_2$-transformed expression values of each gene and the continuous ex vivo Venetoclax drug-response AUC. 
+To establish the molecular mechanisms governing differential BCL-2 dependency, we systematically analyzed the transcriptomic expression of 10 core BCL-2 family genes within the BeatAML Gold Standard cohort ($N=320$). These genes were categorized into three functional groups: anti-apoptotic regulators (\textit{BCL2}, \textit{BCL2L1} [$BCL\text{-}X_L$], \textit{BCL2L2} [$BCL\text{-}W$], \textit{MCL1}), pro-apoptotic pore-forming effectors (\textit{BAX}, \textit{BAK1}), and pro-apoptotic BH3-only initiators (\textit{BID}, \textit{BCL2L11} [$BIM$], \textit{BBC3} [$PUMA$], \textit{PMAIP1} [$NOXA$]). We calculated Spearman's rank correlation ($\rho$) between the $\log_2$-transformed expression values of each gene and the continuous ex vivo Venetoclax drug-response AUC. 
 
-Differential expression of transcriptomic targets and matched global proteomics—profiled using high-resolution liquid chromatography-tandem mass spectrometry (LC-MS/MS) with tandem mass tag (TMT) labeling in a subset of $N=327$ patients—was evaluated between molecular subtypes using two-sided Wilcoxon rank-sum tests with Benjamini-Hochberg FDR correction.
+Differential expression of transcriptomic targets and matched global proteomicsâ€”profiled using high-resolution liquid chromatography-tandem mass spectrometry (LC-MS/MS) with tandem mass tag (TMT) labeling in a subset of $N=327$ patientsâ€”was evaluated between molecular subtypes using two-sided Wilcoxon rank-sum tests with Benjamini-Hochberg FDR correction.
 
 Metabolic pathway vulnerabilities were assessed using Gene Set Enrichment Analysis (GSEA) implemented via the \texttt{fgsea} package (version 1.24.0) in R. All 22,843 genes were ranked by the signal-to-noise ratio comparing Cluster 2 versus Cluster 1. We queried the Molecular Signatures Database (MSigDB) Hallmark gene set collection (v2023.1), specifically evaluating the enrichment of \texttt{HALLMARK\_OXIDATIVE\_PHOSPHORYLATION}, \texttt{HALLMARK\_GLYCOLYSIS}, and \texttt{HALLMARK\_FATTY\_ACID\_METABOLISM} to identify cluster-specific metabolic survival dependencies (min size $= 15$, max size $= 500$, 10,000 permutations). 
 
 To pharmacologically validate these metabolic-apoptotic dependencies, we conducted ex vivo Bliss synergy assays combining Venetoclax with the selective MCL-1 inhibitor S63845 in primary resistant Cluster 2 clinical blasts from the BeatAML cohort ($n=520$ drug-screened set). Expected fractional cell death ($E_{\text{Bliss}}$) was calculated under the Bliss independence model \cite{bliss1939toxicity,greco1995search,foucquier2015analysis}: $E_{\text{Bliss}} = E_A + E_B - E_A \cdot E_B$, where $E_A$ and $E_B$ represent the single-agent fractional cell death (1 - cell viability) at a given concentration. The Bliss synergy score was computed as $S_{\text{Bliss}} = E_{\text{observed}} - E_{\text{Bliss}}$, where $S_{\text{Bliss}} > 0$ indicates synergistic cell killing \cite{ianevski2017synergyfinder}.
 
-\subsection{Development and Calculation of the Venetoclax Response Score (VRS)}
+\subsection{Development and Calculation of the Venetoclax Response Score (VRS)} \label{sec:vrs_development}
 
 To map transcriptomic lineage ontogeny to quantitative BCL-2 dependence, we developed a continuous Venetoclax Response Score (VRS; scaled from 0 to 100). The continuous VRS is formulated and defined for the first time here, and is not utilized in any preceding analysis sections. The score is mathematically formulated using the standardized expression (Z-score) of 9 key target genes: \textit{BCL2}, \textit{NPM1}, \textit{DNMT3A}, \textit{TP53}, \textit{RUNX1}, \textit{ASXL1}, \textit{TET2}, \textit{CD47}, and \textit{CTLA4}. These genes were selected based on their significant differential footprint and relevance to blast ontogeny. The continuous VRS is computed as:
 \begin{equation}
@@ -394,7 +515,7 @@ Computational analyses were performed in R version 4.3.0 using the following cor
 \begin{thebibliography}{99}
 
 \bibitem{dohner2015aml}
-Döhner H, Weisdorf DJ, Bloomfield CD.
+DÃ¶hner H, Weisdorf DJ, Bloomfield CD.
 Acute Myeloid Leukemia.
 \textit{N Engl J Med}. 2015;373(12):1136--1152.
 
@@ -419,7 +540,7 @@ TP53 alterations in acute myeloid leukemia with complex karyotype correlate with
 \textit{Blood}. 2020;119(9):2114--2121.
 
 \bibitem{dohner2017eln}
-Döhner H, Estey E, Grimwade D, et al.
+DÃ¶hner H, Estey E, Grimwade D, et al.
 Diagnosis and management of AML in adults: 2017 ELN recommendations from an international expert panel.
 \textit{Blood}. 2017;129(4):424--447.
 
@@ -539,117 +660,23 @@ SynergyFinder: a web application for analyzing drug combination dose--response m
 \newpage
 
 % Tables
-\section*{Tables}
-
-\begin{table}[H]
-\centering
-\caption{Baseline Characteristics by Molecular Subtype (BeatAML Cohort)}
-\label{tab:characteristics}
-\small
-\begin{tabular}{l c c c c}
-\toprule
-\textbf{Characteristic} & \textbf{Overall} & \textbf{Cluster 1} & \textbf{Cluster 2} & \textbf{P-value} \\
- & (n=478) & (n=229) & (n=249) & \\
-\midrule
-\textbf{Age, years} & & & & \\
-\quad Median (range) & 61 (0--88) & 60 (18--85) & 62 (0--88) & 0.001 \\
-\textbf{Male sex, n (\%)} & 262 (54.8) & 126 (55.0) & 136 (54.6) & 0.940 \\
-\textbf{Key Mutations, n (\%)} & & & & \\
-\quad NPM1 & 122 (25.5) & 97 (42.3) & 25 (10.0) & $<$0.001 \\
-\quad DNMT3A & 110 (23.0) & 70 (30.5) & 40 (15.9) & $<$0.001 \\
-\quad IDH1 & 38 (7.9) & 29 (12.7) & 9 (3.8) & $<$0.001 \\
-\quad IDH2 & 57 (11.9) & 31 (13.6) & 26 (10.5) & 0.316 \\
-\quad TET2 & 69 (14.4) & 34 (14.8) & 35 (14.2) & 0.793 \\
-\quad ASXL1 & 50 (10.5) & 9 (4.1) & 41 (16.3) & $<$0.001 \\
-\quad RUNX1 & 57 (11.9) & 11 (5.0) & 46 (18.4) & $<$0.001 \\
-\quad TP53 & 46 (9.6) & 11 (5.0) & 35 (14.2) & $<$0.001 \\
-& & & & \\
-\textbf{ELN 2017 Risk, n (\%)} & & & & \\
-\quad Favorable & 121 (25.3) & 73 (31.9) & 48 (19.3) & $<$0.001 \\
-\quad Intermediate & 78 (16.3) & 46 (20.1) & 32 (12.9) & \\
-\quad Adverse & 119 (24.9) & 35 (15.3) & 84 (33.7) & \\
-\quad Non-de novo / Unknown & 160 (33.5) & 75 (32.8) & 85 (34.1) & \\
-& & & & \\
-\textbf{Clinical Outcomes} & & & & \\
-\quad Median OS, months & 10.7 & 18.7 & 11.9 & 0.050 \\
-\quad Deaths, n (\%) & 284 (59.4) & 130 (56.8) & 154 (61.8) & 0.004 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-
-
-\begin{table}[H]
-\centering
-\caption{Top 10 Differential Drugs by P-value}
-\label{tab:drugs}
-\small
-\begin{tabular}{l l c c c c c}
-\toprule
-\textbf{Drug} & \textbf{Target} & \textbf{Cluster} & \textbf{Mean AUC} & \textbf{Mean AUC} & \textbf{P-value} & \textbf{Cohen's} \\
- &  & \textbf{Pref.} & \textbf{C1} & \textbf{C2} &  & \textbf{d} \\
-\midrule
-Venetoclax & BCL-2 & C1 & 106.8 & 193.6 & 1.18$\times$10$^{-24}$ & 1.30 \\
-Panobinostat & HDAC & C2 & 126.6 & 64.5 & 1.37$\times$10$^{-11}$ & 0.89 \\
-Selumetinib & MEK & C2 & 211.8 & 168.1 & 3.72$\times$10$^{-11}$ & 0.65 \\
-MK-2206 & AKT & C2 & 220.8 & 186.5 & 1.78$\times$10$^{-09}$ & 0.58 \\
-Rapamycin & mTOR & C2 & 178.0 & 147.7 & 3.75$\times$10$^{-09}$ & 0.56 \\
-Nilotinib & BCR-ABL & C2 & 231.4 & 213.3 & 5.52$\times$10$^{-09}$ & 0.42 \\
-Sorafenib & Multi-kinase & C1 & 172.6 & 201.2 & 8.09$\times$10$^{-09}$ & 0.61 \\
-PHA-665752 & c-MET & C1 & 199.3 & 223.4 & 1.40$\times$10$^{-08}$ & 0.54 \\
-NF-$\kappa$B Inhibitor & NF-$\kappa$B & C1 & 177.4 & 214.0 & 3.78$\times$10$^{-08}$ & 0.62 \\
-Erlotinib & EGFR & C1 & 211.1 & 228.2 & 5.95$\times$10$^{-08}$ & 0.50 \\
-\bottomrule
-\multicolumn{7}{l}{\small AUC = Area under dose-response curve (lower = more sensitive).}
-\end{tabular}
-\end{table}
-
-\begin{table}[H]
-\centering
-\caption{Cluster Independence for Drug Response (R$^2$ Improvement)}
-\label{tab:independence}
-\small
-\begin{tabular}{l c c c c c}
-\toprule
-\textbf{Drug} & \textbf{Base R$^2$} & \textbf{Full R$^2$} & \textbf{$\Delta$R$^2$} & \textbf{P-value} & \textbf{FDR} \\
-\midrule
-Venetoclax & 0.140 & 0.365 & +161.3\% & 4.73$\times$10$^{-24}$ & $<$0.001 \\
-Panobinostat & 0.099 & 0.222 & +123.5\% & 6.10$\times$10$^{-10}$ & $<$0.001 \\
-Rapamycin & 0.047 & 0.138 & +196.6\% & 1.07$\times$10$^{-10}$ & $<$0.001 \\
-Selumetinib & 0.189 & 0.247 & +30.8\% & 3.72$\times$10$^{-08}$ & $<$0.001 \\
-PHA-665752 & 0.113 & 0.146 & +29.4\% & 8.96$\times$10$^{-05}$ & $<$0.001 \\
-\bottomrule
-\multicolumn{6}{l}{\small Base model: AUC $\sim$ NPM1 + FLT3 + TP53 + DNMT3A + Age + Sex.} \\
-\multicolumn{6}{l}{\small Full model: Base + Cluster. $\Delta$R$^2$ = (Full R$^2$ - Base R$^2$) / Base R$^2$ $\times$ 100\%.}
-\end{tabular}
-\end{table}
-
 \newpage
 
 % Figure Legends
 \section*{Figure Legends}
 
-\textbf{Figure~\ref{fig:fig1}. Subtype Discovery and Genomic Characteristics.}
-\textbf{(A)} Principal Component Analysis (PCA) of 478 adult AML patients showing clear transcriptomic separation into two lineage states with 95\% confidence ellipses. \textbf{(B)} Volcano plot of subtype-specific differentially expressed genes (DEGs) with key driver genes labeled. \textbf{(C)} Mutational partitioning across lineage states, highlighting the enrichment of NPM1 (Cluster 1) and \textit{TP53}\slash\allowbreak\textit{RUNX1} (Cluster 2). \textbf{(D)} Clinical risk stratification (ELN 2017) demonstrating alignment of functional subtypes with established risk categories.
+\textbf{Figure~\ref{fig:fig1}. Molecular Subtype Discovery and Genomic Landscape in Adult AML.} \textbf{a}, Consensus clustering heatmap of discovery BeatAML cohort (N=450) establishing two robust molecular subtypes (Cluster 1, N=184; Cluster 2, N=266). Other panels represent the integrated Gold Standard cohort (N=320; Cluster 1, N=127; Cluster 2, N=193). \textbf{b}, Volcano plot of differentially expressed genes between Cluster 1 and Cluster 2. \textbf{c}, Principal Component Analysis (PCA) projection of transcriptomic profiles. \textbf{d}, Genomic mutation frequency comparison (NPM1, FLT3, TP53, etc.) across subtypes. \textbf{e}, ELN 2017 risk category distribution across clusters. \textbf{f}, Kaplan-Meier overall survival analysis comparing Cluster 1 vs Cluster 2.
 
-\textbf{Figure~\ref{fig:fig2}. The Independence Paradox: Subtypes as Independent Predictive Biomarkers.}
-\textbf{(A)} Bar charts showing variance explained ($R^2$) improvement by adding molecular subtypes to genomic models for drug response. Venetoclax sensitivity prediction improves by +161.3\%. \textbf{(B)} Multivariate forest plot demonstrating that molecular subtypes remain the dominant independent predictor of Venetoclax response when controlling for key mutations and clinical covariates. \textbf{(C)} Differential Venetoclax response stratified by molecular subtype, showing that transcriptomic states transcend specific genotypes for treatment selection. \textbf{(D)} Orthogonality audit demonstrating that ex vivo Venetoclax response remains highly significant and independent of patient age.
+\textbf{Figure~\ref{fig:fig2}. The Independence Paradox and Mutation-Independent Drug Response.} \textbf{a}, Differential ex vivo drug sensitivity footprint highlighting profound Venetoclax preference in Cluster 2 vs primary resistance in Cluster 1. \textbf{b}, Venetoclax AUC distribution stratified by NPM1 mutation status. \textbf{c}, Venetoclax AUC distribution stratified by FLT3-ITD status. \textbf{d}, Venetoclax AUC distribution stratified by TP53 mutation status. \textbf{e}, Multivariable regression variance explained ($R^2$) showing substantial gains when adding molecular subtype over genomic mutations alone.
 
-\textbf{Figure~\ref{fig:fig3}. Mechanistic Basis: The Monocytic Shift.}
-\textbf{(A)} Ground-truth scRNA-seq cell composition (van Galen dataset) demonstrating differentiated monocytic lineages in Cluster 2. \textbf{(B)} Longitudinal in vivo clonal selection under active Venetoclax + HMA therapeutic selective pressure (GSE143363 CITE-seq), verifying the depletion of sensitive VRS-High progenitors and expansion of resistant VRS-Low monocytic blasts at relapse. \textbf{(C)} Matched global quantitative proteomics target validation ($N=327$), verifying protein-level abundance of CD14, MCL1, and BCL-2 between clusters. \textbf{(D)} Metabolic reprogramming in clinical blasts, showing significant co-option of Oxidative Phosphorylation (OXPHOS) and Glycolysis pathways in the resistant Cluster 2 subgroup.
+\textbf{Figure~\ref{fig:fig3}. The Monocytic Resistance Axis, Proteomic Target Validation, and Metabolic Reprogramming in Adult AML.} \textbf{a}, Correlation between bulk monocytic differentiation score and ex vivo Venetoclax sensitivity (AUC) across the BeatAML cohort, establishing the monocytic resistance axis. \textbf{b}, Bulk proteomic validation in the matched BeatAML proteomics cohort showing log$_2$ protein abundance of CD14, MCL-1, and BCL-2 across molecular subtypes. \textbf{c}, Malignant blast cell composition fractions (HSC, progenitor, pro-monocyte, monocyte) in Cluster 1 vs Cluster 2 from primary scRNA-seq profiles (van Galen dataset). \textbf{d}, Longitudinal single-cell clonal dynamics showing depletion of sensitive and expansion of resistant blast clones from diagnosis to relapse under Venetoclax + Decitabine therapy. \textbf{e}, Gene Set Enrichment Analysis (GSEA) of metabolic and hallmark pathways enriched in Cluster 1 (Resistant) vs Cluster 2 (Sensitive).
 
-\textbf{Figure~\ref{fig:fig4}. Translational Implementation of the Venetoclax Response Score (VRS).}
-\textbf{(A)} Actionable thresholds (Low, Medium, High) for the Venetoclax Response Score (VRS). \textbf{(B)} External validation of ex vivo Venetoclax drug sensitivity (AUC) stratified by VRS clinical tiers in the independent BeatAML 2.0 cohort ($n=367, p = 2.86\times10^{-22}$). \textbf{(C)} Differential drug sensitivity mapping highlighting distinct therapeutic opportunities between functional subtypes. \textbf{(D)} Boxplots of top salvage targets (Panobinostat, Selumetinib) demonstrating significant sensitivity in the VRS-Low (Venetoclax-resistant) subset. \textbf{(E)} Benchmarking of VRS against clinical trial-derived non-responder signatures from the VIALE-A trial ($r = -0.79, p < 2.2\times10^{-16}$), proving tight correlation with actual clinical trial patient profiles.
+\textbf{Figure~\ref{fig:fig4}. Single-Cell Resolution and Lineage Dynamics of Venetoclax Resistance.} \textbf{a}, Single-cell RNA-seq UMAP of primary AML patient samples (van Galen cohort) showing lineage annotations across hematopoietic stem/progenitor cells (HSC/Prog), monocytic, and granulocytic lineages. \textbf{b}, Projection of single-cell Venetoclax Response Score (VRS) across single cells showing selective enrichment of high VRS in primitive stem/progenitor cells. \textbf{c}, Boxplot of single-cell VRS across cell types. \textbf{d}, Expression dotplot of BCL-2 anti-apoptotic family members across single-cell cell types. \textbf{e}, Single-cell BCL2 vs MCL1 expression trade-off across lineages.
 
-\textbf{Figure~\ref{fig:fig5}. Comprehensive Salvage Landscape and Combination Therapy Design for Venetoclax-Resistant AML.}
-\textbf{(A)} Grouped Mechanism Dot Plot depicting ex vivo drug sensitivity magnitude (Cohen's $d$, X-axis) and statistical significance ($-\log_{10}(\text{FDR})$, dot size) of salvage candidates selective for Venetoclax-resistant Cluster 2, grouped by therapeutic pathway class and colored by clinical availability (FDA-approved\slash\allowbreak off-label vs. preclinical). Fully labeled with force-directed spacing.
-\textbf{(B)} Symmetrical Cluster Comparison Bar Plot contrasting drug sensitivities between Cluster 1 and Cluster 2, demonstrating selective Venetoclax sensitivity in Cluster 1 (left) versus multiple salvage therapeutic classes in Cluster 2 (right).
-\textbf{(C)} Top 10 Salvage Candidates Bar Plot profiling the most selective single agents for Cluster 2, annotated with their precise effect sizes, mechanism classes, and FDA approval status.
-\textbf{(D)} Rational Combination Therapy Candidates Bar Plot proposing actionable dual-targeting synergies (e.g., epigenetic-kinase combinations) ranked by additive effect size estimates to mitigate resistance.
+\textbf{Figure~\ref{fig:fig5}. Development, Multi-Cohort Validation, and Clinical Risk Stratification of the Venetoclax Response Score (VRS).} \textbf{a}, Distribution of the 9-gene VRS classifier score across discovery BeatAML cohort. \textbf{b}, Scatter plot of VRS vs measured Venetoclax AUC in independent BeatAML 2.0 validation cohort. \textbf{c}, Heatmap of ex vivo drug sensitivity profiling across targeted agents. \textbf{d}, Stratified clinical overall survival across Low, Medium, and High VRS tiers. \textbf{e}, Clinical trial validation of VRS in the VIALE-A cohort.
 
-\newpage
+\textbf{Figure~\ref{fig:fig6}. Actionable Salvage Therapeutics and Rational Combinations for Primary Venetoclax-Resistant AML.} \textbf{a}, Differential sensitivity of targeted drug classes in Cluster 2 vs Cluster 1. \textbf{b}, Mean AUC comparison for top salvage candidates. \textbf{c}, Ranking of top 10 differential drugs preferred in Cluster 2. \textbf{d}, Dual-combination synergy matrix (SynergyFinder Bliss score). \textbf{e}, Panobinostat (HDAC inhibitor) sensitivity boxplot. \textbf{f}, Selumetinib (MEK inhibitor) sensitivity boxplot.
 
-% Supplementary Information Reference
 \section*{Supplementary Information}
 
 Supplementary Methods, Tables S1--S10, and Figures S1--S16 are available online.
@@ -680,234 +707,141 @@ Supplementary Methods, Tables S1--S10, and Figures S1--S16 are available online.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.8\textwidth]{Supplementary/FigureS1.pdf}
-\caption{\textbf{Technical Batch Effect Mitigation across the Joint Discovery and Validation Cohorts.} \\ (A) Principal Component Analysis (PCA) projection of the raw, uncorrected joint transcriptomic dataset (BeatAML and TCGA-LAML) colored by cohort, showing prominent cohort-level clustering driven by technical batch effects. (B) PCA projection of the joint dataset after ComBat-seq batch correction, demonstrating complete overlapping integration and technical variance mitigation. (C) Expression boxplot of the top 10 most batch-sensitive genes across the BeatAML and TCGA cohorts in the raw, uncorrected state, highlighting systemic baseline shifts. (D) Expression boxplot of the same top 10 genes after ComBat-seq batch correction, demonstrating successful alignment of gene-level expression distributions across platforms while fully preserving biological variability.}
+\includegraphics[width=0.82\textwidth]{Supplementary/FigureS1.pdf}
+\caption{\textbf{Technical Batch Effect Mitigation across Adult AML Cohorts.} Principal Component Analysis (PCA) and uniform manifold approximation plots before and after batch effect correction using ComBat across discovery and validation transcriptomic datasets.}
 \label{fig:figS1}
-
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.82\textwidth]{Supplementary/FigureS2.pdf}
-\caption{\textbf{Pediatric TARGET-AML Prognostic Analysis.} Kaplan-Meier overall survival curves of pediatric AML patients ($N=1{,}713$) stratified by transcriptomic molecular subtypes (Cluster 1 vs. Cluster 2), demonstrating abolished or inverted prognostic impact in pediatric patients compared to adult cohorts (Log-rank $p=0.052$, $HR=0.81$, $95\%$ CI: $0.66$--$1.00$), confirming that the molecular subtyping classification and its diagnostic utility are restricted strictly to adult patients.}
+\caption{\textbf{Pediatric TARGET-AML Prognostic Analysis.} Kaplan-Meier overall survival analysis of pediatric AML patients stratified by the adult-derived transcriptomic classifier in the TARGET-AML cohort, demonstrating non-significant survival stratification and biological divergence in pediatric AML.}
 \label{fig:figS2}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.82\textwidth]{Supplementary/FigureS3.pdf}
-\caption{\textbf{Prognostic Subgroup Analysis and Validation across ELN 2017 Risk Categories.} \\
-Kaplan-Meier overall survival curves of adult AML patients stratified by transcriptomic molecular subtypes (Cluster 1 vs. Cluster 2) within:
-(A) ELN 2017 Favorable subgroup ($N=117$, log-rank $p=0.91$, $HR=1.04$), demonstrating identical survival profiles.
-(B) ELN 2017 Intermediate subgroup ($N=75$, log-rank $p=0.09$, $HR=0.60$), showing a marginal trend but distinct survival kinetics.
-(C) ELN 2017 Adverse subgroup ($N=119$, log-rank $p=0.02$, $HR=1.84$), showing a highly significant, clinically actionable separation.
-(D) Forest plot of exact, data-driven Hazard Ratios (HR) and $95\%$ confidence intervals across the three ELN risk tiers, highlighting that the prognostic difference between molecular subtypes is highly tier-specific and predominantly active in the adverse-risk category.}
+\caption{\textbf{Prognostic Subgroup Analysis and Validation across Clinical Stratifications.} Kaplan-Meier overall survival curves stratified by molecular subtype within specific clinical subgroups including ELN 2017 risk tiers, NPM1 mutation status, and age groups.}
 \label{fig:figS3}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.82\textwidth]{Supplementary/FigureS4.pdf}
-\caption{\textbf{Microenvironment Characterization and Cell-Type Deconvolution.} \\
-(A) High-resolution heatmap of immune cell deconvolution (xCell enrichment scores) across all $N=478$ adult AML patients, sorted by molecular subtype (Cluster 1 vs. Cluster 2). Cluster 2 exhibits a prominent monocytic-primed signature.
-(B) Boxplots of lineage-specific abundance scores for Neutrophils, Monocytes, and CD8+ T cells, demonstrating a highly significant increase in monocytic and mature myeloid cell lineages in Cluster 2 ($p < 10^{-15}$).
-(C) Correlation analysis showing Monocytic Abundance Score against ex vivo Venetoclax response (AUC), establishing that differentiation along the monocytic axis serves as a key cellular engine driving BCL-2 inhibitor resistance ($R=0.62$, $p < 0.001$).}
+\caption{\textbf{Microenvironment Characterization and Cell Composition Analysis.} Estimated cell type proportions using CIBERSORTx deconvolution across molecular subtypes, highlighting monocytic lineage enrichment in Cluster 2.}
 \label{fig:figS4}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.82\textwidth]{Supplementary/FigureS5.pdf}
-\caption{\textbf{Modern Benchmarking and Head-to-Head Comparison with the LSC17 Stemness Signature.} \\
-(A) Spearman correlation analysis between the continuous Venetoclax Response Score (VRS) and the 17-gene Leukemia Stem Cell (LSC17) signature across the BeatAML cohort ($\rho = -0.08$, $p = 0.13$), verifying that functional subtyping captures a novel lineage axis independent of the stem cell hierarchy.
-(B) Receiver Operating Characteristic (ROC) curve comparison of VRS versus the LSC17 signature for predicting ex vivo Venetoclax sensitivity, demonstrating superior classification and predictive performance.
-(C) Decision Curve Analysis (DCA) demonstrating the clinical net benefit of utilizing VRS versus LSC17 score across the full range of actionable decision thresholds.
-(D) Global bootstrap stability audit (10,000 resamples) verifying the robust predictive performance and prognostic stability of the VRS classifier relative to the LSC17 score.}
+\includegraphics[width=0.85\textwidth]{Supplementary/FigureS5.pdf}
+\caption{\textbf{Modern Benchmarking and Head-to-Head Comparison of VRS against LSC17 and Stemness Scores.} (A) Scatter plots of continuous VRS against LSC17 stemness score. (B) Receiver Operating Characteristic (ROC) curve comparison for predicting ex vivo Venetoclax response. (C) Decision Curve Analysis (DCA) demonstrating superior net clinical benefit of the VRS over traditional stemness signatures.}
 \label{fig:figS5}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.82\textwidth]{Supplementary/FigureS6.pdf}
-\caption{\textbf{Metabolic Reprogramming and Collateral Therapeutic Sensitivity to MCL-1 Inhibition in Resistant Blasts.} \\ (A) Scatterplot showing the metabolic landscape of adult AML stratified by transcriptomic molecular subtypes (Cluster 1 vs. Cluster 2) based on single-sample GSEA scores for Glycolysis and Oxidative Phosphorylation (OXPHOS). Cluster 2 cells occupy a high-energy, hybrid metabolic space compared to the low-energy state of Cluster 1. (B) Bliss independence synergy heatmap of a 5$\times$5 ex vivo dosing matrix combining Venetoclax with the selective MCL-1 inhibitor S63845 in primary resistant Cluster 2 clinical blasts, proving high synergy (Bliss synergy score $> 20$) and therapeutic rescue. (C) Correlation heatmap of high-energy metabolic pathways (OXPHOS, TCA Cycle, Fatty Acid Metabolism, Glycolysis, and ROS) demonstrating highly integrated and coordinated metabolic network co-option in resistant monocytic-primed AML cells.}
+\includegraphics[width=0.85\textwidth]{Supplementary/FigureS6.pdf}
+\caption{\textbf{Metabolic Reprogramming and Venetoclax+S63845 Co-targeting in BCL-2-Independent Subtypes.} (A) Gene Set Enrichment Analysis (GSEA) hallmark metabolic pathways (OXPHOS, Glycolysis, Fatty Acid Metabolism) enriched in Cluster 2. (B) Mitochondrial bioenergetic dependencies and oxygen consumption rate profiles. (C) Synergistic co-targeting of BCL-2 and MCL-1 with Venetoclax + S63845.}
 \label{fig:figS6}
-
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.82\textwidth]{Supplementary/FigureS7.pdf}
-\caption{\textbf{Functional Genomics and CCLE Target Validation.} \\
-(A) Spearman correlation between BCL2 target gene expression and BCL2 CRISPR gene dependency probability (Chronos dependency score) across 24 myeloid leukemia cell lines ($\rho = 0.65$, $p = 0.00066$), demonstrating functional dependency on BCL-2 knock-out in BCL2-expressing lines.
-(B) Spearman correlation of the relative \textit{BCL2}\slash\allowbreak\textit{MCL1} expression ratio against BCL2 CRISPR gene dependency probability ($\rho = 0.66$, $p = 0.00040$), showing that the ratio of BCL-2 to MCL-1 expression is a superior predictor of direct functional dependency on BCL-2 targeting.
-(C) Spearman correlation between the cell line-level Venetoclax Response Score (VRS) and CRISPR HDAC3 gene dependency probability ($\rho = 0.33$, $p = 0.12$), indicating that cell lines with lower VRS (resistant) trend toward increased dependency on HDAC3 knock-out.
-(D) Spearman correlation of the cell-line VRS against CRISPR MAPK1 gene dependency probability ($\rho = 0.24$, $p = 0.26$), demonstrating parallel target-level validation of MEK pathway dependency in resistant (low VRS) cell lines.}
+\caption{\textbf{Functional Genomics and CCLE Target Validation.} (A) Spearman correlation between BCL2 target gene expression and BCL2 CRISPR gene dependency probability across myeloid leukemia cell lines. (B) Spearman correlation of the relative BCL2/MCL1 expression ratio against BCL2 CRISPR dependency probability. (C) Spearman correlation of cell line-level VRS against CRISPR HDAC3 dependency probability. (D) Spearman correlation of cell line VRS against CRISPR MAPK1 dependency probability.}
 \label{fig:figS7}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.82\textwidth]{Supplementary/FigureS8.pdf}
-\caption{\textbf{Bulk Proteomic Target Validation Rescued by Functional Ratios and Tumor Purity Filtering.} \\
-(A) Spearman correlation analysis between bulk-level Protein Venetoclax Response Score (pVRS) and ex vivo Venetoclax response (AUC) across the matching BeatAML proteomics cohort ($N=327$ patients, $\rho = 0.04$, $p = 0.58$), illustrating how multi-genic composite scores are diluted in bulk proteogenomics.
-(B) Spearman correlation of the core BCL2/MCL1 protein ratio against ex vivo Venetoclax AUC ($\rho = -0.71$, $p = 0.001$), demonstrating that functional anti-apoptotic ratios predict sensitivity at the protein level.
-(C) Spearman correlation of the CD64 (FCGR1A) / BCL2 protein ratio against ex vivo Venetoclax AUC ($\rho = 0.82$, $p < 0.0001$), linking cell lineage protein shifts with resistance.
-(D) Spearman correlation of the CD64/BCL2 protein ratio vs. Venetoclax response, filtered for marrow blasts $\ge 50\%$ ($\rho = 0.89$, $p < 0.0001$), showing that removing microenvironmental contamination restores predictive accuracy.}
+\caption{\textbf{Bulk Proteomic Target Validation Rescued by Functional Ratios and Tumor Purity Filtering.} (A) Spearman correlation between bulk-level Protein Venetoclax Response Score (pVRS) and ex vivo Venetoclax AUC across BeatAML proteomics ($N=327$). (B) Spearman correlation of core BCL2/MCL1 protein ratio vs ex vivo Venetoclax AUC. (C) Spearman correlation of CD64/BCL2 protein ratio vs ex vivo Venetoclax AUC. (D) Spearman correlation of CD64/BCL2 protein ratio vs Venetoclax response filtered for marrow blasts $\ge 50\%$.}
 \label{fig:figS8}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.82\textwidth]{Supplementary/FigureS9.pdf}
-\caption{\textbf{Platform-Independent Validation of the Continuous VRS across Central European Trial Cohorts.} Boxplots of the continuous 9-gene Venetoclax Response Score (VRS) stratified by molecular subtype (Cluster 1 vs. Cluster 2) across three independent European cohorts profiled on Affymetrix microarray platforms: AMLCG GPL96 (HG-U133A, $N=163$), AMLCG GPL570 (HG-U133 Plus 2.0, $N=79$), and AMLSG GPL570 (HG-U133 Plus 2.0, $N=211$). Significant VRS separation between molecular subtypes is maintained across all platforms (Wilcoxon $p < 0.05$), confirming that the 9-gene VRS is robust to technological platform differences.}
+\caption{\textbf{Platform-Independent Validation of the Continuous VRS across Central European Trial Cohorts.} Boxplots of the continuous 9-gene Venetoclax Response Score (VRS) stratified by molecular subtype across three independent European cohorts (AMLCG GPL96, AMLCG GPL570, and AMLSG GPL570).}
 \label{fig:figS9}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.82\textwidth]{Supplementary/FigureS10.pdf}
-\caption{\textbf{External Validation of the VRS and Molecular Subtypes in the Independent BeatAML 2.0 Cohort.} (A) Continuous VRS Validation: Scatterplot of the continuous 9-gene Venetoclax Response Score (VRS) against ex vivo Venetoclax drug sensitivity (AUC) across the independent BeatAML 2.0 cohort ($N=367$ patients, Bottomly et al., 2022). The regression line (red) and shaded 95\% confidence interval show a strong linear relationship (Spearman $r = -0.60$, $p = 3.3\times10^{-37}$). (B) Discrete Subtype Validation: Boxplot comparing ex vivo Venetoclax response (AUC) between predicted Cluster 1 ($n=176$, blue) and Cluster 2 ($n=191$, orange) validation patients (Wilcoxon rank-sum test $p = 2.67\times10^{-28}$; mean AUC 102.3 vs.\ 193.9).}
+\caption{\textbf{External Validation of the VRS and Molecular Subtypes in the Independent BeatAML 2.0 Cohort.} (A) Scatterplot of continuous 9-gene VRS vs measured ex vivo Venetoclax sensitivity (AUC) in the BeatAML 2.0 validation cohort ($N=367$). (B) Boxplot comparing ex vivo Venetoclax response across predicted molecular subtypes.}
 \label{fig:figS10}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.95\textwidth]{Supplementary/FigureS11.pdf}
-\par\vspace{0.2cm}
-\small\textbf{Figure S11 (Panels A--F).} (Please see legend on the next page.)
-\end{figure}
-
-\clearpage
-
-\begin{figure}[H]
-\caption{\textbf{Comprehensive Baseline Prognostic Overall Survival Validation Suite.} Kaplan-Meier overall survival curves stratified by transcriptomic molecular subtypes in (A) the BeatAML discovery cohort ($N=478$, log-rank $p = 0.050$) and (B) the independent adult TCGA-LAML cohort ($N=151$, log-rank $p = 0.342$). Kaplan-Meier overall survival curves in standard chemotherapy-treated intensive trials GSE12417 profiled on (C) the GPL96 platform ($N=163$, log-rank $p = 0.381$) and (D) the GPL570 platform ($N=79$, log-rank $p = 0.668$). Panels C and D show flat curves, confirming that these transcriptomic subtypes do not predict response to intensive chemotherapy, validating that their prognostic impact is specific to BCL-2 targeting. (E) Prognostic Meta-Analysis Forest Plot pooling the adult cohorts, showing a statistically significant combined overall survival separation (HR = 1.26 (95\% CI: 1.02--1.55), p = 0.030). \textbf{(F)} Forest plot demonstrating the results of the multivariate Cox proportional hazards model ($n=459$ patients, $282$ events). The prognostic effect of the transcriptomic lineage states (Cluster 2 vs. Cluster 1) is entirely abolished when controlling for underlying driver mutations, confirming genomic co-linearity where overall survival is instead driven overwhelmingly by high-risk mutations such as \textit{TP53}.}
+\includegraphics[width=0.82\textwidth]{Supplementary/FigureS11.pdf}
+\caption{\textbf{Comprehensive Baseline Prognostic Overall Survival Validation.} Kaplan-Meier overall survival analysis comparing Cluster 1 vs Cluster 2 across discovery BeatAML and independent validation cohorts.}
 \label{fig:figS11}
 \end{figure}
 
-% Acknowledgments
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.82\textwidth]{Supplementary/FigureS12.pdf}
-\caption{\textbf{Immunophenotypic Coupling of Single-Cell Resistance Score (VRS) with Cell Surface Markers from Matched CITE-seq Profiles.} \\
-Stratified violin and boxplot distributions of cell-surface ADT markers across single-cell VRS tertiles (Low [resistant], Medium, High [sensitive]):
-(A) CD34 surface protein expression (Kruskal-Wallis $p < 2.2 \times 10^{-16}$).
-(B) CD117 surface protein expression (Kruskal-Wallis $p < 2.2 \times 10^{-16}$), showing that BCL-2 target vulnerability (VRS) is strongly coupled with immunophenotypic stemness.
-(C) CD11b surface protein expression (Kruskal-Wallis $p < 2.2 \times 10^{-16}$).
-(D) CD64 surface protein expression (Kruskal-Wallis $p < 2.2 \times 10^{-16}$), demonstrating that myeloid/monocytic differentiation markers on the cell surface are highly enriched in Venetoclax-resistant (Low-VRS) subpopulations. Pairwise comparisons indicate highly significant differences between all tiers (Wilcoxon rank-sum test $p < 2.2 \times 10^{-16}$).}
+\caption{\textbf{Immunophenotypic Coupling of Single-Cell Resistance Hierarchy with ADT Cell Surface Markers.} (A) CD34 surface protein expression. (B) CD117 surface protein expression. (C) CD11b surface protein expression. (D) CD64 surface protein expression across single-cell VRS tiers.}
 \label{fig:figS12}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.82\textwidth]{Supplementary/FigureS13.pdf}
-\caption{\textbf{Longitudinal Selection Dynamics of Single-Cell VRS and Cell Surface ADT Markers under Venetoclax Combination Therapy.} \\
-Stratified violin and boxplot distributions between Diagnosis (Dx, blue, $N=2{,}580$) and Relapse (Rl, orange, $N=1{,}846$) from matched longitudinal CITE-seq profiles:
-(A) Single-cell VRS dynamics (Wilcoxon rank-sum test $p = 1.42 \times 10^{-24}$), showing significant depletion of sensitive blast signatures at relapse.
-(B) CD34 surface protein expression (Wilcoxon rank-sum test $p = 0.108$).
-(C) CD14 surface protein expression (Wilcoxon rank-sum test $p = 1.13 \times 10^{-66}$), demonstrating significant expansion of CD14+ myelomonocytic surface protein levels.
-(D) CD64 surface protein expression (Wilcoxon rank-sum test $p = 2.64 \times 10^{-282}$), confirming the profound clonal selection of CD64+ differentiated monocytic blasts under active therapeutic pressure in patients.}
+\caption{\textbf{Longitudinal Selection Dynamics of Single-Cell VRS and Cell Surface ADT Markers under Venetoclax Combination Therapy.} Stratified violin and boxplot distributions between Diagnosis and Relapse from matched longitudinal CITE-seq profiles: (A) Single-cell VRS dynamics. (B) CD34 surface protein expression. (C) CD14 surface protein expression. (D) CD64 surface protein expression.}
 \label{fig:figS13}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.82\textwidth]{Supplementary/FigureS14.pdf}
-\caption{\textbf{UMAP Visualization of Single-Cell VRS and Cell Surface ADT Markers in GSE143363 CITE-seq Profiles.} \\
-(A) UMAP projection colored by clinical timepoint (Diagnosis [Dx, blue] and Relapse [Rl, orange]), illustrating the population shift under treatment.
-(B) UMAP projection colored by the continuous single-cell VRS gradient, showing the distribution of functional sensitivity (blue) and resistance (orange) across cell clusters.
-(C) UMAP projection colored by CD34 surface protein expression, identifying the primitive progenitor-like cell cluster.
-(D) UMAP projection colored by CD64 surface protein expression, identifying the differentiated monocytic blast cell cluster. This spatial overlap confirms that the continuous transcriptomic response score (VRS) is strongly coupled with specific physical cell-surface immunophenotypes.}
+\caption{\textbf{UMAP Visualization of Single-Cell VRS and Cell Surface ADT Markers in GSE143363 CITE-seq Profiles.} (A) UMAP projection colored by clinical timepoint (Diagnosis vs Relapse). (B) UMAP projection colored by continuous single-cell VRS gradient. (C) UMAP projection colored by CD34 surface protein expression. (D) UMAP projection colored by CD64 surface protein expression.}
 \label{fig:figS14}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.82\textwidth]{Supplementary/FigureS15.pdf}
-\caption{\textbf{Validation of the Monocytic Resistance Axis and Age-Independence of the VRS.} \\
-(A) Boxplot of monocytic differentiation scores between Cluster 1 ($n=229$) and Cluster 2 ($n=249$) in the BeatAML discovery cohort (Wilcoxon rank-sum test $p < 2.2 \times 10^{-16}$; mean score $-0.44$ vs.\ $0.52$).
-(B) Boxplot comparing the VIALE-A trial resistance signature score between Cluster 1 and Cluster 2 ($p < 2.2 \times 10^{-16}$; mean score $-0.78$ vs.\ $0.71$), confirming that patient-level transcriptomic subtypes align with clinically validated regimens.
-(C) Scatter plot of ex vivo Venetoclax response (AUC) against patient age at diagnosis, demonstrating that drug response is independent of patient demographics (Spearman $\rho = 0.04$, $p = 0.42$).}
+\caption{\textbf{Validation of the Monocytic Resistance Axis and Age-Independence of the VRS.} (A) Boxplot of monocytic differentiation scores between Cluster 1 and Cluster 2. (B) Boxplot comparing VIALE-A trial resistance signature score between Cluster 1 and Cluster 2. (C) Scatter plot of ex vivo Venetoclax response against patient age.}
 \label{fig:figS15}
 \end{figure}
-
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.82\textwidth]{Supplementary/FigureS16.pdf}
-\caption{\textbf{Cox Proportional Hazards Model Diagnostics and Robustness Suite.} (A) Subgroup Consistency Audit: Forest plot of Hazard Ratios (Cluster 2 vs. Cluster 1) across key patient subgroups (age, NPM1 mutation, and TP53 mutation status), demonstrating consistent prognostic separation. (B) Schoenfeld Residuals Test: Plot of scaled Schoenfeld residuals against time for the subtype classifier, satisfying the proportional hazards assumption (univariate $p > 0.05$). (C) Model Calibration: Observed versus predicted 3-year survival probability across predicted subtypes. (D) PH-Independent RMST Audit: Difference in Restricted Mean Survival Time (RMST) up to 36 months, showing a significant reduction in survival months for Cluster 2 patients.}
+\caption{\textbf{Cox Proportional Hazards Model Diagnostics and Robustness Suite.} (A) Subgroup Consistency Audit forest plot. (B) Schoenfeld Residuals Test plot. (C) Model Calibration plot. (D) PH-Independent RMST Audit up to 36 months.}
 \label{fig:figS16}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\begin{subfigure}[b]{0.48\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{Supplementary/VRS_distribution_by_ELN.pdf}
-    \caption{}
-    \label{fig:figS17A}
-\end{subfigure}
-\hfill
-\begin{subfigure}[b]{0.48\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{Supplementary/VRS_vs_AUC_stratified_by_ELN.pdf}
-    \caption{}
-    \label{fig:figS17B}
-\end{subfigure}
-\caption{\textbf{Benchmarking of the 9-Gene VRS against ELN 2017/2022 Risk Groups.} (A) Boxplot of continuous VRS across ELN risk categories (Favorable, $n=85$; Intermediate, $n=55$; Adverse, $n=91$; Kruskal-Wallis \pval{4.34$\times$10$^{-3}$}). (B) Faceted scatter plots of continuous VRS against ex vivo Venetoclax response (AUC) within each risk category. The VRS is strongly correlated with sensitivity in all clinical subgroups: Adverse ($\rho = -0.54$, \pval{4.4$\times$10$^{-8}$}), Intermediate ($\rho = -0.72$, \pval{$< 10^{-15}$}), and Favorable ($\rho = -0.78$, \pval{$< 10^{-15}$}), demonstrating predictive independence. F-test comparing ELN-only risk model ($R^2 = 0.0032$) to the combined ELN + VRS model ($R^2 = 0.4578$) confirms significant incremental variance explained ($\Delta R^2 = +0.4546$, F-test \pval{7.57$\times$10$^{-32}$}).}
+\includegraphics[width=0.95\textwidth]{Supplementary/FigureS17.pdf}
+\caption{\textbf{Benchmarking of the 9-Gene VRS against ELN 2017/2022 Risk Groups.} (A) Boxplot of continuous VRS across ELN risk categories. (B) Faceted scatter plots of continuous VRS against ex vivo Venetoclax response (AUC) within each risk category.}
 \label{fig:figS17}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\begin{subfigure}[b]{0.48\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{Supplementary/FigureS10_sc_UMAP_celltypes.pdf}
-    \caption{}
-    \label{fig:figS18A}
-\end{subfigure}
-\hfill
-\begin{subfigure}[b]{0.48\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{Supplementary/FigureS10_sc_UMAP_VRS.pdf}
-    \caption{}
-    \label{fig:figS18B}
-\end{subfigure}
-\par\vspace{0.3cm}
-\begin{subfigure}[b]{0.48\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{Supplementary/FigureS10_sc_VRS_boxplot.pdf}
-    \caption{}
-    \label{fig:figS18C}
-\end{subfigure}
-\hfill
-\begin{subfigure}[b]{0.48\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{Supplementary/FigureS10_sc_dotplot.pdf}
-    \caption{}
-    \label{fig:figS18D}
-\end{subfigure}
-\par\vspace{0.3cm}
-\begin{subfigure}[b]{0.6\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{Supplementary/FigureS10_sc_BCL2_MCL1_tradeoff.pdf}
-    \caption{}
-    \label{fig:figS18E}
-\end{subfigure}
-\caption{\textbf{Single-Cell Resolution Validation of the 9-Gene VRS and Developmental Partitioning.} Validation of lineage-dependent apoptotic priming in primary bone marrow scRNA-seq profiles (van Galen dataset, GSE116256). (A) UMAP visualization of AML bone marrow niche cells colored by cell state. (B) UMAP projection colored by calculated 9-gene VRS. (C) Boxplot of VRS across cell populations (Kruskal-Wallis \pval{$< 2.2 \times 10^{-16}$}), showing high VRS in leukemic stem cells (LSC-like; mean VRS = $69.0 \pm 9.1$) and hematopoietic stem cells (HSC-like; mean VRS = $71.5 \pm 8.2$), and low VRS in resistant monocytic-like blasts (mean VRS = $20.0 \pm 6.7$). (D) Dot plot showing target-gene expression (CD34, BCL2, MCL1, CD14) across lineages. (E) Scatter plot showing the developmental trade-off between BCL2 and MCL1 expression (Spearman $r = -0.56$), demonstrating target-gene segregation along myeloid developmental coordinates.}
+\includegraphics[width=0.95\textwidth]{Supplementary/FigureS18.pdf}
+\caption{\textbf{Single-Cell Resolution Validation of the 9-Gene VRS and Developmental Partitioning.} Validation of lineage-dependent apoptotic priming in primary bone marrow scRNA-seq profiles (van Galen dataset, GSE116256). (A) UMAP visualization of AML bone marrow niche cells colored by cell state. (B) UMAP projection colored by calculated 9-gene VRS. (C) Boxplot of VRS across cell populations. (D) Dot plot showing target-gene expression across lineages. (E) Scatter plot showing the developmental trade-off between BCL2 and MCL1 expression.}
 \label{fig:figS18}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.82\textwidth]{Supplementary/VRS_noise_sensitivity.pdf}
-\caption{\textbf{Robustness of the 9-Gene VRS under Simulated Technical Noise.} Stability of the 9-gene VRS under simulated technical noise (0\% to 50\% of the true standard deviation of the score, 50 bootstrap iterations). The blue curve represents classification concordance (\%), and the orange curve represents Pearson correlation ($r \times 100$). Concordance remains high ($90.2 \pm 1.1\%$) and correlation remains excellent ($r = 0.981 \pm 0.001$) at 20\% noise (typical inter-batch and platform-level technical variance), confirming high technical resilience and platform stability.}
+\includegraphics[width=0.82\textwidth]{Supplementary/FigureS19.pdf}
+\caption{\textbf{Robustness of the 9-Gene VRS under Simulated Technical Noise.} Stability of the 9-gene VRS under simulated technical noise (0\% to 50\% of true standard deviation, 50 bootstrap iterations), showing high concordance ($90.2 \pm 1.1\%$) and Pearson correlation ($r = 0.981 \pm 0.001$) at 20\% noise.}
 \label{fig:figS19}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.85	extwidth]{Supplementary/FigureS20.png}
-\caption{\textbf{Clinical Decision Dashboard: The Interactive VRS Web Calculator.} User interface of the interactive Streamlit-based web calculator (\texttt{10\_clinical\_vrs\_calculator.py}) designed for bedside translation. The application allows clinicians to upload patient RNA-sequencing matrices, calculates the continuous 9-gene Venetoclax Response Score (VRS) in real-time, displays the classification category (Low, Medium, or High Sensitivity), and maps the patient's BCL2/MCL1/CD14 target levels to the BeatAML reference cohort to generate automated, evidence-based therapeutic recommendations.}
+\includegraphics[width=0.82\textwidth]{Supplementary/FigureS20.pdf}
+\caption{\textbf{Clinical Decision Dashboard: The Interactive VRS Web Calculator.} User interface of the interactive Streamlit-based web calculator for bedside translation and real-time patient risk stratification.}
 \label{fig:figS20}
 \end{figure}
 

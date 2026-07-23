@@ -121,7 +121,7 @@ p_box <- ggplot(merged_df, aes(x = factor(ELN2017, levels=c("Favorable", "Interm
   geom_jitter(color = "gray30", width = 0.1, alpha = 0.4, size = 1.5) +
   scale_fill_manual(values = c("Favorable" = "#2ECC71", "Intermediate" = "#F1C40F", "Adverse" = "#E74C3C")) +
   labs(
-    title = "VRS Distribution across ELN 2017 Risk Groups",
+    title = "A. VRS Distribution across ELN 2017 Risk Groups",
     subtitle = sprintf("Kruskal-Wallis p = %.2e", kruskal_vrs_eln$p.value),
     x = "ELN 2017 Risk Classification",
     y = "9-Gene Venetoclax Response Score (VRS)"
@@ -148,7 +148,7 @@ p_scatter <- ggplot(plot_data, aes(x = VRS9, y = ven_auc)) +
   scale_color_manual(values = c("Cluster 1" = color_c1, "Cluster 2" = color_c2), name = "Molecular Subtype") +
   facet_wrap(~ label, scales = "free_x") +
   labs(
-    title = "Venetoclax Sensitivity Prediction within ELN 2017 Risk Categories",
+    title = "B. Venetoclax Sensitivity Prediction within ELN 2017 Risk Categories",
     subtitle = sprintf("Incremental Explained Variance ΔR² = +%.4f (F-test p = %.2e)", r2_diff, lrt_p),
     x = "Venetoclax Response Score (VRS, 0-100)",
     y = "Venetoclax ex vivo AUC\n(Lower = More Sensitive)"

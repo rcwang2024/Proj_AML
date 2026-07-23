@@ -12,20 +12,18 @@ def main():
         r"d:\Proj_AML\05_Submission\Submission_Hub_2026-05-16\01_Manuscript_Source\Supplementary"
     ]
     
-    # We synchronize FigureS1 to FigureS16, both PDF and PNG formats
-    fig_basenames = [f"FigureS{i}" for i in range(1, 17)]
+    # We synchronize FigureS1 to FigureS19 (including FigureS6)
+    fig_basenames = [f"FigureS{i}" for i in range(1, 20)]
     extensions = [".pdf", ".png"]
     
     files_to_sync = [base + ext for base in fig_basenames for ext in extensions]
     
     def copy_file_safe(src, dst):
         try:
-            # Check if source exists
             if not os.path.exists(src):
                 print(f"  [WARNING] Source file not found: {src}")
                 return False
                 
-            # If target exists and is exactly the same, skip to preserve links
             if os.path.exists(dst) and os.path.samefile(src, dst):
                 print(f"  [INFO] Junction/link detected: {dst} is identical. Skipping.")
                 return True
@@ -35,7 +33,6 @@ def main():
             print(f"  [OK] Copied {os.path.basename(src)} -> {os.path.dirname(dst)}")
             return True
         except Exception as e:
-            # Backup handler in case samefile fails on Windows paths
             try:
                 os.makedirs(os.path.dirname(dst), exist_ok=True)
                 shutil.copy(src, dst)

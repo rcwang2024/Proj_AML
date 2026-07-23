@@ -94,11 +94,20 @@ cat("\nCohort distribution:\n")
 print(table(sample_mapping$cohort_category))
 cat("\n")
 
-# Extract gold standard cohort
-gold_standard <- sample_mapping %>%
-  filter(cohort_category == "complete_quad_omics")
+# Load clinical stages to restrict to Initial Diagnosis only
+clinical_stages <- readxl::read_excel("01_Data/BeatAML_Downloaded_Data/beataml_clinical.xlsx")
+clinical_stages <- as.data.frame(clinical_stages)
+diagnostic_rna_samples <- clinical_stages$dbgap_rnaseq_sample[
+  clinical_stages$diseaseStageAtSpecimenCollection == "Initial Diagnosis" & 
+  !is.na(clinical_stages$diseaseStageAtSpecimenCollection)
+]
 
-cat(sprintf("Gold standard cohort (all 4 data types): %d samples\n", nrow(gold_standard)))
+# Extract gold standard cohort (restricted to Initial Diagnosis)
+gold_standard <- sample_mapping %>%
+  filter(cohort_category == "complete_quad_omics") %>%
+  filter(clinical_id %in% diagnostic_rna_samples)
+
+cat(sprintf("Gold standard cohort (Initial Diagnosis only): %d samples\n", nrow(gold_standard)))
 cat(sprintf("  - Has expression: %d\n", sum(gold_standard$has_expression)))
 cat(sprintf("  - Has mutations: %d\n", sum(gold_standard$has_mutations)))
 cat(sprintf("  - Has clinical: %d\n", sum(gold_standard$has_clinical)))
@@ -112,7 +121,10 @@ cat("STEP 3: Loading batch-corrected expression data...\n\n")
 
 expr_corrected <- readRDS("03_Results/04_Batch_Corrected/beataml_expression_batchcorrected.rds")
 
-cat(sprintf("Batch-corrected expression: %d genes × %d samples\n",
+# Restrict full expression cohort to Initial Diagnosis only
+expr_corrected <- expr_corrected[, colnames(expr_corrected) %in% diagnostic_rna_samples]
+
+cat(sprintf("Batch-corrected expression (Initial Diagnosis only): %d genes × %d samples\n",
             nrow(expr_corrected), ncol(expr_corrected)))
 cat(sprintf("Value range: %.3f to %.3f\n\n", min(expr_corrected), max(expr_corrected)))
 
