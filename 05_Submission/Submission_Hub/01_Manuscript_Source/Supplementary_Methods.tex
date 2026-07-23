@@ -51,18 +51,18 @@ We utilized multi-omic and functional profiling data from the "Gold Standard" Be
     \item \textbf{Ex Vivo Drug Sensitivity:} Area under the curve (AUC) measurements across 166 functional compounds.
     \item \textbf{Clinical Annotations:} Overall survival (OS) in months, vital status, age, sex, and white blood cell (WBC) count at diagnosis.
 \end{enumerate}
-RNA-sequencing count data were normalized to counts per million (CPM) values, and low-expression genes (CPM $< 1$ in $> 90\%$ of samples) were filtered out. Expression values were $\log_2(CPM + 1)$ transformed. Technical batch effects associated with sequencing run waves were mitigated using the empirical Bayes framework implemented in the \texttt{ComBat} package (version 3.46.0) in R.
+RNA-sequencing count data were normalized to counts per million (CPM) values, and low-expression genes (CPM $< 1$ in $> 90\%$ of samples) were filtered out. Expression values were $\log_2(CPM + 1)$ transformed. Technical batch effects associated with sequencing run waves were mitigated using the empirical Bayes framework implemented in the \texttt{ComBat} package (version 3.46.0) in R \cite{johnson2007combat}.
 
 \subsection{External Validation Cohorts}
-\paragraph{TCGA-LAML Cohort:} We obtained matched RNA-seq count data and clinical annotations for 151 adult de novo AML patients from The Cancer Genome Atlas (TCGA-LAML) database through the Genomic Data Commons (GDC) portal. Expression values were batch-corrected and normalized identically to the discovery cohort.
-\paragraph{TARGET-AML Cohort:} To evaluate age-specific boundary effects, transcriptomic and clinical data for 1,713 pediatric AML patients (age 0--20 years) were acquired from the Therapeutically Applicable Research to Generate Effective Treatments (TARGET) initiative.
-\paragraph{BeatAML 2.0 Validation Cohort:} An independent validation dataset comprising transcriptomic and functional profiling for 367 adult AML patients (representing Wave 3 and Wave 4 sequencing releases from the Bottomly et al., Cancer Cell 2022 dataset) was utilized. These samples had no overlap with the discovery BeatAML cohort.
+\paragraph{TCGA-LAML Cohort:} We obtained matched RNA-seq count data and clinical annotations for 151 adult de novo AML patients from The Cancer Genome Atlas (TCGA-LAML) database through the Genomic Data Commons (GDC) portal \cite{cancer2013tcga}. Expression values were batch-corrected and normalized identically to the discovery cohort.
+\paragraph{TARGET-AML Cohort:} To evaluate age-specific boundary effects, transcriptomic and clinical data for 1,713 pediatric AML patients (age 0--20 years) were acquired from the Therapeutically Applicable Research to Generate Effective Treatments (TARGET) initiative \cite{bolouri2018target}.
+\paragraph{BeatAML 2.0 Validation Cohort:} An independent validation dataset comprising transcriptomic and functional profiling for 367 adult AML patients (representing Wave 3 and Wave 4 sequencing releases from the Bottomly et al., Cancer Cell 2022 dataset \cite{bottomly2022}) was utilized. These samples had no overlap with the discovery BeatAML cohort.
 \paragraph{Quantitative Proteomics Cohort:} Matched global quantitative proteomics data were integrated for 327 adult AML patients from the BeatAML cohort to validate target-level protein expression dynamics. These profiles were generated using multiplexed tandem mass tag (TMT-16plex) labeling followed by high-resolution liquid chromatography-tandem mass spectrometry (LC-MS/MS) on Orbitrap mass spectrometers, as described in the CPTAC/PNNL-OHSU proteogenomics study \cite{pino2024mapping}. Relative protein abundances were obtained from the Proteomic Data Commons (PDC) as log2-transformed, median-centered, and standardized abundance values for core apoptotic regulators (BCL-2, MCL-1) and differentiation markers (CD14, CD64) to assess concordance between transcriptomic lineage states and the functional proteome.
 
 \section{Molecular Subtype Discovery and Validation}
 
 \subsection{Consensus Clustering Parameters}
-Unsupervised transcriptomic subtyping was performed using the \texttt{ConsensusClusterPlus} package (version 1.62.0) in R. We selected the top 5,000 most variable genes by median absolute deviation (MAD) from the batch-corrected, $\log_2$-transformed expression matrix. Consensus clustering was executed with the following parameters:
+Unsupervised transcriptomic subtyping was performed using the \texttt{ConsensusClusterPlus} package (version 1.62.0) in R \cite{wilkerson2010consensuscluster}. We selected the top 5,000 most variable genes by median absolute deviation (MAD) from the batch-corrected, $\log_2$-transformed expression matrix. Consensus clustering was executed with the following parameters:
 \begin{itemize}
     \item \textbf{Resampling Iterations:} 1,000 runs
     \item \textbf{Sample Resampling Fraction:} 80\%
@@ -292,6 +292,46 @@ Below is a complete index of the supplementary tables, including their titles, c
 \section*{References}
 \begin{thebibliography}{99}
 
+\bibitem{johnson2007combat}
+Johnson WE, Li C, Rabinovic A.
+Adjusting batch effects in microarray expression data using empirical Bayes methods.
+\textit{Biostatistics}. 2007;8(1):118--127.
+
+\bibitem{cancer2013tcga}
+Cancer Genome Atlas Research Network.
+Genomic and epigenomic landscapes of adult de novo acute myeloid leukemia.
+\textit{N Engl J Med}. 2013;368(22):2059--2074.
+
+\bibitem{bolouri2018target}
+Bolouri H, Farrar JE, Triche T Jr, et al.
+The molecular landscape of pediatric acute myeloid leukemia reveals recurrent structural alterations and age-specific mutational interactions.
+\textit{Nat Med}. 2018;24(1):103--112.
+
+\bibitem{bottomly2022}
+Bottomly D, Long N, McWeeney SK, et al.
+Integrative analysis of drug response and clinical outcome in acute myeloid leukemia.
+\textit{Cancer Cell}. 2022;40(8):850--864.
+
+\bibitem{pino2024mapping}
+Pino JC, Javed S, Long N, et al.
+Mapping the proteogenomic landscape enables prediction of drug response in acute myeloid leukemia.
+\textit{Cell Rep Med}. 2024;5(1):101359.
+
+\bibitem{wilkerson2010consensuscluster}
+Wilkerson MD, Hayes DN.
+ConsensusClusterPlus: a class discovery tool with confidence assessments and item tracking.
+\textit{Bioinformatics}. 2010;26(12):1572--1573.
+
+\bibitem{vangalen2019single}
+van Galen P, Hovestadt V, Wadsworth MH 2nd, et al.
+Single-Cell RNA-Seq Reveals AML Hierarchies and Leukemic Stem Cell Characteristics.
+\textit{Cell}. 2019;176(6):1265--1281.e24.
+
+\bibitem{pei2020monocytic}
+Pei S, Pollyea DA, Gustafson A, et al.
+Monocytic Subclones Confer Resistance to Venetoclax-Based Therapy in Acute Myeloid Leukemia Patients.
+\textit{Cancer Discov}. 2020;10(4):536--551.
+
 \bibitem{bliss1939toxicity}
 Bliss CI.
 The toxicity of poisons applied jointly.
@@ -311,11 +351,6 @@ Analysis of drug combinations: current methodological landscape.
 Ianevski A, He L, Aittokallio T, Tang J.
 SynergyFinder: a web application for analyzing drug combination dose--response matrix data.
 \textit{Bioinformatics}. 2017;33(15):2413--2415.
-
-\bibitem{pino2024mapping}
-Pino JC, Javed S, Long N, et al.
-Mapping the proteogenomic landscape enables prediction of drug response in acute myeloid leukemia.
-\textit{Cell Rep Med}. 2024;5(1):101359.
 
 \end{thebibliography}
 
