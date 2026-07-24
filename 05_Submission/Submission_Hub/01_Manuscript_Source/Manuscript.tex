@@ -50,6 +50,14 @@
 
 \maketitle
 
+% Key Points (Required by Blood: 2 bullets, max 140 characters each)
+\section*{Key Points}
+\begin{itemize}
+  \item Transcriptomic subtypes in adult AML predict ex vivo drug sensitivity with independent predictive value beyond standard DNA mutation panels.
+  \item The 9-gene Venetoclax Response Score (VRS) specifically identifies BCL-2 dependency and rational salvage combinations for resistant blasts.
+\end{itemize}
+
+
 % Abstract
 \begin{abstract}
 \sloppy
@@ -147,7 +155,7 @@ Finally, to evaluate age-specific boundaries, we projected the classifier onto t
 
 Even though these cell states did not predict survival independently of mutations, they showed extraordinary predictive value for drug response that was statistically independent of genetic mutations.
 
-\textbf{Venetoclax and the Predictive Footprint.} Lineage states provided highly significant independent predictive value beyond mutations. In a variance explained ($R^2$) improvement analysis across top compounds (\textbf{Figure~\ref{fig:fig2}A}; \textbf{Table~\ref{tab:independence}}), adding cluster assignment to a baseline mutational model (controlling for 11 established genomic alterations including \textit{NPM1}, \textit{FLT3}, \textit{DNMT3A}, and \textit{TP53}) yielded massive predictive gains. For Venetoclax, this yielded an absolute $R^2$ increase of 0.200 (from 0.173 to 0.372), representing a 115.7\% relative $R^2$ improvement (\pval{3.91$\times$10$^{-15}$}). Subtype assignment remained the dominant independent predictor in multivariate models controlling for these mutations (\textbf{Figure~\ref{fig:fig2}B}). Venetoclax exhibited the most significant differential response across the functional library overall (\pval{6.37$\times$10$^{-19}$}, Cohen's $d$=1.43; \textbf{Figure~\ref{fig:fig2}C}, \textbf{Table~\ref{tab:drugs}}), and the complete drug sensitivity profiling results for all 155 tested compounds are provided in \href{Supplementary_Methods.pdf#tab:tabS5}{\textbf{Supplementary Table S5}}.
+\textbf{Venetoclax and the Predictive Footprint.} Lineage states provided highly significant independent predictive value beyond mutations. In a variance explained ($R^2$) improvement analysis across top compounds (\textbf{Figure~\ref{fig:fig2}A}; \href{Supplementary_Methods.pdf#tab:tabS3}{\textbf{Supplementary Table S3}}), adding cluster assignment to a baseline mutational model (controlling for 11 established genomic alterations including \textit{NPM1}, \textit{FLT3}, \textit{DNMT3A}, and \textit{TP53}) yielded massive predictive gains. For Venetoclax, this yielded an absolute $R^2$ increase of 0.200 (from 0.173 to 0.372), representing a 115.7\% relative $R^2$ improvement (\pval{3.91$\times$10$^{-15}$}). Subtype assignment remained the dominant independent predictor in multivariate models controlling for these mutations (\textbf{Figure~\ref{fig:fig2}B}). Venetoclax exhibited the most significant differential response across the functional library overall (\pval{6.37$\times$10$^{-19}$}, Cohen's $d$=1.43; \textbf{Figure~\ref{fig:fig2}C}, \href{Supplementary_Methods.pdf#tab:tabS5}{\textbf{Supplementary Table S5}}), and the complete drug sensitivity profiling results for all 155 tested compounds are provided in \href{Supplementary_Methods.pdf#tab:tabS5}{\textbf{Supplementary Table S5}}.
 
 Importantly, this predictive effect was robust to baseline clinical demographics, with the differential Venetoclax drug-response AUC showing no significant association with patient age (\textbf{Supplementary Figure~\ref{fig:figS15}C}). Full external validation in the independent BeatAML 2.0 cohort using our quantitative biomarker of BCL-2 dependence---the Venetoclax Response Score (VRS; formally developed and validated in Section~\ref{sec:vrs})---is presented below.
 

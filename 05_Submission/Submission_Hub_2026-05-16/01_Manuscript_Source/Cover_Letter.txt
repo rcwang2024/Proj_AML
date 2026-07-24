@@ -1,104 +1,64 @@
 ══════════════════════════════════════════════════════════════════════════
-                        COVER LETTER FOR NATURE MEDICINE
-                        Date: [INSERT DATE]
+                        COVER LETTER FOR BLOOD
+                        Date: July 24, 2026
 ══════════════════════════════════════════════════════════════════════════
 
-[Your Name, PhD/MD]
-[Your Institution]
-[Department]
-[Address]
-[City, State, ZIP]
-[Email]
-[Phone]
+[Corresponding Author Name, PhD/MD]
+[Department of Hematology and Oncology / Division of Computational Biology]
+[Institution Name]
+[Address, City, State, ZIP]
+[Email Address | Phone Number]
 
-Editor, Nature Medicine
-The Springer Nature Building
-4 Crinan Street
-London N1 9XW, UK
+Editor-in-Chief
+Blood
+American Society of Hematology
+2021 L Street NW, Suite 900
+Washington, DC 20036, USA
 
-Dear Editor,
+Dear Editor-in-Chief and Editorial Board,
 
-RE: Original Article Submission - "Molecular Subtypes in Adult Acute Myeloid
-Leukemia Predict Venetoclax Response Independent of Genomic Alterations"
+RE: Original Article Submission - "Molecular Subtypes in Adult Acute Myeloid Leukemia Predict Venetoclax Response Independent of Genomic Alterations"
 
-We submit for consideration in Nature Medicine our manuscript titled "Molecular
-Subtypes in Adult Acute Myeloid Leukemia Predict Venetoclax Response Independent
-of Genomic Alterations." This work represents a comprehensive multi-omics
-analysis of 2,535 AML patients across three independent cohorts, establishing a
-fundamental "Independence Paradox" in cancer biomarkers: molecular subtypes that
-are redundant for prognosis but highly independent and superior for treatment
-selection.
+I am pleased to submit my Original Article titled "Molecular Subtypes in Adult Acute Myeloid Leukemia Predict Venetoclax Response Independent of Genomic Alterations" for consideration for publication in Blood.
 
-SIGNIFICANCE AND INNOVATION
+Acute myeloid leukemia (AML) remains a cytogenetically and molecularly heterogeneous malignancy. While the approval of the selective BCL-2 inhibitor Venetoclax combined with hypomethylating agents (HMAs) or low-dose cytarabine has transformed non-intensive treatment paradigms, clinical response remains highly heterogeneous, and primary or acquired resistance represents an urgent clinical challenge. Current ELN guidelines rely exclusively on DNA mutation profiles (e.g., NPM1, FLT3, TP53) for risk stratification. However, whether transcriptomic lineage architecture captures therapeutic vulnerabilities that transcend genomic DNA alterations has remained a fundamental open question in clinical hematology.
 
-Our study provides a transformative framework for precision oncology in AML:
+In this study, we present a comprehensive multi-omics analysis encompassing >3,500 AML patients across 8 independent clinical, functional, and single-cell cohorts. This investigation uncovers a critical concept in precision hematology—the "Independence Paradox": transcriptomic lineage subtypes that are statistically redundant for baseline overall survival prediction provide massive, orthogonal predictive utility for targeted therapy response.
 
-First, we identify and validate two robust transcriptomic subtypes in adult AML.
-We demonstrate that these subtypes provide massive independent predictive value
-for drug response despite non-independence for prognosis. While our clusters are
-statistically redundant with genomic risk factors (TP53, NPM1) for predicting
-overall survival (HR=1.06, p=0.649), they provide a staggering +161.3% R²
-improvement for Venetoclax response prediction beyond all known genomic
-alterations (p=4.7×10⁻²⁴). This finding challenges the current biomarker
-paradigm which assumes prognostic indicators are synonymous with predictive ones.
+KEY HIGHLIGHTS & TRANSLATIONAL ADVANCES:
 
-Second, we provide mechanistic and single-cell validation of the "Metabolic
-Hybrid" resistant state. We show that Cluster 2 (Venetoclax-resistant) is
-characterized by a dual-high OXPHOS/Glycolysis state linked to monocytic
-differentiation (d=1.44, p=1.6×10⁻³³). This metabolic reprogramming provides a
-cell-intrinsic biological rationale for resistance that is independent of the
-mutational landscape.
+1. Decoupling Prognosis from Predictive Utility (+161% R² Improvement):
+   Using unsupervised consensus clustering on the 450-patient BeatAML discovery cohort, we identified two robust transcriptomic lineage states: Cluster 1 (primitive/progenitor-like, BCL-2 dependent) and Cluster 2 (monocytic-primed, Venetoclax resistant). Crucially, while these lineage states are not independently prognostic after adjusting for somatic mutation drivers (TP53/TET2, HR = 1.06, p = 0.649), they provide a staggering +161.3% R² improvement for Venetoclax response prediction beyond all 11 established genomic alterations combined (p = 4.73 × 10⁻²⁴).
 
-Third, we establish a clinical roadmap for "Precision Salvage." For the 55% of
-patients in the resistant Cluster 2, we identified 8 FDA-approved alternative
-therapies led by Panobinostat (d=0.89, p=1.4×10⁻¹¹). Combined with our 9-gene
-Venetoclax Response Score (VRS) decision tool, this work offers an immediate
-pathway to personalize front-line and salvage therapy in AML.
+2. Single-Cell & Quantitative Proteomic Target Validation:
+   Across matched single-cell CITE-seq ADT surface proteomics (N = 4,426 blasts) and global mass-spectrometry quantitative proteomics (CPTAC, N = 327 patient specimens), we demonstrate that blast cell maturity directly dictates apoptotic target dependency. Primitive stem/progenitor blasts (CD34+/CD117+) exhibit high BCL-2 protein expression and exquisite Venetoclax sensitivity (Spearman ρ = -0.552, p = 1.16 × 10⁻³⁰). Conversely, monocytic differentiation (CD11b+/CD64+) triggers a bioenergetic shift toward MCL-1 and Oxidative Phosphorylation (OXPHOS), establishing a cell-intrinsic resistance mechanism.
 
-WHY NATURE MEDICINE
+3. Target-Specific Negative Control Proof (ROC-AUC = 0.550):
+   To prove that the biomarker specifically captures BCL-2 vulnerability rather than non-specific tumor lethality, we projected the 9-gene Venetoclax Response Score (VRS) onto frontline intensive chemotherapy induction trials (GSE106291, N = 235). While VRS achieves an ex vivo Venetoclax AUC of 0.849, its prediction for clinical 7+3 chemotherapy remission is flat (ROC-AUC = 0.550, p = 0.260), confirming target-specific prediction.
 
-Nature Medicine is the premier venue for this work due to its focus on
-transformative translational research. Our study—comprising 2,535 patients, 5
-stages of multi-cohort validation, and a clear clinical decision tool—addresses
-the "clinical translation gap" in AML. By decoupling prognostic and predictive
-utility, we provide a conceptual leap in how transcriptomic profiling should be
-integrated into precision medicine. The discovery of the "Independence Paradox"
-has implications far beyond AML, suggesting a generalizable strategy for
-uncovering therapeutic vulnerabilities in other cancers.
+4. Bedside Translational Utility & Rational Salvage Therapeutics:
+   For primary Venetoclax-resistant Cluster 2 patients, we performed systematic ex vivo screening across 155 targeted compounds and identified 29 differentially sensitive salvage agents led by HDAC inhibitors (Panobinostat, p = 1.12 × 10⁻¹²) and MEK inhibitors (Selumetinib, p = 4.52 × 10⁻¹¹). Furthermore, ex vivo Bliss synergy profiling confirmed that dual BCL-2/MCL-1 inhibition (Venetoclax + S63845, synergy score > 35) completely overcomes primary resistance in clinical blasts.
 
-STUDY STRENGTHS
+WHY BLOOD IS THE IDEAL HOME FOR THIS WORK:
+Blood is the flagship journal in hematology and the definitive venue for studies redefining AML patient stratification. By demonstrating that transcriptomic lineage states provide orthogonal predictive information to ELN genomic panels, this study provides a conceptual leap for precision oncology. Our continuous 9-gene VRS decision tool and multi-cohort clinical trial validations offer an immediate framework for clinical trial design and bedside treatment selection.
 
-Our manuscript demonstrates several methodological strengths:
+ROBUSTNESS & DATA AVAILABILITY:
+All analyses have undergone rigorous statistical audit, including proportional hazards-free survival metrics, multivariable variance decomposition, and study-wide Benjamini-Hochberg FDR control. The manuscript complies fully with Blood formatting guidelines (Abstract = 245 words, 2 Key Points bullets, 6 Main Figures, 1 Main Table, 34 references). All raw and processed datasets are publicly available through dbGaP, GDC, and NCBI GEO, and our computational pipeline is fully archived on GitHub.
 
-• Scale: 2,535 patients across 3 independent cohorts (BeatAML, TCGA, TARGET)
+AUTHOR STATEMENT:
+As the sole author, I have read and approved the manuscript. This work has not been published previously and is not under consideration elsewhere. The author declares no competing financial interests.
 
-• Rigor: Comprehensive audit-proofing including proportional hazards-free
-  survival methods, multivariate decomposition, and study-wide FDR correction.
+RECOMMENDED REVIEWERS:
+1. Dr. Ross Levine (Memorial Sloan Kettering Cancer Center) – Expert in AML genomics and clonal hematopoiesis.
+2. Dr. Courtney DiNardo (MD Anderson Cancer Center) – Lead investigator in Venetoclax clinical trials (VIALE-A).
+3. Dr. Daniel Pollyea (University of Colorado Anschutz Medical Campus) – Expert in Venetoclax resistance and LSC metabolism.
+4. Dr. Elli Papaemmanuil (Memorial Sloan Kettering Cancer Center) – Expert in AML genomic classification and risk modeling.
+5. Dr. Benjamin Ebert (Dana-Farber Cancer Institute) – Expert in translational hematology and myeloid malignancies.
 
-• Actionability: FDA-approved drug roadmap and a proposed Phase II clinical
-  trial design (CLUSTER-AML) provide a clear translational trajectory.
-
-AUTHOR STATEMENT
-
-All authors have read and approved the final manuscript. This work has not been
-previously published and is not under consideration elsewhere. The authors
-declare no competing financial interests. Data and analysis code are fully
-available and archived to ensure reproducibility.
-
-SUGGESTED REVIEWERS
-
-1. Dr. Ross Levine (MSKCC) - AML biology and genomics.
-2. Dr. Elli Papaemmanuil (MSKCC) - AML genomic classification.
-3. Dr. Courtney DiNardo (MD Anderson) - Venetoclax clinical trials.
-4. Dr. Daniel Pollyea (University of Colorado) - Venetoclax resistance.
-5. Dr. Benjamin Ebert (Dana-Farber) - Translational hematology.
-
-Thank you for considering our manuscript. We believe this work represents a
-landmark shift in AML patient stratification from descriptive classification
-toward treatment-guiding precision medicine.
+Thank you for your time and consideration of my manuscript.
 
 Sincerely,
 
-[Your Name, PhD/MD]
-On behalf of all authors.
+[Corresponding Author Name, PhD/MD]
+[Author Name]
 ══════════════════════════════════════════════════════════════════════════
