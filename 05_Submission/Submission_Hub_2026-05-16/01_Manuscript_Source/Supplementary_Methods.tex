@@ -354,4 +354,32 @@ SynergyFinder: a web application for analyzing drug combination dose--response m
 
 \end{thebibliography}
 
+
+\section{Extended Supplementary Methods and Protocols}
+
+\subsection{Detailed Cohort Processing and Multi-Omics Integration}
+BeatAML data (phs001657.v1.p1) were downloaded from dbGaP. Expression profiles were generated via RNA-sequencing of mononuclear cells from bone marrow and peripheral blood aspirates. Sequence reads were aligned to GRCh38, quantified as TPM, and log$_2$-transformed. Batch effects across sequencing centers (centerID) were corrected using ComBat empirical Bayes formulation \cite{johnson2007combat}. The 320-patient "Gold Standard" multi-omics cohort represents primary aspirates with complete log$_2$ expression, targeted variant calls for all 11 driver genes, ex vivo drug profiling across 155 compounds, and complete clinical overall survival data.
+
+\subsection{Consensus Clustering Formulation and Stability Analysis}
+Unsupervised consensus clustering was executed using ConsensusClusterPlus \cite{wilkerson2010consensuscluster} over 1,000 iterations with 80\% sample resampling, Euclidean distance metric, and Ward.D2 agglomerative linkage. Top variance genes were selected using Median Absolute Deviation (MAD). Consensus stability metrics included CDF slope area change, cluster consensus scores, and average silhouette width.
+
+\subsection{Supervised 50-Gene Classifier and 9-Gene VRS Score Algorithm}
+The 50-gene Random Forest classifier was built using the `randomForest` package (ntree=1,000, mtry=7) and evaluated via 10-fold cross-validation. Predictor importance was ranked by mean decrease in Gini impurity.
+The continuous 9-Gene Venetoclax Response Score (VRS) is calculated as:
+\begin{equation}
+\text{VRS}_{\text{raw}} = \sum_{i=1}^{9} w_i \cdot z(g_i)
+\end{equation}
+where $g_i \in \{\text{BCL2}, \text{NPM1}, \text{DNMT3A}, \text{MCL1}, \text{TP53}, \text{RUNX1}, \text{ASXL1}, \text{CD14}, \text{FCGR1A}\}$, with positive weights $w_i = +1$ for primitive/BCL-2 addiction markers ($\text{BCL2}, \text{NPM1}, \text{DNMT3A}$) and negative weights $w_i = -1$ for monocytic/resistance markers ($\text{MCL1}, \text{TP53}, \text{RUNX1}, \text{ASXL1}, \text{CD14}, \text{FCGR1A}$). Raw scores are standardized via reference Z-score transformation and rescaled to a 0--100 continuous scale.
+
+\subsection{Multivariable Variance Decomposition ($R^2$ Improvement Analysis)}
+To quantify independent predictive value for drug response, hierarchical linear models were fit:
+\begin{align}
+\text{Model 1 (Mutational Baseline): } \text{AUC}_k &= \beta_0 + \sum_{m=1}^{11} \beta_m \cdot \text{Mutation}_m + \varepsilon \\
+\text{Model 2 (Combined Model): } \text{AUC}_k &= \beta_0 + \sum_{m=1}^{11} \beta_m \cdot \text{Mutation}_m + \gamma \cdot \text{Subtype} + \varepsilon
+\end{align}
+The absolute variance improvement $\Delta R^2 = R^2_{\text{Model 2}} - R^2_{\text{Model 1}}$ and relative percentage improvement $\frac{\Delta R^2}{R^2_{\text{Model 1}}} \times 100\%$ were calculated. Hypothesis testing for $\gamma \neq 0$ was performed using ANOVA $F$-tests with Benjamini-Hochberg FDR adjustment.
+
+\subsection{Single-Cell CITE-seq and DepMap Functional Essentiality Protocols}
+Single-cell RNA-seq and ADT surface protein profiles from van Galen et al. \cite{vangalen2019single} ($38,412$ cells) and Pei et al. \cite{pei2020monocytic} ($N=4,426$ blasts) were processed using Seurat v4. Single-cell VRS scores were computed per cell. Cell-surface antibody-derived tags (CD34, CD117, CD11b, CD64) were normalized via CLR (Centered Log-Ratio) transformation. Cancer Dependency Map (DepMap 24Q2) Chronos gene knockout dependency scores for $24$ myeloid leukemia lines were evaluated to confirm functional target essentiality.
+
 \end{document}
