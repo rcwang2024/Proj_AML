@@ -382,4 +382,167 @@ The absolute variance improvement $\Delta R^2 = R^2_{\text{Model 2}} - R^2_{\tex
 \subsection{Single-Cell CITE-seq and DepMap Functional Essentiality Protocols}
 Single-cell RNA-seq and ADT surface protein profiles from van Galen et al. \cite{vangalen2019single} ($38,412$ cells) and Pei et al. \cite{pei2020monocytic} ($N=4,426$ blasts) were processed using Seurat v4. Single-cell VRS scores were computed per cell. Cell-surface antibody-derived tags (CD34, CD117, CD11b, CD64) were normalized via CLR (Centered Log-Ratio) transformation. Cancer Dependency Map (DepMap 24Q2) Chronos gene knockout dependency scores for $24$ myeloid leukemia lines were evaluated to confirm functional target essentiality.
 
+
+\clearpage
+\section{Supplementary Figures}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{Supplementary/FigureS1.pdf}
+\caption{\textbf{Technical Batch Mitigation and Consensus Clustering Cumulative Distribution Function (CDF).} (A) Empirical Bayes batch correction (ComBat) across sequencing centers. (B) Consensus CDF curves across cluster counts ($k=2$ to $k=6$). (C) Relative change in area under CDF curve. (D) Silhouette width distribution for $k=2$ consensus subtypes.}
+\label{fig:figS1}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{Supplementary/FigureS2.pdf}
+\caption{\textbf{Cox Proportional Hazards Model Diagnostic Audits.} Schoenfeld residual diagnostic plots for Cox proportional hazards model variables in the primary BeatAML cohort.}
+\label{fig:figS2}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{Supplementary/FigureS3.pdf}
+\caption{\textbf{Baseline Overall Survival Partitioning across ELN 2017 Subgroups.} Kaplan-Meier overall survival curves comparing Cluster 1 vs Cluster 2 within: (A) ELN 2017 Favorable-risk cohort. (B) ELN 2017 Intermediate-risk cohort. (C) ELN 2017 Adverse-risk cohort. (D) Hazard ratio forest plot across ELN risk strata.}
+\label{fig:figS3}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{Supplementary/FigureS4.pdf}
+\caption{\textbf{Tumor Microenvironment Deconvolution and Cell Type Fraction Analysis.} Immune and stromal cell type fractions deconvoluted across BeatAML transcriptomic subtypes showing monocytic vs progenitor cell population ratios.}
+\label{fig:figS4}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{Supplementary/FigureS5.pdf}
+\caption{\textbf{Subgroup Benchmarking and Decision Curve Analysis (DCA).} (A) Forest plot of subtype predictive performance across mutation subgroups. (B) Decision Curve Analysis (DCA) evaluating net benefit of VRS-guided treatment selection across clinical decision thresholds.}
+\label{fig:figS5}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{Supplementary/FigureS6.pdf}
+\caption{\textbf{Metabolic Reprogramming and Dual Apoptotic Priming in Monocytic Blast States.} (A) Gene Set Enrichment Analysis (GSEA) of Oxidative Phosphorylation (OXPHOS) vs Glycolysis pathways in Cluster 1 vs Cluster 2. (B) Ex vivo Bliss synergy matrix for Venetoclax + S63845 (MCL-1 inhibitor) combination in primary patient blasts.}
+\label{fig:figS6}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{Supplementary/FigureS7.pdf}
+\caption{\textbf{Supervised 50-Gene Lineage Classifier Feature Importance and Performance.} (A) Gini importance ranking of top 50 classifier features. (B) 10-fold cross-validation ROC curve for subtype assignment ($AUC = 0.994$).}
+\label{fig:figS7}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{Supplementary/FigureS8.pdf}
+\caption{\textbf{Bulk Proteomic Target Validation Rescued by Functional Ratios and Tumor Purity Filtering.} (A) Spearman correlation between bulk protein VRS (pVRS) and ex vivo Venetoclax AUC across BeatAML proteomics ($N=327$). (B) BCL2/MCL1 protein ratio vs Venetoclax AUC. (C) CD64/BCL2 protein ratio vs Venetoclax AUC. (D) CD64/BCL2 protein ratio filtered for blast purity $\ge 50\%$.}
+\label{fig:figS8}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{Supplementary/FigureS9.pdf}
+\caption{\textbf{Platform-Independent Validation of the Continuous VRS across Central European Trial Cohorts.} Boxplots of continuous 9-gene VRS stratified by molecular subtype across independent European trial cohorts (AMLCG GPL96 $N=163$, AMLCG GPL570 $N=79$, AMLSG $N=211$).}
+\label{fig:figS9}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{Supplementary/FigureS10.pdf}
+\caption{\textbf{External Validation of the VRS and Molecular Subtypes in the BeatAML 2.0 Cohort.} (A) Scatter plot of continuous VRS vs ex vivo Venetoclax AUC in independent BeatAML 2.0 validation cohort ($N=367$). (B) Boxplot comparing Venetoclax response across predicted subtypes.}
+\label{fig:figS10}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{Supplementary/FigureS11.pdf}
+\caption{\textbf{Comprehensive Baseline Prognostic Overall Survival Validation.} Kaplan-Meier overall survival curves comparing Cluster 1 vs Cluster 2 across discovery BeatAML, TCGA-LAML, and European multicenter cohorts.}
+\label{fig:figS11}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{Supplementary/FigureS12.pdf}
+\caption{\textbf{Immunophenotypic Coupling of Single-Cell Resistance Hierarchy with ADT Cell Surface Markers.} Single-cell CITE-seq ADT surface protein distributions (CD34, CD117, CD11b, CD64) across single-cell VRS tiers.}
+\label{fig:figS12}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{Supplementary/FigureS13.pdf}
+\caption{\textbf{Longitudinal Selection Dynamics of Single-Cell VRS and Cell Surface ADT Markers under Venetoclax Combination Therapy.} Violin plots comparing Diagnosis vs Relapse from matched longitudinal patient CITE-seq profiles under Venetoclax + Decitabine therapy.}
+\label{fig:figS13}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{Supplementary/FigureS14.pdf}
+\caption{\textbf{UMAP Visualization of Single-Cell VRS and Cell Surface ADT Markers in GSE143363 CITE-seq Profiles.} Single-cell UMAP projections colored by: (A) Clinical timepoint (Diagnosis vs Relapse). (B) Single-cell VRS. (C) CD34 surface protein expression. (D) CD64 surface protein expression.}
+\label{fig:figS14}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{Supplementary/FigureS15.pdf}
+\caption{\textbf{Validation of the Monocytic Resistance Axis and Age-Independence of the VRS.} (A) Monocytic differentiation scores between Cluster 1 and Cluster 2. (B) VIALE-A trial resistance signature score between clusters. (C) Ex vivo Venetoclax response against patient age.}
+\label{fig:figS15}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{Supplementary/FigureS16.pdf}
+\caption{\textbf{DepMap Functional Essentiality Screening across Myeloid Leukemia Lines.} Chronos knockout dependency scores for BCL2, MCL1, and salvage target genes across 24 myeloid leukemia cell lines.}
+\label{fig:figS16}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{Supplementary/FigureS17.pdf}
+\caption{\textbf{Benchmarking of the 9-Gene VRS against ELN 2017/2022 Risk Groups.} (A) Boxplot of continuous VRS across ELN risk categories. (B) Scatter plots of continuous VRS against ex vivo Venetoclax response (AUC) within each ELN risk category.}
+\label{fig:figS17}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{Supplementary/FigureS18.pdf}
+\caption{\textbf{Single-Cell Resolution Validation of the 9-Gene VRS and Developmental Partitioning.} Single-cell RNA-seq validation in bone marrow hierarchy (van Galen dataset, GSE116256): (A) UMAP of cell types. (B) VRS projection across cells. (C) VRS by lineage. (D) BCL2 vs MCL1 trade-off.}
+\label{fig:figS18}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{Supplementary/FigureS19.pdf}
+\caption{\textbf{GSE106291 Chemotherapy Induction Remission ROC Curve (Target-Specific Negative Control).} ROC curve of 9-gene VRS predicting clinical complete remission under intensive 7+3 chemotherapy induction ($ROC-AUC = 0.550, p = 0.260$).}
+\label{fig:figS19}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{Supplementary/FigureS20.pdf}
+\caption{\textbf{Classifier Confidence Distribution and Interactive VRS Web Calculator.} Poster mapping confidence distribution across external validation cohorts and Streamlit interactive bedside VRS web calculator interface.}
+\label{fig:figS20}
+\end{figure}
+
 \end{document}
