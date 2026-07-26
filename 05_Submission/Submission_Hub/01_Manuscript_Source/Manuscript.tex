@@ -61,14 +61,13 @@
 
 \begin{abstract}
 \sloppy
-\sloppy
-\noindent\textbf{Background:} Venetoclax combined with hypomethylating agents has transformed treatment for acute myeloid leukemia (AML), yet biomarkers for patient selection remain limited. Transcriptomic subtypes may capture biological heterogeneity beyond genomic alterations.
+\noindent\textbf{Background:} Venetoclax plus hypomethylating agents has transformed acute myeloid leukemia (AML) therapy, but predictive biomarkers are lacking. We hypothesized that transcriptomic lineage states dictate BCL-2 dependency and target response independent of somatic mutations.
 
-\noindent\textbf{Methods:} We performed consensus clustering on RNA-sequencing data from 450 adult AML patients (BeatAML discovery cohort) and validated molecular subtypes in five independent cohorts spanning three continents and four technological platforms (TCGA-LAML, $n=151$; TARGET-AML, $n=1{,}713$; German AMLCG trial GSE12417, $n=242$; AMLSG trial GSE22845, $n=211$; independent GEO cohort GSE106291, $n=250$). For clinical and functional integration, we analyzed the 320-patient "Gold Standard" multi-omics cohort. We tested differential drug response across 155 compounds. Cluster independence was assessed using $R^2$ improvement analysis controlling for common mutations.
+\noindent\textbf{Methods:} Molecular subtypes were defined via consensus clustering in the BeatAML cohort ($N=450$) and validated across five cohorts ($N=2{,}567$). Predictive value was assessed using $R^2$ variance improvement models controlling for 11 clinical driver mutations across 155 ex vivo drug screens, matched proteomics, and single-cell CITE-seq.
 
-\noindent\textbf{Results:} We identified two distinct transcriptomic lineage states: Cluster 1 (40.9\%, monocytic\allowbreak-primed) and Cluster 2 (59.1\%, primitive\slash\allowbreak progenitor-like). While these states were not independently prognostic after controlling for somatic mutations (\pval{0.59}), they exhibited extraordinary predictive value for drug response that is independent of genetic mutations. Venetoclax response showed the most profound differential footprint (\pval{6.37$\times$10$^{-19}$}), with a 115.7\% relative $R^2$ improvement beyond mutational models. Our findings were robust across modern stemness hierarchies, remaining significant after controlling for LSC17 (\pval{0.008}). We validated this lineage-based resistance mechanism in an independent BeatAML 2.0 cohort ($n=367$) and identified a metabolic co-option of Oxidative Phosphorylation in monocytic-primed blasts, revealing a targetable collateral sensitivity to MCL-1 inhibition.
+\noindent\textbf{Results:} We identified two stable states: Cluster 1 (monocytic-primed; $40.9\%$) and Cluster 2 (primitive/progenitor-like; $59.1\%$). These states were not prognostic after adjusting for mutations ($p=0.59$) but were highly predictive of Venetoclax response ($p=6.37\times10^{-19}$), providing a $+115.7\%$ relative $R^2$ improvement over mutational models and outperforming LSC17 stemness scores ($p=0.008$). Relapsed blasts selected for monocytic-primed states under therapy, shifting apoptotic dependencies from BCL2 to MCL1. This resistance axis was validated in an independent cohort ($N=367$) and matched proteomics, exposing targetable salvage vulnerabilities to MEK, HDAC, and mTOR inhibition.
 
-\noindent\textbf{Conclusions:} Transcriptomic lineage states capture cell maturity that is independent of genomic risk, providing a roadmap for precision treatment selection in adult AML.
+\noindent\textbf{Conclusions:} Transcriptomic lineage states define a mutation-independent axis of cell maturity that dictates targeted therapy response, providing a precision roadmap to bypass resistance.
 \end{abstract}
 
 \newpage
