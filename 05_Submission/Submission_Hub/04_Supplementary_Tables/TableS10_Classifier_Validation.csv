@@ -1,0 +1,8 @@
+"Cohort","N_Total","Platform","Cluster_1_Count","Cluster_1_Pct","Cluster_2_Count","Cluster_2_Pct","Mean_Mapping_Confidence","Clinical_Classification_Status"
+"BeatAML (Discovery held-out test split)","143","RNA-seq","69","48.3%","74","51.7%","0.944 (Accuracy)","Discovery baseline validation"
+"TCGA-LAML validation cohort","151","RNA-seq","69","45.7%","82","54.3%","0.767","Highly stable adult validation"
+"German AMLCG trial GPL96 cohort","163","Affymetrix HG-U133A","66","40.5%","97","59.5%","0.788","Highly stable adult validation"
+"German AMLCG trial GPL570 cohort","79","Affymetrix HG-U133 Plus 2.0","38","48.1%","41","51.9%","0.795","Highly stable adult validation"
+"German--Austrian AMLSG GSE22845 cohort","154","Affymetrix HG-U133 Plus 2.0","70","45.5%","84","54.5%","0.725","Highly stable adult validation"
+"Independent GEO GSE106291 cohort","250","Affymetrix HG-U133 Plus 2.0","98","39.2%","152","60.8%","0.778","Highly stable adult validation"
+"TARGET-AML pediatric cohort","1713","RNA-seq","1368","79.9%","345","20.1%","0.575","Borderline; adult-specific biology boundaries"

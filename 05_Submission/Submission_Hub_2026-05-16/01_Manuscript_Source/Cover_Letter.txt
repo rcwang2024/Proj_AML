@@ -43,7 +43,7 @@ WHY BLOOD IS THE IDEAL HOME FOR THIS WORK:
 Blood is the flagship journal in hematology and the definitive venue for studies redefining AML patient stratification. By demonstrating that transcriptomic lineage states provide orthogonal predictive information to ELN genomic panels, this study provides a conceptual leap for precision oncology. Our continuous 9-gene VRS decision tool and multi-cohort clinical trial validations offer an immediate framework for clinical trial design and bedside treatment selection.
 
 ROBUSTNESS & DATA AVAILABILITY:
-All analyses have undergone rigorous statistical audit, including proportional hazards-free survival metrics, multivariable variance decomposition, and study-wide Benjamini-Hochberg FDR control. The manuscript complies fully with Blood formatting guidelines (Abstract = 245 words, 2 Key Points bullets, 6 Main Figures, 1 Main Table, 34 references). All raw and processed datasets are publicly available through dbGaP, GDC, and NCBI GEO, and our computational pipeline is fully archived on GitHub.
+All analyses have undergone rigorous statistical audit, including proportional hazards-free survival metrics, multivariable variance decomposition, and study-wide Benjamini-Hochberg FDR control. The manuscript complies fully with Blood formatting guidelines (Abstract = 245 words, 2 Key Points bullets, 6 Main Figures, 1 Main Table, 18 references). All raw and processed datasets are publicly available through dbGaP, GDC, and NCBI GEO, and our computational pipeline is fully archived on GitHub.
 
 AUTHOR STATEMENT:
 As the sole author, I have read and approved the manuscript. This work has not been published previously and is not under consideration elsewhere. The author declares no competing financial interests.
