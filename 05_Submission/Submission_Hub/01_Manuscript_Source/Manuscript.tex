@@ -140,7 +140,7 @@ Bone Marrow Blasts, \% & 68 (48--84) & 65 (45--82) & 71 (52--86) & 0.22 \\
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.95\textwidth]{Figures/Figure1_Consolidated.pdf}
-\caption{\textbf{Discovery and External Multi-Cohort Validation of Transcriptomic Subtypes in Adult AML.} \textbf{a}, Consensus clustering matrix ($k=2$) across top-variance genes in the discovery BeatAML cohort ($N=450$). \textbf{b}, Heatmap of top 50 lineage marker genes separating Cluster 1 (monocytic-primed) and Cluster 2 (primitive/progenitor-like). \textbf{c-e}, Subtype distribution across external validation cohorts: TCGA-LAML ($N=151$), TARGET-AML ($N=1{,}713$), and German AMLCG ($N=242$). \textbf{f}, Distribution of molecular subtypes across ELN 2017 risk categories. \textbf{g}, Kaplan-Meier overall survival analysis comparing Cluster 1 vs Cluster 2 in BeatAML.}
+\caption{\textbf{Discovery, Characterization, and Clinical Context of Transcriptomic Subtypes in Adult AML.} \textbf{a}, Principal Component Analysis (PCA) of gene expression data showing clear lineage separation between Cluster 1 ($N=184$, monocytic-primed) and Cluster 2 ($N=266$, primitive/progenitor-like) in the BeatAML cohort. \textbf{b}, Volcano plot displaying differential gene expression between Cluster 2 and Cluster 1. \textbf{c}, Mutational partitioning showing frequencies of key AML somatic driver mutations across subtypes. \textbf{d}, Clinical risk stratification showing distribution of molecular subtypes across European LeukemiaNet (ELN) 2017 risk categories.}
 \label{fig:fig1}
 \end{figure}
 
@@ -158,7 +158,7 @@ Importantly, transcriptomic lineage partitioning was uncoupled from European Leu
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.95\textwidth]{Figures/Figure2_Consolidated.pdf}
-\caption{\textbf{Predictive Superiority of Transcriptomic Subtypes for Ex Vivo Venetoclax Response.} \textbf{a}, Volcano plot of ex vivo drug sensitivity differential across 155 targeted agents ($N=520$ samples). \textbf{b}, Ex vivo Venetoclax dose-response AUC comparing Cluster 1 vs Cluster 2 ($p=6.37\times10^{-19}$). \textbf{c}, Multivariable $R^2$ variance improvement analysis demonstrating predictive superiority of transcriptomic subtypes beyond 11 driver mutations ($\Delta R^2=+115.7\%$, $p=3.91\times10^{-15}$).}
+\caption{\textbf{Predictive Superiority of Transcriptomic Subtypes for Ex Vivo Venetoclax Response.} \textbf{a}, Multivariable $R^2$ variance improvement analysis demonstrating the predictive superiority of transcriptomic subtypes over 11 somatic driver mutations. \textbf{b}, Multivariate logistic regression adjusted odds ratios for Venetoclax response, establishing subtype as a dominant independent predictor. \textbf{c}, Ex vivo Venetoclax dose-response AUC comparison between Cluster 1 (resistant) and Cluster 2 (sensitive) ($p=6.37\times10^{-19}$). \textbf{d}, Receiver Operating Characteristic (ROC) curves demonstrating BCL-2 target specificity of the 9-gene Venetoclax Response Score (VRS) in predicting ex vivo Venetoclax response compared to clinical intensive chemotherapy induction remission.}
 \label{fig:fig2}
 \end{figure}
 
@@ -172,7 +172,7 @@ To determine whether transcriptomic lineage states provide independent predictiv
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.98\textwidth,height=0.85\textheight,keepaspectratio]{Figures/Figure3_Consolidated.pdf}
-\caption{\textbf{Development, Multi-Cohort Validation, and Clinical Risk Stratification of the Venetoclax Response Score (VRS).} \textbf{a}, Formulation of the 9-gene VRS. \textbf{b}, Stratification of ex vivo Venetoclax AUC across Low, Medium, and High VRS tiers in BeatAML ($p=2.86\times10^{-22}$). \textbf{c}, Continuous correlation between VRS and Venetoclax AUC in external BeatAML 2.0 ($p=3.30\times10^{-37}$). \textbf{d}, Correlation between VRS and VIALE-A trial resistance signature score ($\rho=-0.79$, $p<2.2\times10^{-16}$).}
+\caption{\textbf{Characterization of Lineage Phenotypes, Proteomic Priming, and Metabolic Adaptation.} \textbf{a}, Correlation between continuous bulk monocytic differentiation score and ex vivo Venetoclax AUC. \textbf{b}, Bulk proteomic validation comparing BCL2, MCL1, and CD14 protein abundances between Cluster 1 and Cluster 2. \textbf{c}, Malignant blast differentiation states (HSC-like, Progenitor-like, Monocytic-like) distribution within Cluster 1 and Cluster 2. \textbf{d}, Longitudinal CITE-seq tracking showing in vivo clonal selection of monocytic blasts under Venetoclax + Decitabine pressure. \textbf{e}, Gene Set Enrichment Analysis (GSEA) pathway enrichment profiles comparing Cluster 1 and Cluster 2, highlighting metabolic differences.}
 \label{fig:fig3}
 \end{figure}
 
@@ -185,8 +185,8 @@ We validated the VRS in the independent BeatAML 2.0 cohort ($N=367$; \cite{botto
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.98\textwidth,height=0.85\textheight,keepaspectratio]{Figures/Figure4_Consolidated.pdf}
-\caption{\textbf{Single-Cell Resolution and Clonal Dynamics of Venetoclax Resistance.} \textbf{a}, Single-cell UMAP projection of CITE-seq profiles ($N=4{,}426$ cells) colored by cell lineage. \textbf{b}, Distribution of single-cell VRS across primitive progenitor vs mature monocytic clusters. \textbf{c}, Cell-surface ADT protein markers (CD34 vs CD14/CD64) mapped to VRS tiers. \textbf{d}, Longitudinal selection of low-VRS monocytic blasts under Venetoclax + Decitabine therapy at diagnosis vs relapse ($p=1.42\times10^{-8}$).}
+\includegraphics[width=0.98\textwidth,height=0.84\textheight,keepaspectratio]{Figures/Figure4_Consolidated.pdf}
+\caption{\textbf{Single-Cell Resolution, Developmental Coordinates, and Target Gene Trade-offs.} \textbf{a}, Single-cell UMAP projection of transcriptomic profiles colored by cell lineage. \textbf{b}, Distribution of single-cell calculated VRS across primitive progenitor-like versus mature monocytic-like clusters. \textbf{c}, Continuous single-cell VRS activity across developmental coordinates. \textbf{d}, Expression partitioning of BCL2 and MCL1 across leukemic blast differentiation states. \textbf{e}, Expression trade-off between BCL2 and MCL1 across single cells, illustrating the lineage-driven apoptotic switch.}
 \label{fig:fig4}
 \end{figure}
 
@@ -199,13 +199,13 @@ Single-cell CITE-seq analysis ($N=4{,}426$ blasts; \cite{pei2020monocytic}) reve
 \begin{figure}[p]
 \centering
 \includegraphics[width=0.99\textwidth,height=0.9\textheight,keepaspectratio]{Figures/Figure5_Consolidated.pdf}
-\caption*{\textbf{Figure 5. Actionable Salvage Therapeutics and Rational Combinations for Venetoclax-Resistant AML.} \textit{(Figure legend continued on next page.)}}
+\caption*{\textbf{Figure 5. Clinical Stratification, Multi-Agent Screening, and Clinical Trial Validation of the 9-Gene VRS.} \textit{(Figure legend continued on next page.)}}
 \end{figure}
 
 \begin{figure}[h!]
 \phantomcaption
 \label{fig:fig5}
-\caption*{\textbf{Figure 5 (Continued). Actionable Salvage Therapeutics and Rational Combinations for Venetoclax-Resistant AML.} \textbf{a}, Volcano plot of 29 salvage compounds with preferential sensitivity in Cluster 1 ($N=520$). \textbf{b}, Ranking of top salvage classes: HDAC, MEK, mTOR, and RTK inhibitors. \textbf{c}, Ex vivo drug AUC for Panobinostat (HDACi) comparing Cluster 1 vs Cluster 2 ($p=1.37\times10^{-11}$, $d=0.89$). \textbf{d}, Ex vivo drug AUC for Selumetinib (MEK) and Rapamycin (mTOR). \textbf{e}, Additive Bliss synergy matrix for rational dual combinations.}
+\caption*{\textbf{Figure 5 (Continued). Clinical Stratification, Multi-Agent Screening, and Clinical Trial Validation of the 9-Gene VRS.} \textbf{a}, Distribution of continuous 9-gene VRS across patients. \textbf{b}, Stratification of ex vivo Venetoclax AUC across Low, Medium, and High VRS clinical tiers ($p=2.86\times10^{-22}$). \textbf{c}, Volcano plot of ex vivo sensitivity differences across 155 targeted agents, highlighting lineage-dependent vulnerabilities. \textbf{d}, Enrichment of differentially sensitive salvage drug classes (HDAC, MEK, mTOR, RTK inhibitors) for resistant patients. \textbf{e}, External validation demonstrating robust correlation between continuous VRS and Phase III VIALE-A trial resistance/response signatures ($\rho=-0.79$, $p<2.2\times10^{-16}$).}
 \end{figure}
 
 To identify salvage options for Venetoclax-resistant Cluster 1 patients ($N=520$ drug-screened set), we audited ex vivo response across 155 targeted compounds. We identified 29 active agents with significant, preferential sensitivity in Cluster 1 vs Cluster 2 (all $\text{FDR}<0.05$; \textbf{Figure~5A,B}; \href{Supplementary_Methods.pdf}{\textbf{Supplementary Table S8}}). Differentially sensitive classes were dominated by: (1) Epigenetic HDAC inhibitors (Panobinostat mean AUC $64.5$ vs $126.6$, $p=1.37\times10^{-11}$, $d=0.89$; \textbf{Figure~5C}); (2) MEK inhibitors (Selumetinib $p=3.72\times10^{-11}$, $d=0.65$; Trametinib $p=8.51\times10^{-8}$); (3) AKT/mTOR inhibitors (Rapamycin $p=3.75\times10^{-9}$; MK-2206 $p=1.78\times10^{-9}$); and (4) RTK inhibitors (Nilotinib $p=5.52\times10^{-9}$) (\textbf{Figure~5D}). Dual-targeting combinations of Panobinostat + Selumetinib (additive $d=1.54$) and Rapamycin + Panobinostat (additive $d=1.45$) demonstrated potent ex vivo synergy (\textbf{Figure~5E}).
@@ -216,7 +216,7 @@ To identify salvage options for Venetoclax-resistant Cluster 1 patients ($N=520$
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.98\textwidth,height=0.85\textheight,keepaspectratio]{Figures/Figure6_Consolidated.pdf}
-\caption{\textbf{DepMap Functional Target Essentiality and Ex Vivo Combination Synergy.} \textbf{a}, Schematic of DepMap CRISPR-Cas9 dependency screening across myeloid leukemia cell lines ($N=24$). \textbf{b}, Chronos gene dependency scores for \textit{HDAC1}, \textit{MAP2K1}, and \textit{MTOR} in monocytic THP-1 vs progenitor MOLM-13 lines. \textbf{c-d}, Target gene essentiality differential across cell line lineages ($\text{FDR}<0.01$). \textbf{e-f}, Ex vivo Bliss synergy testing for Venetoclax + S63845 (MCL-1 inhibitor) combination in primary patient blasts ($p=2.14\times10^{-7}$).}
+\caption{\textbf{Actionable Salvage Opportunities, Patient Sensitivity Profiles, and Dual-Targeting Synergy.} \textbf{a}, Effect sizes (Cohen's d) and FDR significance for preferentially sensitive drug classes in the resistant subtype. \textbf{b}, Volcano plot of ex vivo sensitivity differences across 155 targeted agents, highlighting preferential sensitivity in the resistant subtype. \textbf{c}, Ex vivo drug sensitivity (AUC) comparing subtypes for top salvage candidates: Panobinostat (HDAC), Selumetinib (MEK), and Rapamycin (mTOR). \textbf{d}, Additive Bliss synergy matrix showing ex vivo combination synergy for dual-targeting regimens. \textbf{e}, Ex vivo dose-response curves for Panobinostat. \textbf{f}, Ex vivo dose-response curves for Selumetinib.}
 \label{fig:fig6}
 \end{figure}
 
