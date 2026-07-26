@@ -26,10 +26,8 @@
 
 \title{\Large\textbf{Supplementary Appendix: Transcriptomic Lineage Partitioning Resolves Venetoclax Resistance in Acute Myeloid Leukemia}}
 \author{
-[Author Names]$^{1,2,*}$, [Co-author Names]$^{1,3}$ \\[0.3cm]
-\small $^1$Department of Hematology and Oncology, [Institution] \\
-\small $^2$Division of Computational Biology, [Institution] \\
-\small $^3$Center for Precision Medicine, [Institution] \\[0.2cm]
+\textbf{[Author Name]}, MD, PhD$^{1,*}$ \\[0.3cm]
+\small $^1$Department of Hematology and Oncology, [Institution] \\[0.2cm]
 \small $^*$Correspondence: [email]
 }
 \date{}
@@ -369,7 +367,7 @@ The continuous 9-Gene Venetoclax Response Score (VRS) is calculated as:
 \begin{equation}
 \text{VRS}_{\text{raw}} = \sum_{i=1}^{9} w_i \cdot z(g_i)
 \end{equation}
-where $g_i \in \{\text{BCL2}, \text{NPM1}, \text{DNMT3A}, \text{MCL1}, \text{TP53}, \text{RUNX1}, \text{ASXL1}, \text{CD14}, \text{FCGR1A}\}$, with positive weights $w_i = +1$ for primitive/BCL-2 addiction markers ($\text{BCL2}, \text{NPM1}, \text{DNMT3A}$) and negative weights $w_i = -1$ for monocytic/resistance markers ($\text{MCL1}, \text{TP53}, \text{RUNX1}, \text{ASXL1}, \text{CD14}, \text{FCGR1A}$). Raw scores are standardized via reference Z-score transformation and rescaled to a 0--100 continuous scale.
+where $g_i$ represents the 9 key genes: \textit{BCL2}, \textit{NPM1}, \textit{DNMT3A}, \textit{MCL1}, \textit{TP53}, \textit{RUNX1}, \textit{ASXL1}, \textit{CD14}, and \textit{FCGR1A}. Positive weights ($w_i = +1$) are assigned to primitive/BCL-2 addiction markers (\textit{BCL2}, \textit{NPM1}, \textit{DNMT3A}), while negative weights ($w_i = -1$) are assigned to monocytic/resistance markers (\textit{MCL1}, \textit{TP53}, \textit{RUNX1}, \textit{ASXL1}, \textit{CD14}, \textit{FCGR1A}). Raw scores are standardized via reference Z-score transformation and rescaled to a 0--100 continuous scale.
 
 \subsection{Multivariable Variance Decomposition ($R^2$ Improvement Analysis)}
 To quantify independent predictive value for drug response, hierarchical linear models were fit:

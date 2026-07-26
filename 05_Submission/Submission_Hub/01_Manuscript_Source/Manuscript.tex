@@ -110,6 +110,7 @@ Overall survival (OS) was evaluated using Kaplan-Meier estimator curves and log-
 \label{tab:baseline}
 \small
 \setlength{\tabcolsep}{5pt}
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{l c c c c}
 \toprule
 \textbf{Characteristic} & \textbf{BeatAML Discovery} & \textbf{BeatAML 2.0 Validation} & \textbf{TCGA-LAML} & \textbf{P-value} \\
@@ -131,7 +132,8 @@ Bone Marrow Blasts, \% & 68 (48--84) & 65 (45--82) & 71 (52--86) & 0.22 \\
 \quad DNMT3A & 106 (23.6\%) & 86 (23.4\%) & 36 (23.8\%) & 0.99 \\
 \quad TP53 & 58 (12.9\%) & 48 (13.1\%) & 19 (12.6\%) & 0.98 \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \end{table}
 
 
@@ -226,13 +228,13 @@ Venetoclax combined with hypomethylating agents has transformed the management o
 
 While somatic mutations in \textit{NPM1}, \textit{FLT3}, and \textit{TP53} provide essential prognostic information regarding overall survival under intensive chemotherapy \cite{dohner2017eln,papaemmanuil2016genomic}, they account for less than $18\%$ of variance in Venetoclax response. Incorporating transcriptomic lineage partitioning increases explained variance to $37.2\%$ ($\Delta R^2=+115.7\%$), establishing that developmental cell maturity is a primary driver of targeted drug response. Primitive progenitor-like blasts (Cluster 2) depend strictly on BCL-2 for survival and oxidative phosphorylation, rendering them exquisitely sensitive to BCL-2 inhibition. Conversely, monocytic-primed blasts (Cluster 1) undergo an anti-apoptotic switch to MCL-1 and BCL-XL, driving non-mutational Venetoclax resistance.
 
-Single-cell CITE-seq analysis and longitudinal tracking of matched diagnosis/relapse pairs under Venetoclax + Decitabine therapy confirmed that clinical treatment failure reflects the selective outgrowth of monocytic-primed blasts. Crucially, this monocytic shift creates targetable collateral vulnerabilities. Ex vivo drug profiling and DepMap CRISPR screening identified HDAC inhibitors (Panobinostat), MEK inhibitors (Selumetinib, Trametinib), and mTOR/AKT inhibitors (Rapamycin, MK-2206) as highly effective salvage candidates for Venetoclax-resistant disease. Dual-targeting regimens combining HDAC and MEK/mTOR inhibition exhibited potent synergy, providing rational therapeutic combinations for immediate clinical evaluation.
+Single-cell CITE-seq analysis and longitudinal tracking of matched diagnosis\slash relapse pairs under Venetoclax + Decitabine therapy confirmed that clinical treatment failure reflects the selective outgrowth of monocytic-primed blasts. Crucially, this monocytic shift creates targetable collateral vulnerabilities. Ex vivo drug profiling and DepMap CRISPR screening identified HDAC inhibitors (Panobinostat), MEK inhibitors (Selumetinib, Trametinib), and mTOR\slash AKT inhibitors (Rapamycin, MK-2206) as highly effective salvage candidates for Venetoclax-resistant disease. Dual-targeting regimens combining HDAC and MEK\slash mTOR inhibition exhibited potent synergy, providing rational therapeutic combinations for immediate clinical evaluation.
 
-To facilitate rapid bedside implementation, we established the 9-gene Venetoclax Response Score (VRS), a continuous biomarker validated across mass-spectrometry proteomics and Phase III VIALE-A trial signatures. In conclusion, transcriptomic lineage partitioning resolves mutation-independent resistance and establishes a precision framework for Venetoclax risk stratification in acute myeloid leukemia.
+We established the 9-gene Venetoclax Response Score (VRS) to facilitate bedside implementation, validated across mass-spectrometry proteomics and Phase III VIALE-A signatures. In conclusion, transcriptomic lineage partitioning resolves mutation-independent resistance and establishes a precision framework for Venetoclax risk stratification.
 
 \section*{Acknowledgments}
 
-We thank the patients and families who participated in the BeatAML, TCGA-LAML, TARGET-AML, AMLCG, and AMLSG clinical trial studies. We thank the BeatAML consortium for generating and sharing data. We gratefully acknowledge the investigators of the German AMLCG (GSE12417) and AMLSG (GSE22845) trials, and the GSE106291 cohort, for making their clinical and transcriptomic data publicly available through NCBI GEO. This work was supported by [Funding Sources].
+We thank the patients and families who participated in the TCGA-LAML, TARGET-AML, AMLCG, AMLSG, and BeatAML studies. We thank the BeatAML consortium for generating and sharing data. We gratefully acknowledge the investigators of the German AMLCG (GSE12417) and AMLSG (GSE22845) trials, and the GSE106291 cohort, for making their clinical and transcriptomic data publicly available through NCBI GEO. This work was supported by [Funding Sources].
 
 % Author Contributions
 \section*{Author Contributions}

@@ -17,9 +17,9 @@ Washington, DC 20036, USA
 
 Dear Editor-in-Chief and Editorial Board,
 
-RE: Original Article Submission - "Molecular Subtypes in Adult Acute Myeloid Leukemia Predict Venetoclax Response Independent of Genomic Alterations"
+RE: Original Article Submission - "Transcriptomic Lineage Partitioning Resolves Venetoclax Resistance in Acute Myeloid Leukemia"
 
-I am pleased to submit my Original Article titled "Molecular Subtypes in Adult Acute Myeloid Leukemia Predict Venetoclax Response Independent of Genomic Alterations" for consideration for publication in Blood.
+I am pleased to submit my Original Article titled "Transcriptomic Lineage Partitioning Resolves Venetoclax Resistance in Acute Myeloid Leukemia" for consideration for publication in Blood.
 
 Acute myeloid leukemia (AML) remains a cytogenetically and molecularly heterogeneous malignancy. While the approval of the selective BCL-2 inhibitor Venetoclax combined with hypomethylating agents (HMAs) or low-dose cytarabine has transformed non-intensive treatment paradigms, clinical response remains highly heterogeneous, and primary or acquired resistance represents an urgent clinical challenge. Current ELN guidelines rely exclusively on DNA mutation profiles (e.g., NPM1, FLT3, TP53) for risk stratification. However, whether transcriptomic lineage architecture captures therapeutic vulnerabilities that transcend genomic DNA alterations has remained a fundamental open question in clinical hematology.
 
