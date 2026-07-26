@@ -146,13 +146,18 @@ cell_type_colors <- c(
 )
 
 # Custom Theme
-theme_umap <- theme_void(base_size = 14) +
+theme_umap <- theme_minimal(base_size = 14) +
   theme(
     plot.title = element_text(face = "bold", size = 15, color = "darkblue", hjust = 0, margin = margin(b=10)),
     plot.subtitle = element_text(face = "plain", size = 13, color = "darkblue", hjust = 0, margin = margin(b=15)),
     legend.position = "right",
     legend.title = element_text(size = 12, face = "bold"),
     legend.text = element_text(size = 10),
+    panel.grid = element_blank(),
+    axis.line = element_line(color = "black", linewidth = 0.5),
+    axis.ticks = element_line(color = "black", linewidth = 0.5),
+    axis.title = element_text(size = 12, face = "bold", color = "black"),
+    axis.text = element_text(size = 10, color = "black"),
     plot.margin = margin(20, 20, 20, 20)
   )
 
@@ -175,7 +180,9 @@ p_umap_celltype <- ggplot(sim_cells, aes(x = umap_1, y = umap_2, color = cell_ty
   scale_color_manual(values = cell_type_colors, name = "Cell State") +
   labs(
     title = "A. Single-Cell Resolution of the AML Microenvironment",
-    subtitle = "Projection of GSE116256 Bone Marrow Niche coordinates"
+    subtitle = "Projection of GSE116256 Bone Marrow Niche coordinates",
+    x = "UMAP 1",
+    y = "UMAP 2"
   ) +
   theme_umap +
   guides(color = guide_legend(override.aes = list(size=3)))
@@ -189,7 +196,9 @@ p_umap_vrs <- ggplot(sim_cells, aes(x = umap_1, y = umap_2, color = VRS)) +
   scale_color_gradientn(colors = c("#FFD3B6", "#FFAAA6", "#FF8B94", "#E67E22", "#3498DB"), name = "VRS Score") +
   labs(
     title = "B. Venetoclax Response Score (VRS) in Cell States",
-    subtitle = "Primitive stem-like blasts exhibit highest VRS (BCL2 dependent)"
+    subtitle = "Primitive stem-like blasts exhibit highest VRS (BCL2 dependent)",
+    x = "UMAP 1",
+    y = "UMAP 2"
   ) +
   theme_umap
 
@@ -252,8 +261,8 @@ p_scatter_corr <- ggplot(sim_cells %>% filter(cell_type != "T_NK_cells"), aes(x 
   labs(
     title = "E. BCL2 vs. MCL1 Expression Trade-off",
     subtitle = sprintf("Developmental shift from BCL2 to MCL1 (Spearman r = %.3f)", cor(sim_cells$BCL2, sim_cells$MCL1, method="spearman")),
-    x = "BCL2 Expression (Primitive/Sensitive Marker)",
-    y = "MCL1 Expression (Differentiated/Resistant Marker)"
+    x = "BCL2 Expression (Sensitive)",
+    y = "MCL1 Expression (Resistant)"
   ) +
   theme_hf +
   theme(legend.position = "right")
