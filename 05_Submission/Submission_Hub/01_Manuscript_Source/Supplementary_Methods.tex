@@ -21,6 +21,9 @@
 \usepackage{pdflscape}
 \usepackage{rotating}
 \renewcommand{\thetable}{S\arabic{table}}
+\usepackage{caption}
+\captionsetup{labelfont=bf}
+\renewcommand{\thefigure}{S\arabic{figure}}
 
 \doublespacing
 
@@ -387,7 +390,7 @@ Single-cell RNA-seq and ADT surface protein profiles from van Galen et al. \cite
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.85\textwidth]{Supplementary/FigureS1.pdf}
-\caption{\textbf{Technical Batch Mitigation and Batch Effect Correction.} (A) Principal Component Analysis (PCA) of raw gene expression data showing clear batch effects across sequencing centers. (B) PCA of ComBat-seq corrected expression data showing removal of technical batch effects. (C) Expression levels of top 10 batch-associated genes before correction. (D) Expression levels of the same 10 genes after ComBat-seq correction, demonstrating that technical variation is successfully removed.}
+\caption{\textbf{Technical Batch Mitigation and Batch Effect Correction.} \textbf{A}, Principal Component Analysis (PCA) of raw gene expression data showing clear batch effects across sequencing centers. \textbf{B}, PCA of ComBat-seq corrected expression data showing removal of technical batch effects. \textbf{C}, Expression levels of top 10 batch-associated genes before correction. \textbf{D}, Expression levels of the same 10 genes after ComBat-seq correction, demonstrating that technical variation is successfully removed.}
 \label{fig:figS1}
 \end{figure}
 
@@ -403,7 +406,7 @@ Single-cell RNA-seq and ADT surface protein profiles from van Galen et al. \cite
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.85\textwidth]{Supplementary/FigureS3.pdf}
-\caption{\textbf{Baseline Overall Survival Partitioning across ELN 2017 Subgroups.} Kaplan-Meier overall survival curves comparing Cluster 1 vs Cluster 2 within: (A) ELN 2017 Favorable-risk cohort. (B) ELN 2017 Intermediate-risk cohort. (C) ELN 2017 Adverse-risk cohort. (D) Hazard ratio forest plot across ELN risk strata.}
+\caption{\textbf{Baseline Overall Survival Partitioning across ELN 2017 Subgroups.} Kaplan-Meier overall survival curves comparing Cluster 1 vs Cluster 2 within: \textbf{A}, ELN 2017 Favorable-risk cohort. \textbf{B}, ELN 2017 Intermediate-risk cohort. \textbf{C}, ELN 2017 Adverse-risk cohort. \textbf{D}, Hazard ratio forest plot across ELN risk strata.}
 \label{fig:figS3}
 \end{figure}
 
@@ -419,7 +422,7 @@ Single-cell RNA-seq and ADT surface protein profiles from van Galen et al. \cite
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.85\textwidth]{Supplementary/FigureS5.pdf}
-\caption{\textbf{Subgroup Benchmarking against LSC17, ROC Discrimination, and Decision Curve Analysis (DCA).} (A) Correlation between the 9-gene VRS and the prognostic LSC17 stemness score, demonstrating biological orthogonality. (B) ROC curves comparing the discrimination accuracy of the VRS versus LSC17 for predicting ex vivo Venetoclax response. (C) Decision Curve Analysis (DCA) showing the clinical net benefit of VRS-guided treatment selection. (D) Bootstrap stability analysis of the ROC-AUC performance.}
+\caption{\textbf{Subgroup Benchmarking against LSC17, ROC Discrimination, and Decision Curve Analysis (DCA).} \textbf{A}, Correlation between the 9-gene VRS and the prognostic LSC17 stemness score, demonstrating biological orthogonality. \textbf{B}, ROC curves comparing the discrimination accuracy of the VRS versus LSC17 for predicting ex vivo Venetoclax response. \textbf{C}, Decision Curve Analysis (DCA) showing the clinical net benefit of VRS-guided treatment selection. \textbf{D}, Bootstrap stability analysis of the ROC-AUC performance.}
 \label{fig:figS5}
 \end{figure}
 
@@ -427,7 +430,7 @@ Single-cell RNA-seq and ADT surface protein profiles from van Galen et al. \cite
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.85\textwidth]{Supplementary/FigureS6.pdf}
-\caption{\textbf{Metabolic Reprogramming, Dual Apoptotic Priming, and Pathway Integration in Monocytic Blast States.} (A) Signature scores for Oxidative Phosphorylation (OXPHOS) and Glycolysis showing Cluster 2 as a high-energy metabolic hybrid state. (B) Ex vivo Bliss synergy matrix for Venetoclax + S63845 (MCL-1 inhibitor) combination in primary patient blasts, showing synergy. (C) Heatmap showing coordinated enrichment of high-energy metabolic circuits in Cluster 2.}
+\caption{\textbf{Metabolic Reprogramming, Dual Apoptotic Priming, and Pathway Integration in Monocytic Blast States.} \textbf{A}, Signature scores for Oxidative Phosphorylation (OXPHOS) and Glycolysis showing Cluster 2 as a high-energy metabolic hybrid state. \textbf{B}, Ex vivo Bliss synergy matrix for Venetoclax + S63845 (MCL-1 inhibitor) combination in primary patient blasts, showing synergy. \textbf{C}, Heatmap showing coordinated enrichment of high-energy metabolic circuits in Cluster 2.}
 \label{fig:figS6}
 \end{figure}
 
@@ -435,7 +438,7 @@ Single-cell RNA-seq and ADT surface protein profiles from van Galen et al. \cite
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.85\textwidth]{Supplementary/FigureS7.pdf}
-\caption{\textbf{Functional Genomics and DepMap CRISPR Knockout Validation of VRS Targets.} (A) BCL2 gene expression versus CRISPR BCL2 dependency probability across cell lines. (B) BCL2/MCL1 expression ratio versus CRISPR BCL2 dependency. (C) CRISPR HDAC3 dependency versus VRS, demonstrating that lower VRS (resistant) aligns with greater HDAC3 vulnerability. (D) CRISPR MAPK1 (ERK2) dependency versus VRS, showing MEK/ERK vulnerability in resistant cells.}
+\caption{\textbf{Functional Genomics and DepMap CRISPR Knockout Validation of VRS Targets.} \textbf{A}, BCL2 gene expression versus CRISPR BCL2 dependency probability across cell lines. \textbf{B}, BCL2/MCL1 expression ratio versus CRISPR BCL2 dependency. \textbf{C}, CRISPR HDAC3 dependency versus VRS, demonstrating that lower VRS (resistant) aligns with greater HDAC3 vulnerability. \textbf{D}, CRISPR MAPK1 (ERK2) dependency versus VRS, showing MEK/ERK vulnerability in resistant cells.}
 \label{fig:figS7}
 \end{figure}
 
@@ -443,7 +446,7 @@ Single-cell RNA-seq and ADT surface protein profiles from van Galen et al. \cite
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.85\textwidth]{Supplementary/FigureS8.pdf}
-\caption{\textbf{Bulk Proteomic Target Validation Rescued by Functional Ratios and Tumor Purity Filtering.} (A) Spearman correlation between bulk protein VRS (pVRS) and ex vivo Venetoclax AUC across BeatAML proteomics ($N=327$). (B) BCL2/MCL1 protein ratio vs Venetoclax AUC. (C) CD64/BCL2 protein ratio vs Venetoclax AUC. (D) CD64/BCL2 protein ratio filtered for blast purity $\ge 50\%$.}
+\caption{\textbf{Bulk Proteomic Target Validation Rescued by Functional Ratios and Tumor Purity Filtering.} \textbf{A}, Spearman correlation between bulk protein VRS (pVRS) and ex vivo Venetoclax AUC across BeatAML proteomics ($N=327$). \textbf{B}, BCL2/MCL1 protein ratio vs Venetoclax AUC. \textbf{C}, CD64/BCL2 protein ratio vs Venetoclax AUC. \textbf{D}, CD64/BCL2 protein ratio filtered for blast purity $\ge 50\%$.}
 \label{fig:figS8}
 \end{figure}
 
@@ -459,7 +462,7 @@ Single-cell RNA-seq and ADT surface protein profiles from van Galen et al. \cite
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.85\textwidth]{Supplementary/FigureS10.pdf}
-\caption{\textbf{External Validation of the VRS and Molecular Subtypes in the BeatAML 2.0 Cohort.} (A) Scatter plot of continuous VRS vs ex vivo Venetoclax AUC in independent BeatAML 2.0 validation cohort ($N=367$). (B) Boxplot comparing Venetoclax response across predicted subtypes.}
+\caption{\textbf{External Validation of the VRS and Molecular Subtypes in the BeatAML 2.0 Cohort.} \textbf{A}, Scatter plot of continuous VRS vs ex vivo Venetoclax AUC in independent BeatAML 2.0 validation cohort ($N=367$). \textbf{B}, Boxplot comparing Venetoclax response across predicted subtypes.}
 \label{fig:figS10}
 \end{figure}
 
@@ -491,7 +494,7 @@ Single-cell RNA-seq and ADT surface protein profiles from van Galen et al. \cite
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.85\textwidth]{Supplementary/FigureS14.pdf}
-\caption{\textbf{UMAP Visualization of Single-Cell VRS and Cell Surface ADT Markers in GSE143363 CITE-seq Profiles.} Single-cell UMAP projections colored by: (A) Clinical timepoint (Diagnosis vs Relapse). (B) Single-cell VRS. (C) CD34 surface protein expression. (D) CD64 surface protein expression.}
+\caption{\textbf{UMAP Visualization of Single-Cell VRS and Cell Surface ADT Markers in GSE143363 CITE-seq Profiles.} Single-cell UMAP projections colored by: \textbf{A}, Clinical timepoint (Diagnosis vs Relapse). \textbf{B}, Single-cell VRS. \textbf{C}, CD34 surface protein expression. \textbf{D}, CD64 surface protein expression.}
 \label{fig:figS14}
 \end{figure}
 
@@ -499,7 +502,7 @@ Single-cell RNA-seq and ADT surface protein profiles from van Galen et al. \cite
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.85\textwidth]{Supplementary/FigureS15.pdf}
-\caption{\textbf{Validation of the Monocytic Resistance Axis and Age-Independence of the VRS.} (A) Monocytic differentiation scores between Cluster 1 and Cluster 2. (B) VIALE-A trial resistance signature score between clusters. (C) Ex vivo Venetoclax response against patient age.}
+\caption{\textbf{Validation of the Monocytic Resistance Axis and Age-Independence of the VRS.} \textbf{A}, Monocytic differentiation scores between Cluster 1 and Cluster 2. \textbf{B}, VIALE-A trial resistance signature score between clusters. \textbf{C}, Ex vivo Venetoclax response against patient age.}
 \label{fig:figS15}
 \end{figure}
 
@@ -507,7 +510,7 @@ Single-cell RNA-seq and ADT surface protein profiles from van Galen et al. \cite
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.85\textwidth]{Supplementary/FigureS16.pdf}
-\caption{\textbf{Cox Proportional Hazards Model Diagnostics and Subgroup Audits.} (A) Forest plot of subtype hazard ratio consistency across clinical and mutational subgroups. (B) Schoenfeld residuals test for checking the proportional hazards assumption. (C) Calibration plot comparing observed versus predicted 3-year survival. (D) Restricted Mean Survival Time (RMST) difference analysis between subtypes.}
+\caption{\textbf{Cox Proportional Hazards Model Diagnostics and Subgroup Audits.} \textbf{A}, Forest plot of subtype hazard ratio consistency across clinical and mutational subgroups. \textbf{B}, Schoenfeld residuals test for checking the proportional hazards assumption. \textbf{C}, Calibration plot comparing observed versus predicted 3-year survival. \textbf{D}, Restricted Mean Survival Time (RMST) difference analysis between subtypes.}
 \label{fig:figS16}
 \end{figure}
 
@@ -515,7 +518,7 @@ Single-cell RNA-seq and ADT surface protein profiles from van Galen et al. \cite
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.85\textwidth]{Supplementary/FigureS17.pdf}
-\caption{\textbf{Benchmarking of the 9-Gene VRS against ELN 2017/2022 Risk Groups.} (A) Boxplot of continuous VRS across ELN risk categories. (B) Scatter plots of continuous VRS against ex vivo Venetoclax response (AUC) within each ELN risk category.}
+\caption{\textbf{Benchmarking of the 9-Gene VRS against ELN 2017/2022 Risk Groups.} \textbf{A}, Boxplot of continuous VRS across ELN risk categories. \textbf{B}, Scatter plots of continuous VRS against ex vivo Venetoclax response (AUC) within each ELN risk category.}
 \label{fig:figS17}
 \end{figure}
 
@@ -523,7 +526,7 @@ Single-cell RNA-seq and ADT surface protein profiles from van Galen et al. \cite
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.85\textwidth]{Supplementary/FigureS18.pdf}
-\caption{\textbf{Single-Cell Resolution Validation of the 9-Gene VRS and Developmental Partitioning.} Single-cell RNA-seq validation in bone marrow hierarchy (van Galen dataset, GSE116256): (A) UMAP of cell types. (B) VRS projection across cells. (C) VRS by lineage. (D) BCL2 vs MCL1 trade-off.}
+\caption{\textbf{Single-Cell Resolution Validation of the 9-Gene VRS and Developmental Partitioning.} Single-cell RNA-seq validation in bone marrow hierarchy (van Galen dataset, GSE116256): \textbf{A}, UMAP of cell types. \textbf{B}, VRS projection across cells. \textbf{C}, VRS by lineage. \textbf{D}, BCL2 vs MCL1 trade-off.}
 \label{fig:figS18}
 \end{figure}
 
