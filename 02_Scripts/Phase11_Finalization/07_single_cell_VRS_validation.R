@@ -207,7 +207,7 @@ p_box_vrs <- ggplot(sim_cells, aes(x = factor(cell_type, levels = cell_types), y
     y = "Calculated 9-Gene VRS"
   ) +
   theme_hf +
-  theme(axis.text_x = element_text(angle = 45, hjust = 1), legend.position = "none") +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1), legend.position = "none") +
   stat_compare_means(method = "anova", label.y = 105, size = 3.5)
 
 ggsave("04_Figures/Phase11_Finalization/FigureS18_sc_VRS_boxplot.pdf", p_box_vrs, width = 6.5, height = 5.5, device = cairo_pdf)
