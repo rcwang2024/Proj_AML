@@ -46,14 +46,14 @@ cat("- Drugs where Cluster 2 more sensitive:", sum(sig_drugs$cluster_more_sensit
 
 cat("PART 2: Identifying Cluster 2 salvage candidates...\n\n")
 
-# Filter for drugs where Cluster 2 is MORE sensitive (lower AUC)
+# Filter for drugs where Cluster 1 is MORE sensitive (lower AUC)
 cluster2_drugs <- sig_drugs %>%
-  filter(cluster_more_sensitive == "Cluster_2") %>%
+  filter(cluster_more_sensitive == "Cluster_1") %>%
   mutate(
-    # Calculate sensitivity advantage for Cluster 2
-    auc_difference = mean_auc_cluster1 - mean_auc_cluster2,
+    # Calculate sensitivity advantage for Cluster 1
+    auc_difference = mean_auc_cluster2 - mean_auc_cluster1,
     # Percentage improvement
-    pct_improvement = (auc_difference / mean_auc_cluster1) * 100,
+    pct_improvement = (auc_difference / mean_auc_cluster2) * 100,
     # Clinical priority based on multiple factors
     clinical_priority = case_when(
       abs(cohens_d) > 0.8 & fdr < 1e-10 ~ "High",
@@ -67,7 +67,7 @@ cat("=== TOP 15 CLUSTER 2 SALVAGE DRUGS ===\n")
 cat("Ranked by effect size (Cohen's d)\n\n")
 
 top15 <- cluster2_drugs %>%
-  select(drug, n_samples, mean_auc_cluster2, cohens_d,
+  select(drug, n_samples, mean_auc_cluster1, cohens_d,
          pct_improvement, fdr, clinical_priority) %>%
   head(15)
 
@@ -140,7 +140,7 @@ cat("\n\nPART 4: FDA-approved drugs for immediate clinical use...\n\n")
 
 fda_approved <- cluster2_annotated %>%
   filter(fda_approved == "Yes") %>%
-  select(drug, class, n_samples, mean_auc_cluster2, cohens_d,
+  select(drug, class, n_samples, mean_auc_cluster1, cohens_d,
          pct_improvement, fdr, clinical_priority) %>%
   arrange(desc(abs(cohens_d)))
 
@@ -282,21 +282,21 @@ theme_hf <- theme_minimal(base_size = 14) +
 # FIGURE 1: Top 10 Cluster 2 drugs - Effect sizes
 top10_drugs <- cluster2_annotated %>% head(10)
 
-p1 <- ggplot(top10_drugs, aes(x = reorder(drug, cohens_d), y = cohens_d)) +
+p1 <- ggplot(top10_drugs, aes(x = reorder(drug, abs(cohens_d)), y = abs(cohens_d))) +
   geom_col(aes(fill = class), width = 0.7, color = "black", size = 0.2, show.legend = FALSE) +
   geom_hline(yintercept = c(0.5, 0.8), linetype = "dashed", color = "gray60", alpha = 0.5) +
   # Add exact value labels inside/next to the bars
-  geom_text(aes(label = sprintf(" %.2f (class: %s, %s)", cohens_d, class, ifelse(fda_approved == "Yes", "FDA Approved", "Preclinical"))), 
+  geom_text(aes(label = sprintf(" %.2f (class: %s, %s)", abs(cohens_d), class, ifelse(fda_approved == "Yes", "FDA Approved", "Preclinical"))), 
             hjust = 0, color = "#2c3e50", fontface = "bold", size = 3.2) +
   coord_flip() +
   # Use a beautiful, curated color palette for the classes
   scale_fill_brewer(palette = "Set3") +
   # Expand limits on the x-axis (which represents Cohen's d after flip) to leave space for the text labels
   scale_y_continuous(limits = c(0, 1.45), breaks = seq(0, 1.0, 0.2)) +
-  labs(title = "C. Top 10 Salvage Candidates (Cluster 2)",
+  labs(title = "C. Top 10 Salvage Candidates (Cluster 1)",
        subtitle = "Ranked by effect size (Cohen's d) with availability",
        x = NULL,
-       y = "Effect Size (Cohen's d)\n(positive = Cluster 2/Ven-resistant more sensitive)") +
+       y = "Effect Size (Cohen's d)\n(positive = Cluster 1/Ven-resistant more sensitive)") +
   theme_hf +
   theme(legend.position = "none",
         panel.grid.major.y = element_blank(),
@@ -315,7 +315,7 @@ class_dot_data <- cluster2_annotated %>%
 # Sort classes by max Cohen's d in each class
 class_order <- class_dot_data %>%
   group_by(class) %>%
-  summarise(max_d = max(cohens_d)) %>%
+  summarise(max_d = max(abs(cohens_d))) %>%
   arrange(max_d) %>%
   pull(class)
 
@@ -323,7 +323,7 @@ class_dot_data$class <- factor(class_dot_data$class, levels = class_order)
 
 library(ggrepel)
 
-p2 <- ggplot(class_dot_data, aes(x = cohens_d, y = class)) +
+p2 <- ggplot(class_dot_data, aes(x = abs(cohens_d), y = class)) +
   # Add faint horizontal guide lines for each class
   geom_hline(aes(yintercept = class), linetype = "dotted", color = "gray75", linewidth = 0.5) +
   # Add vertical grid lines at standard Cohen's d levels
@@ -348,9 +348,9 @@ p2 <- ggplot(class_dot_data, aes(x = cohens_d, y = class)) +
   scale_size_continuous(name = "-log10(FDR)", range = c(4, 9)) +
   # Scales/Labels
   scale_x_continuous(limits = c(0.1, 1.05), breaks = seq(0.2, 1.0, 0.2)) +
-  labs(title = "A. Therapeutic Class Opportunities (Cluster 2)",
+  labs(title = "A. Therapeutic Class Opportunities (Cluster 1)",
        subtitle = "Effect size (Cohen's d) and FDR significance for preferentially sensitive agents",
-       x = "Effect Size (Cohen's d)\n(positive = Cluster 2/Ven-resistant more sensitive)",
+       x = "Effect Size (Cohen's d)\n(positive = Cluster 1/Ven-resistant more sensitive)",
        y = "Therapeutic Mechanism Class") +
   theme_hf +
   theme(
@@ -385,9 +385,9 @@ p3 <- ggplot(comparison_data,
   geom_col(width = 0.7) +
   coord_flip() +
   geom_hline(yintercept = 0, linewidth = 1) +
-  scale_fill_manual(values = c("Cluster_1" = "#3498DB", "Cluster_2" = "#E67E22"),
-                    labels = c("Cluster 1 (NPM1+/Ven-sensitive)",
-                              "Cluster 2 (TP53+/Ven-resistant)")) +
+  scale_fill_manual(values = c("Cluster_1" = "#E67E22", "Cluster_2" = "#3498DB"),
+                    labels = c("Cluster 1 (TP53+/Ven-resistant)",
+                              "Cluster 2 (NPM1+/Ven-sensitive)")) +
   labs(title = "B. Cluster-Specific Sensitivity Profile",
        subtitle = "Top 15 drugs differentially sensitive per cluster",
        x = NULL,
@@ -413,7 +413,7 @@ p4 <- ggplot(combo_annotated,
                                "High Priority" = "#ff7f0e",
                                "Consider" = "#1f77b4")) +
   expand_limits(y = max(combo_annotated$combined_effect_estimate) * 1.15) +
-  labs(title = "D. Combination Therapy Candidates (Cluster 2)",
+  labs(title = "D. Combination Therapy Candidates (Cluster 1)",
        subtitle = "Combined effect estimates (sum of individual Cohen's d)",
        x = NULL,
        y = "Combined Effect Estimate",
@@ -437,10 +437,10 @@ n_cluster2_drugs <- nrow(cluster2_drugs)
 n_high_priority <- sum(cluster2_drugs$clinical_priority == "High")
 n_fda_approved <- nrow(fda_approved)
 top_drug <- cluster2_drugs$drug[1]
-top_effect <- cluster2_drugs$cohens_d[1]
+top_effect <- abs(cluster2_drugs$cohens_d[1])
 top_fdr <- cluster2_drugs$fdr[1]
 
-cat(sprintf("Total drugs preferentially effective in Cluster 2: %d\n", n_cluster2_drugs))
+cat(sprintf("Total drugs preferentially effective in Cluster 1: %d\n", n_cluster2_drugs))
 cat(sprintf("High clinical priority drugs: %d\n", n_high_priority))
 cat(sprintf("FDA-approved drugs available: %d\n", n_fda_approved))
 cat(sprintf("\nTop drug: %s\n", top_drug))
@@ -457,15 +457,15 @@ print(sort(class_dist, decreasing = TRUE))
 manuscript_text <- sprintf("
 === MANUSCRIPT TEXT SNIPPET ===
 
-Results: Cluster 2 Salvage Therapy Options
+Results: Cluster 1 Salvage Therapy Options
 
-While Cluster 1 patients show extraordinary Venetoclax sensitivity (p=2.78×10⁻²⁴),
-Cluster 2 patients exhibit relative resistance (mean AUC: 192 vs 107). However,
-%d drugs showed preferential efficacy in Cluster 2 (FDR<0.05), including %d
+While Cluster 2 patients show extraordinary Venetoclax sensitivity (p=6.37×10⁻¹⁹),
+Cluster 1 patients exhibit relative resistance (mean AUC: 206.6 vs 115.3). However,
+%d drugs showed preferential efficacy in Cluster 1 (FDR<0.05), including %d
 FDA-approved agents available for immediate off-label use.
 
 **Panobinostat** (HDAC inhibitor) emerged as the most promising salvage option
-(Cohen's d=%.2f, FDR=%.2e), showing 2.0-fold greater sensitivity in Cluster 2.
+(Cohen's d=%.2f, FDR=%.2e), showing 2.7-fold greater sensitivity in Cluster 1.
 Other high-priority options include:
 - **Selumetinib** (MEK inhibitor): Cohen's d=%.2f
 - **Trametinib** (MEK inhibitor): Cohen's d=%.2f
@@ -476,17 +476,17 @@ mechanisms, with **Panobinostat + Selumetinib** (HDAC + MEK inhibition) showing
 the highest combined effect potential (sum of Cohen's d = %.2f). Both agents are
 FDA-approved, enabling rapid clinical translation.
 
-Clinical Implications: Cluster 2 patients, while Venetoclax-resistant, have
+Clinical Implications: Cluster 1 patients, while Venetoclax-resistant, have
 multiple therapeutic options. HDAC and MEK inhibitors show particular promise,
 with combination strategies warranting prospective evaluation. A clinical decision
 algorithm is proposed to guide therapy selection based on disease stage and
 prior treatment history.
 ",
 n_cluster2_drugs, n_fda_approved,
-cluster2_drugs$cohens_d[1], cluster2_drugs$fdr[1],
-cluster2_drugs$cohens_d[cluster2_drugs$drug == "Selumetinib (AZD6244)"],
-cluster2_drugs$cohens_d[cluster2_drugs$drug == "Trametinib (GSK1120212)"],
-cluster2_drugs$cohens_d[cluster2_drugs$drug == "Rapamycin"],
+abs(cluster2_drugs$cohens_d[1]), cluster2_drugs$fdr[1],
+abs(cluster2_drugs$cohens_d[cluster2_drugs$drug == "Selumetinib (AZD6244)"]),
+abs(cluster2_drugs$cohens_d[cluster2_drugs$drug == "Trametinib (GSK1120212)"]),
+abs(cluster2_drugs$cohens_d[cluster2_drugs$drug == "Rapamycin"]),
 combo_annotated$combined_effect_estimate[1]
 )
 

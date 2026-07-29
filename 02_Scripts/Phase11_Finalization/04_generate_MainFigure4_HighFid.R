@@ -11,9 +11,9 @@ library(patchwork)
 
 cat("=== GENERATING GENUINE HIGH-FIDELITY MAIN FIGURE 3 ===\n")
 
-# Setup Colors (C1: Blue, C2: Orange)
-color_c1 <- "#3498DB"
-color_c2 <- "#E67E22"
+# Setup Colors (C1: Orange, C2: Blue)
+color_c1 <- "#E67E22"
+color_c2 <- "#3498DB"
 cluster_colors <- c("Cluster 1" = color_c1, "Cluster 2" = color_c2)
 
 # --- High-Fidelity Theme ---
@@ -59,8 +59,8 @@ sig_stars <- key_lineages %>%
   )
 
 p4a <- ggplot(key_lineages) +
-  geom_bar(aes(x = Cell_Type, y = Mean_C2, fill = "Cluster 1"), stat = "identity", position = position_nudge(x = -0.2), width = 0.35, alpha = 0.9, color="black", linewidth=0.3) +
-  geom_bar(aes(x = Cell_Type, y = Mean_C1, fill = "Cluster 2"), stat = "identity", position = position_nudge(x = 0.2), width = 0.35, alpha = 0.9, color="black", linewidth=0.3) +
+  geom_bar(aes(x = Cell_Type, y = Mean_C1, fill = "Cluster 1"), stat = "identity", position = position_nudge(x = -0.2), width = 0.35, alpha = 0.9, color="black", linewidth=0.3) +
+  geom_bar(aes(x = Cell_Type, y = Mean_C2, fill = "Cluster 2"), stat = "identity", position = position_nudge(x = 0.2), width = 0.35, alpha = 0.9, color="black", linewidth=0.3) +
   geom_text(data = sig_stars, aes(x = Cell_Type, y = y_pos, label = star), size=6, fontface="bold") +
   scale_fill_manual(name = "Subtype", values = c("Cluster 1" = color_c1, "Cluster 2" = color_c2)) +
   labs(
@@ -155,7 +155,7 @@ p_scatter <- ggplot(df_cor, aes(x = monocytic_score, y = auc, color = cluster)) 
 # ------------------------------------------------------------------------------
 
 cat("Loading BeatAML Proteomics abundance data...\n")
-prot_path <- "03_Results/29_ExternalValidation/proteomic_abundance_by_cluster.csv"
+prot_path <- "03_Results/29_ExternalValidation/proteomic_validation_results.csv"
 prot_data <- read_csv(prot_path, show_col_types = FALSE)
 
 prot_long <- prot_data %>%

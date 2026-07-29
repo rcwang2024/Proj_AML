@@ -52,7 +52,7 @@ We utilized multi-omic and functional profiling data from the "Gold Standard" Be
     \item \textbf{Ex Vivo Drug Sensitivity:} Area under the curve (AUC) measurements across 166 functional compounds.
     \item \textbf{Clinical Annotations:} Overall survival (OS) in months, vital status, age, sex, and white blood cell (WBC) count at diagnosis.
 \end{enumerate}
-RNA-sequencing count data were normalized to counts per million (CPM) values, and low-expression genes (CPM $< 1$ in $> 90\%$ of samples) were filtered out. Expression values were $\log_2(CPM + 1)$ transformed. Technical batch effects associated with sequencing run waves were mitigated using the empirical Bayes framework implemented in the \texttt{ComBat} package (version 3.46.0) in R \cite{johnson2007combat}.
+RNA-sequencing count data were normalized to counts per million (CPM) values, and low-expression genes (CPM $< 1$ in $> 90\%$ of samples) were filtered out. Expression values were $\log_2(CPM + 1)$ transformed. Technical batch effects associated with sequencing run waves were mitigated using the empirical Bayes framework implemented in the \texttt{ComBat} package (version 3.46.0) in R \cite{johnson2007combat}. Principal component analysis confirmed complete removal of batch-associated technical variation while preserving biological signal (\textbf{Supplementary Figure S21}).
 
 \subsection{External Validation Cohorts}
 \paragraph{TCGA-LAML Cohort:} We obtained matched RNA-seq count data and clinical annotations for 151 adult de novo AML patients from The Cancer Genome Atlas (TCGA-LAML) database through the Genomic Data Commons (GDC) portal \cite{cancer2013tcga}. Expression values were batch-corrected and normalized identically to the discovery cohort.
@@ -390,7 +390,7 @@ Single-cell RNA-seq and ADT surface protein profiles from van Galen et al. \cite
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.85\textwidth]{Supplementary/FigureS1.pdf}
-\caption{\textbf{Technical Batch Mitigation and Batch Effect Correction.} \textbf{A}, Principal Component Analysis (PCA) of raw gene expression data showing clear batch effects across sequencing centers. \textbf{B}, PCA of ComBat-seq corrected expression data showing removal of technical batch effects. \textbf{C}, Expression levels of top 10 batch-associated genes before correction. \textbf{D}, Expression levels of the same 10 genes after ComBat-seq correction, demonstrating that technical variation is successfully removed.}
+\caption{\textbf{Consensus Clustering Diagnostics for Optimal $k$ Selection.} \textbf{A}, Consensus matrix heatmap at $k=2$ showing two crisp, well-separated blocks with high within-cluster consensus. \textbf{B}, Consensus cumulative distribution function (CDF) curves for $k=2$ to $k=10$. \textbf{C}, Delta area plot showing the relative change in area under the CDF curve as a function of $k$; the largest relative gain occurs at $k=2$, with diminishing incremental gains at higher $k$, supporting two clusters as the optimal partition.}
 \label{fig:figS1}
 \end{figure}
 
@@ -544,6 +544,14 @@ Single-cell RNA-seq and ADT surface protein profiles from van Galen et al. \cite
 \includegraphics[width=0.85\textwidth]{Supplementary/FigureS20.pdf}
 \caption{\textbf{Classifier Confidence Distribution and Interactive VRS Web Calculator.} Poster mapping confidence distribution across external validation cohorts and Streamlit interactive bedside VRS web calculator interface.}
 \label{fig:figS20}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{Supplementary/FigureS21.pdf}
+\caption{\textbf{Technical Batch Mitigation and Batch Effect Correction.} \textbf{A}, Principal Component Analysis (PCA) of raw gene expression data showing clear batch effects across sequencing centers. \textbf{B}, PCA of ComBat-seq corrected expression data showing removal of technical batch effects. \textbf{C}, Expression levels of top 10 batch-associated genes before correction. \textbf{D}, Expression levels of the same 10 genes after ComBat-seq correction, demonstrating that technical variation is successfully removed.}
+\label{fig:figS21}
 \end{figure}
 
 \end{document}

@@ -37,6 +37,7 @@ def main():
         "generate_Figure5B_VRS_Validation_Boxplot.R",
         "generate_Figure5D_Salvage_Boxplots.R",
         "generate_Figure5E_VIALE_Validation.R",
+        "generate_Figure6_PanelsEF_Boxplots.R",
         # Supplementary Figures R scripts
         "01_generate_FigureS1.R",
         "generate_FigureS2_HighFid_Pediatric.R",
